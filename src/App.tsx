@@ -6,8 +6,8 @@ import { AppPage } from './declarations';
 
 import Menu from './components/Menu';
 import Home from './pages/Home';
-import List from './pages/List';
-import { home, list } from 'ionicons/icons';
+import Budget from './pages/budget/Budget';
+import { home, calculator } from 'ionicons/icons';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,9 +35,9 @@ const appPages: AppPage[] = [
     icon: home
   },
   {
-    title: 'List',
-    url: '/home/list',
-    icon: list
+    title: 'Budget',
+    url: '/budget',
+    icon: calculator
   }
 ];
 
@@ -49,7 +49,7 @@ const App: React.FunctionComponent = () => (
         <IonPage id="main">
           <IonRouterOutlet>
             <Route path="/:tab(home)" component={Home} exact={true} />
-            <Route path="/:tab(home)/list" component={List} exact={true} />
+            <Route path="/:tab(budget)" component={Budget} exact={true} />
             <Route exact path="/" render={() => <Redirect to="/home" />} />
           </IonRouterOutlet>
         </IonPage>
