@@ -1,0 +1,67 @@
+
+<ion-card>
+    <ion-card-header>
+        <ion-card-title>
+            <ion-grid>
+                <ion-row>
+                    <ion-col class="card-title-side" size="12" size-sm>
+                        <ion-radio [(checked)]="budget.active"></ion-radio>
+                        {{ budget.name }}
+                    </ion-col>
+                    <ion-col class="card-title-side right">
+                        <span class="card-tab-link" 
+                            [ngClass]="{'active': isSummary() }"
+                            (click)="setSummaryMode()">
+                            <ion-icon name="paper"></ion-icon>
+                        </span>
+                        <span class="card-tab-link" 
+                            [ngClass]="{'active': isStats() }"
+                            (click)="setStatsMode()">
+                            <ion-icon name="stats"></ion-icon>
+                        </span>
+                        <span class="card-tab-link" 
+                            [ngClass]="{'active': isEdit() }"
+                            (click)="setEditMode()">
+                            <ion-icon name="create"></ion-icon>
+                        </span>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-card-subtitle>Goal {{ budget.goal }}</ion-card-subtitle>
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Income Sources</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let incomeSource of budget.incomeSources">
+                <ion-icon name="cash"></ion-icon>
+                <ion-label>
+                    {{ incomeSource.name }}, 
+                    ${{ incomeSource.value }}, 
+                    {{ incomeSource.type }}
+                    <span *ngIf="incomeSource.date">
+                        <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
+                    </span>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Spences</ion-label>
+            </ion-list-header>
+            <ion-item *ngFor="let spence of budget.spences">
+                <ion-icon name="card"></ion-icon>
+                <ion-label>
+                    {{ spence.name }}, 
+                    ${{ spence.value }},
+                    {{ spence.type }}
+                    <span *ngIf="spence.date">
+                        <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
+                    </span>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-card-content>
+</ion-card>

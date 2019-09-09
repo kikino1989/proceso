@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Budgets
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    mode {{ mode }}
+    <ion-list>
+        <ion-radio-group>
+            <ng-container *ngFor="let budget of budgets">
+                <summary *ngIf="isSummary()" [budget]="budget" [(mode)]="mode"></summary>
+            </ng-container>
+        </ion-radio-group>
+    </ion-list>
+</ion-content>
