@@ -10,16 +10,18 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 
+import { FormsModule } from '@angular/forms';
 import BudgetsComponent from './components/budgets/budgets.component';
 import BudgetsService from './services/budgets.service';
-import { FormsModule } from '@angular/forms';
 import SummaryComponent from './components/budgets/sumary/summary.component';
+import BudgetCardComponent from './components/budgets/budget-card/budget-card.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         BudgetsComponent,
-        SummaryComponent
+        SummaryComponent,
+        BudgetCardComponent
     ],
     entryComponents: [],
     imports: [

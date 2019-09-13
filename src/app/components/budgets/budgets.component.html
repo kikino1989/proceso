@@ -8,13 +8,11 @@
         </ion-title>
     </ion-toolbar>
 </ion-header>
-
 <ion-content>
-    mode {{ mode }}
     <ion-list>
         <ion-radio-group>
             <ng-container *ngFor="let budget of budgets">
-                <summary *ngIf="isSummary()" [budget]="budget" [(mode)]="mode"></summary>
+                <budget-card [(budget)]="budget" [removeBudget]="removeBudget.bind(this)"></budget-card>
             </ng-container>
         </ion-radio-group>
     </ion-list>
