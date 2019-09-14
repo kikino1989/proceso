@@ -25,7 +25,6 @@ export default class BudgetsService {
     }
 
     deleteBudget(budget: Budget) {
-        console.log('clicks...', budget)
         const index = budgets.indexOf(budget);
         budgets.splice(index, 1);
     }

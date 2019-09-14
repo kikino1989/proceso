@@ -1,7 +1,10 @@
 <ion-card-subtitle>Goal {{ budget.goal }}</ion-card-subtitle>
 <ion-list>
     <ion-list-header>
-        <ion-label>Income Sources</ion-label>
+        <ion-label>Incomes:</ion-label>
+        <ion-item>
+            <ion-input type="text" (input)="filterIncomeSources($event.target.value)"></ion-input>
+        </ion-item>
     </ion-list-header>
     <ion-item *ngFor="let incomeSource of budget.incomeSources">
         <ion-icon name="cash"></ion-icon>
@@ -17,7 +20,10 @@
 </ion-list>
 <ion-list>
     <ion-list-header>
-        <ion-label>Spences</ion-label>
+        <ion-label>Spences: </ion-label>
+        <ion-item>
+            <ion-input type="text" (input)="filterSpences($event.target.value)"></ion-input>
+        </ion-item>
     </ion-list-header>
     <ion-item *ngFor="let spence of budget.spences">
         <ion-icon name="card"></ion-icon>
