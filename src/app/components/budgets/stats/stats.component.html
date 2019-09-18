@@ -1,0 +1,45 @@
+<!-- <ion-card-subtitle>Goal {{ budget.goal }}</ion-card-subtitle>
+<ion-list>
+    <ion-list-header>
+        <ion-label>Incomes:</ion-label>
+        <ion-input type="text" clear-input="true" 
+            (ionInput)="filterIncomeSources($event.target.value)"
+            (ionChange)="filterIncomeSources($event.target.value)">
+        </ion-input>
+    </ion-list-header>
+    <ion-item *ngFor="let incomeSource of budget.incomeSources">
+        <ion-icon name="cash"></ion-icon>
+        <ion-label>
+            {{ incomeSource.name }}, 
+            ${{ incomeSource.value }}, 
+            {{ incomeSource.type }}
+            <span *ngIf="incomeSource.date">
+                <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
+            </span>
+        </ion-label>
+        <ion-icon *ngIf="incomeSource.type === 'Variable'" name="add" (click)="addToIncomeSource(incomeSource)"></ion-icon>
+    </ion-item>
+</ion-list>
+<ion-list>
+    <ion-list-header>
+        <ion-label>Spences: </ion-label>
+        <ion-input type="text" clear-input="true" 
+            (ionInput)="filterSpences($event.target.value)"
+            (ionChange)="filterSpences($event.target.value)">
+        </ion-input>
+    </ion-list-header>
+    <ion-item *ngFor="let spence of budget.spences">
+        <ion-icon name="card"></ion-icon>
+        <ion-label>
+            {{ spence.name }}, 
+            ${{ spence.value }},
+            {{ spence.type }}
+            <span *ngIf="spence.date">
+                <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
+            </span>
+        </ion-label>
+        <ion-icon *ngIf="spence.type === 'Occacional'" name="add" (click)="addToSpence(spence)"></ion-icon>
+    </ion-item>
+</ion-list> -->
+
+stats page...

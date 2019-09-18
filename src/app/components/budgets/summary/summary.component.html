@@ -2,7 +2,7 @@
 <ion-list>
     <ion-list-header>
         <ion-label>Incomes:</ion-label>
-        <ion-input type="text" clear-input="true" 
+        <ion-input type="text" clear-input="true" placeholder="Search..."
             (ionInput)="filterIncomeSources($event.target.value)"
             (ionChange)="filterIncomeSources($event.target.value)">
         </ion-input>
@@ -17,7 +17,10 @@
                 <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
             </span>
         </ion-label>
-        <ion-icon *ngIf="incomeSource.type === 'Variable'" name="add" (click)="addToIncomeSource(incomeSource)"></ion-icon>
+        <ion-icon *ngIf="incomeSource.type === 'Variable'" 
+            color="warning" name="add" 
+            (click)="addToIncomeSource(incomeSource)">
+        </ion-icon>
     </ion-item>
 </ion-list>
 <ion-list>
@@ -38,6 +41,8 @@
                 <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
             </span>
         </ion-label>
-        <ion-icon *ngIf="spence.type === 'Occacional'" name="add" (click)="addToSpence(spence)"></ion-icon>
+        <ion-icon *ngIf="spence.type === 'Occacional'"
+            color="warning" name="add" (click)="addToSpence(spence)">
+        </ion-icon>
     </ion-item>
 </ion-list>

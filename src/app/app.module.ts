@@ -13,14 +13,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import BudgetsComponent from './components/budgets/budgets.component';
 import BudgetsService from './services/budgets.service';
-import SummaryComponent from './components/budgets/sumary/summary.component';
+import EditComponent from './components/budgets/edit/edit.component';
+import StatsComponent from './components/budgets/stats/stats.component';
 import BudgetCardComponent from './components/budgets/budget-card/budget-card.component';
+import SummaryComponent from './components/budgets/summary/summary.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         BudgetsComponent,
         SummaryComponent,
+        EditComponent,
+        StatsComponent,
         BudgetCardComponent
     ],
     entryComponents: [],

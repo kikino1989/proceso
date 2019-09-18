@@ -34,6 +34,11 @@
         </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-        <summary *ngIf="isSummary()" [budget]="budget"></summary>
+        <ng-container [ngSwitch]="mode">
+            <summary *ngSwitchCase="'summary'" [budget]="budget"></summary>
+            <edit *ngSwitchCase="'edit'" [budget]="budget"></edit>
+            <stats *ngSwitchCase="'stats'" [budget]="budget"></stats>
+            <summary *ngSwitchDefault [budget]="budget"></summary>
+        </ng-container>
     </ion-card-content>
 </ion-card>

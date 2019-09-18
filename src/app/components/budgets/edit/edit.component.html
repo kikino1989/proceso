@@ -1,0 +1,64 @@
+<ion-item>
+    <ion-label>Budget name:</ion-label>
+    <ion-input required type="text" [(ngModel)]="budget.name"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label>Budget goal:</ion-label>
+    <ion-input required type="number" [(ngModel)]="budget.goal"></ion-input>
+</ion-item>
+<ion-list>
+    <ion-list-header>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    Income Sources
+                </ion-col>
+                <ion-col>
+                    <ion-icon size="large" color="primary" name="add"
+                        (click)="addIncomeSource()">
+                    </ion-icon>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-input type="text" clear-input="true" placeholder="Search..."
+                        (ionInput)="filterIncomeSources($event.target.value)"
+                        (ionChange)="filterIncomeSources($event.target.value)">
+                    </ion-input>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list-header>
+    <ion-item *ngFor="let incomeSource of budget.incomeSources">
+        <ion-icon size="large" color="danger" name="remove"
+            (click)="removeIncomeSource(incomeSource)">
+        </ion-icon>
+        <ion-icon name="cash"></ion-icon>
+        <ion-label>
+            {{ incomeSource.name }}, 
+            ${{ incomeSource.value }}, 
+            {{ incomeSource.type }}
+            <span *ngIf="incomeSource.date">
+                <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
+            </span>
+        </ion-label>
+    </ion-item>
+    <!-- <ion-item-group *ngFor="let incomeSource of budget.incomeSources">
+        <ion-item>
+            <ion-input type="text" [(ngModel)]="incomeSource.name" placeholder="Name"></ion-input>
+            <ion-input type="number" [(ngModel)]="incomeSource.value" placeholder="Value"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-select [(ngModel)]="incomeSource.type" placeholder="Select type">
+                <ion-select-option value="Fixed">Fixed</ion-select-option>
+                <ion-select-option selected value="Variable">Variable</ion-select-option>
+            </ion-select>
+            <ion-datetime placeholder="YYYY-MM-DD" displayFormat="YYYY-MM-DD" 
+                [(ngModel)]="incomeSource.date">
+            </ion-datetime>
+        </ion-item>
+    </ion-item-group> -->
+</ion-list>
+<ion-list>
+    <ion-list-header>Spences</ion-list-header>
+</ion-list>
