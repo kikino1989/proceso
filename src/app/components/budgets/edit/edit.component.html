@@ -1,10 +1,10 @@
 <ion-item>
     <ion-label>Budget name:</ion-label>
-    <ion-input required type="text" [(ngModel)]="budget.name"></ion-input>
+    <ion-input required type="text" [(ngModel)]="budgetClone.name"></ion-input>
 </ion-item>
 <ion-item>
     <ion-label>Budget goal:</ion-label>
-    <ion-input required type="number" [(ngModel)]="budget.goal"></ion-input>
+    <ion-input required type="number" [(ngModel)]="budgetClone.goal"></ion-input>
 </ion-item>
 <ion-list>
     <ion-list-header>
@@ -29,7 +29,7 @@
             </ion-row>
         </ion-grid>
     </ion-list-header>
-    <ion-item *ngFor="let incomeSource of budget.incomeSources">
+    <ion-item *ngFor="let incomeSource of budgetClone.incomeSources">
         <ion-icon size="large" color="danger" name="remove"
             (click)="removeIncomeSource(incomeSource)">
         </ion-icon>
@@ -45,5 +45,40 @@
     </ion-item>
 </ion-list>
 <ion-list>
-    <ion-list-header>Spences</ion-list-header>
+    <ion-list-header>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                   Spences
+                </ion-col>
+                <ion-col class="card-title-side right">
+                    <ion-icon size="large" color="primary" name="add"
+                        (click)="addSpence()">
+                    </ion-icon>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-input type="text" clear-input="true" placeholder="Search..."
+                        (ionInput)="filterSpences($event.target.value)"
+                        (ionChange)="filterSpences($event.target.value)">
+                    </ion-input>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list-header>
+    <ion-item *ngFor="let spence of budgetClone.spences">
+        <ion-icon size="large" color="danger" name="remove"
+            (click)="removeSpence(spence)">
+        </ion-icon>
+        <ion-icon name="card"></ion-icon>
+        <ion-label>
+            {{ spence.name }}, 
+            ${{ spence.value }},
+            {{ spence.type }}
+            <span *ngIf="spence.date">
+                <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
+            </span>
+        </ion-label>
+    </ion-item>
 </ion-list>

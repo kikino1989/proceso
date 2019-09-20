@@ -18,6 +18,7 @@ import StatsComponent from './components/budgets/stats/stats.component';
 import BudgetCardComponent from './components/budgets/budget-card/budget-card.component';
 import SummaryComponent from './components/budgets/summary/summary.component';
 import { IncomeSourceComponent } from './components/budgets/income-source/income-source.component';
+import { SpenceComponent } from './components/budgets/spence/spence.component';
 
 @NgModule({
     declarations: [
@@ -27,10 +28,12 @@ import { IncomeSourceComponent } from './components/budgets/income-source/income
         EditComponent,
         StatsComponent,
         BudgetCardComponent,
-        IncomeSourceComponent
+        IncomeSourceComponent,
+        SpenceComponent,
     ],
     entryComponents: [
-        IncomeSourceComponent
+        IncomeSourceComponent,
+        SpenceComponent
     ],
     imports: [
         BrowserModule,
