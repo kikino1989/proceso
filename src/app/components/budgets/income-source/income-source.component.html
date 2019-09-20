@@ -1,0 +1,74 @@
+<ion-content>
+    <form name="new-income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+        <div class="header" color="primary">
+            <ion-label>New Income Source</ion-label>
+        </div>
+        <div class="content">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12" size-sm>
+                        <ion-item>
+                            <ion-label>Name</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" size-sm>
+                        <ion-item>
+                            <ion-input name="name" type="text" placeholder="name"
+                                [(ngModel)]="incomeSource.name">
+                            </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12" size-sm>
+                        <ion-item>
+                            <ion-label>Value</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" size-sm>
+                        <ion-item>
+                            <ion-input name="value" type="number" placeholder="value"
+                                [(ngModel)]="incomeSource.value">
+                            </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12" size-sm>
+                        <ion-item>
+                            <ion-label>Type</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" size-sm>
+                        <ion-item>
+                            <ion-select name="type" [(ngModel)]="incomeSource.type" placeholder="Select type...">
+                                <ion-select-option value="Fixed" selected>Fixed</ion-select-option>
+                                <ion-select-option value="Variable">Variable</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12" size-sm>
+                        <ion-item>
+                            <ion-label>Date</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" size-sm>
+                        <ion-item>
+                            <ion-datetime placeholder="YYYY-MM-DD" format="YYYY-MM-DD"
+                                name="date" [(ngModel)]="incomeSource.date">
+                            </ion-datetime>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+        <div class="footer">
+            <ion-button type="button" size="small" role="cancel" 
+                (click)="dismiss()" color="primary"> Cancel 
+            </ion-button>
+            <ion-button type="submit" size="small" role="submit" color="success"> Add </ion-button>
+        </div>
+    </form>
+</ion-content>

@@ -17,6 +17,7 @@ import EditComponent from './components/budgets/edit/edit.component';
 import StatsComponent from './components/budgets/stats/stats.component';
 import BudgetCardComponent from './components/budgets/budget-card/budget-card.component';
 import SummaryComponent from './components/budgets/summary/summary.component';
+import { IncomeSourceComponent } from './components/budgets/income-source/income-source.component';
 
 @NgModule({
     declarations: [
@@ -25,9 +26,12 @@ import SummaryComponent from './components/budgets/summary/summary.component';
         SummaryComponent,
         EditComponent,
         StatsComponent,
-        BudgetCardComponent
+        BudgetCardComponent,
+        IncomeSourceComponent
     ],
-    entryComponents: [],
+    entryComponents: [
+        IncomeSourceComponent
+    ],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),

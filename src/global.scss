@@ -54,3 +54,34 @@ ion-card-subtitle {
         margin: 0 auto;
     }
 }
+
+.modal-form {
+    &, fieldset {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+    .footer, .header, .content {
+        display: block;
+        width: 100%;
+    }
+    .content {
+        height: calc(100% - 96px);
+        padding: 16px;
+        overflow: auto;
+    }
+    .header,
+    .footer {
+        text-align: center;
+        line-height: 48px;
+        height: 48px;
+        label, ion-label {
+            vertical-align: middle;
+            font-weight: 500;
+            color: #a3a39e;
+        }
+        button, ion-button {
+            width: 48%;
+        }
+    }
+}
