@@ -19,6 +19,8 @@ import BudgetCardComponent from './components/budgets/budget-card/budget-card.co
 import SummaryComponent from './components/budgets/summary/summary.component';
 import { IncomeSourceComponent } from './components/budgets/income-source/income-source.component';
 import { SpenceComponent } from './components/budgets/spence/spence.component';
+import { ChartizeDirective } from './directives/chartize.directive';
+import { BudgetProgressComponent } from './components/budgets/budget-progress/budget-progress.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +32,8 @@ import { SpenceComponent } from './components/budgets/spence/spence.component';
         BudgetCardComponent,
         IncomeSourceComponent,
         SpenceComponent,
+        BudgetProgressComponent,
+        ChartizeDirective,
     ],
     entryComponents: [
         IncomeSourceComponent,

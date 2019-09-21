@@ -1,0 +1,52 @@
+$green: green;
+$blue: blue;
+$orange: orange;
+$red: red;
+ 
+
+.budget-progress-container {
+    position: relative;
+    width: 100%;
+    .budget-limit, .budget-spending {
+        display: inline-block;
+        padding: 0 16px;
+        height: 24px;
+        width: 90%;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+    }
+    .budget-spending {
+        position: absolute;
+        color: #fff;
+        left: 0;
+        &.great {
+            background: green;
+        }
+        &.good {
+            background: blue;
+        }
+        &.careful {
+            background: orange;
+        }
+        &.bad {
+            background: red;
+        }
+    }
+    .budget-limit {
+        background: #ccc;
+    }
+    label, ion-label {
+        &.great {
+            color: $green;
+        }
+        &.good {
+            color: $blue;
+        }
+        &.careful {
+            color: $orange;
+        }
+        &.bad {
+            color: $red;
+        }
+    }
+}

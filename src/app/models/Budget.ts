@@ -4,7 +4,7 @@ import IncomeSource from './IncomeSource';
 export default class Budget {
     constructor(
         public id: number, 
-        public goal: number,
+        public limit: number,
         public name: string, 
         public incomeSources: IncomeSource[] = [],
         public spences: Spence[] = [],

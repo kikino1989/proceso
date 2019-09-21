@@ -57,9 +57,11 @@ export default class EditComponent {
         }).then(modal => {
             modal.present();
             return modal.onWillDismiss().then(({data}) => {
-                this.budgetClone = data;
-                this.orgIncomeSources = this.budgetClone.incomeSources.slice();
-                this.budgetChange.emit(this.budgetClone);
+                if (data) {
+                    this.budgetClone = data;
+                    this.orgIncomeSources = this.budgetClone.incomeSources.slice();
+                    this.budgetChange.emit(this.budgetClone);
+                }
             });
         });
     }
@@ -79,9 +81,11 @@ export default class EditComponent {
         }).then(modal => {
             modal.present();
             return modal.onWillDismiss().then(({data}) => {
-                this.budgetClone = data;
-                this.orgSpences = this.budgetClone.spences.slice();
-                this.budgetChange.emit(this.budgetClone);
+                if (data) {
+                    this.budgetClone = data;
+                    this.orgSpences = this.budgetClone.spences.slice();
+                    this.budgetChange.emit(this.budgetClone);
+                }
             });
         });
     }

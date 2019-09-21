@@ -37,7 +37,7 @@ export default class SummaryComponent {
     addToIncomeSource(incomeSource: IncomeSource) {
         this.alertController.create({
             header: "Add to income?",
-            message: "this will affect your budget goal.",
+            message: "this will affect your budget.",
             buttons: [
                 {
                     text: 'Add',
@@ -65,7 +65,7 @@ export default class SummaryComponent {
     addToSpence(spence: Spence) {
         this.alertController.create({
             header: "Add to spence?",
-            message: "This will affect your budget goal.",
+            message: "This will affect your budget.",
             buttons: [
                 {
                     text: 'Add',

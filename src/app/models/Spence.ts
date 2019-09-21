@@ -8,6 +8,7 @@ export default class Spence {
         public name: string,
         public value: number,
         public type: TYPE = TYPE.RECURRENT,
-        public dueDate?: string
+        public dueDate?: string,
+        public limit?: number
     ) {}
 }
