@@ -1,10 +1,16 @@
 <ion-item>
     <ion-label>Budget name:</ion-label>
-    <ion-input required type="text" [(ngModel)]="budgetClone.name"></ion-input>
+    <ion-input required type="text" [(ngModel)]="budgetClone.name"
+        (input)="budgetChange.emit(budgetClone)"
+        (change)="budgetChange.emit(budgetClone)">
+    </ion-input>
 </ion-item>
 <ion-item>
     <ion-label>Budget goal:</ion-label>
-    <ion-input required type="number" [(ngModel)]="budgetClone.goal"></ion-input>
+    <ion-input required type="number" [(ngModel)]="budgetClone.goal"
+        (input)="budgetChange.emit(budgetClone)"
+        (change)="budgetChange.emit(budgetClone)">
+    </ion-input>
 </ion-item>
 <ion-list>
     <ion-list-header>

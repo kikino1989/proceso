@@ -24,7 +24,7 @@ export class SpenceComponent implements OnInit {
 
     onSubmit() {
         this.budget.spences.push(this.spence);
-        this.modalCtrl.dismiss();
+        this.modalCtrl.dismiss(this.budget);
     }
 
     dismiss() {

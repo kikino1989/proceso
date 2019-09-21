@@ -24,7 +24,7 @@ export class IncomeSourceComponent implements OnInit {
 
     onSubmit() {
         this.budget.incomeSources.push(this.incomeSource);
-        this.modalCtrl.dismiss();
+        this.modalCtrl.dismiss(this.budget);
     }
 
     dismiss() {

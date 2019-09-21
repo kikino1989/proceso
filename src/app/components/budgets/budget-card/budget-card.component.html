@@ -26,7 +26,7 @@
                         <span class="card-tab-link" 
                             [ngClass]="{'active': isEdit() }"
                             (click)="setEditMode()">
-                            <ion-icon name="create"></ion-icon>
+                            <ion-icon [name]="isEdit() ? 'save' : 'create'"></ion-icon>
                         </span>
                     </ion-col>
                 </ion-row>
@@ -36,7 +36,7 @@
     <ion-card-content>
         <ng-container [ngSwitch]="mode">
             <summary *ngSwitchCase="'summary'" [budget]="budget"></summary>
-            <edit *ngSwitchCase="'edit'" [budget]="budget"></edit>
+            <edit *ngSwitchCase="'edit'" [budget]="budget" (budgetChange)="presaveBudget(budget)"></edit>
             <stats *ngSwitchCase="'stats'" [budget]="budget"></stats>
             <summary *ngSwitchDefault [budget]="budget"></summary>
         </ng-container>

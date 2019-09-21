@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import Budget from 'src/app/models/Budget';
 import IncomeSource from 'src/app/models/IncomeSource';
 import Spence from 'src/app/models/Spence';
@@ -14,6 +14,7 @@ import { SpenceComponent } from '../spence/spence.component';
 })
 export default class EditComponent {
     @Input() budget: Budget;
+    @Output() budgetChange = new EventEmitter<Budget>();
     public budgetClone: Budget;
     private orgIncomeSources: IncomeSource[];
     private orgSpences: Spence[];
@@ -32,6 +33,7 @@ export default class EditComponent {
     ngOnDestroy() {
         delete this.orgIncomeSources;
         delete this.orgSpences;
+        delete this.budgetClone;
     }
 
     filterIncomeSources(value: string) {
@@ -54,12 +56,18 @@ export default class EditComponent {
             }
         }).then(modal => {
             modal.present();
+            return modal.onWillDismiss().then(({data}) => {
+                this.budgetClone = data;
+                this.orgIncomeSources = this.budgetClone.incomeSources.slice();
+                this.budgetChange.emit(this.budgetClone);
+            });
         });
     }
 
     removeIncomeSource(incomeSource: IncomeSource) {
-        const index = this.budget.incomeSources.indexOf(incomeSource);
-        this.budget.incomeSources.splice(index, 1);
+        const index = this.budgetClone.incomeSources.indexOf(incomeSource);
+        this.budgetClone.incomeSources.splice(index, 1);
+        this.budgetChange.emit(this.budgetClone);
     }
 
     addSpence() {
@@ -70,15 +78,17 @@ export default class EditComponent {
             }
         }).then(modal => {
             modal.present();
+            return modal.onWillDismiss().then(({data}) => {
+                this.budgetClone = data;
+                this.orgSpences = this.budgetClone.spences.slice();
+                this.budgetChange.emit(this.budgetClone);
+            });
         });
     }
 
     removeSpence(spence: Spence) {
-        const index = this.budget.spences.indexOf(spence);
-        this.budget.spences.splice(index, 1);
-    }
-
-    save() {
-        this.budget = { ...this.budget, ...this.budgetClone};
+        const index = this.budgetClone.spences.indexOf(spence);
+        this.budgetClone.spences.splice(index, 1);
+        this.budgetChange.emit(this.budgetClone);
     }
 }

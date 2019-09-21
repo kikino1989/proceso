@@ -12,7 +12,8 @@ export default class BudgetCardComponent implements OnInit {
     public mode: MODES = MODES.SUMMARY;
     @Input() budget: Budget;
     @Input() removeBudget: (budget: Budget) => {};
-    @Output() budgetsChange = new EventEmitter<Budget>();
+    @Output() budgetChange = new EventEmitter<Budget>();
+    private budgetChanges: Budget;
 
     constructor() { }
 
@@ -35,11 +36,27 @@ export default class BudgetCardComponent implements OnInit {
     }
 
     setEditMode() {
-        this.mode = MODES.EDIT;
+        if (!this.saveBudget(this.isEdit())) {
+            this.mode = MODES.EDIT;
+        }
     }
 
     setSummaryMode() {
         this.mode = MODES.SUMMARY;
     }
 
+    presaveBudget(budget) {
+        this.budgetChanges = budget;
+    }
+    
+    saveBudget(save) {
+        console.log('save', save, 'budget changes', this.budgetChanges)
+        if (this.budgetChanges && save) {
+            this.budget = this.budgetChanges;
+            this.budgetChange.emit(this.budget);
+            this.mode = MODES.SUMMARY;
+            return true;
+        }
+        return false;
+    }
 }
