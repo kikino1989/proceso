@@ -55,7 +55,7 @@ export class ChartizeDirective {
                 colorSet[i] =  ChartizeDirective.colorIndexes.indexOf(name[i * charLength]) * 10;
             }
         }
-        return `rgba(${colorSet[0] + add}, ${colorSet[1] + add}, ${colorSet[2] + add}, 0.1)`;
+        return `rgba(${colorSet[0] + add}, ${colorSet[1] + add}, ${colorSet[2] + add}, 0.5)`;
     }
 
     nameToBorderColor(name: string) {

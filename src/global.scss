@@ -97,3 +97,51 @@ ion-card-subtitle {
 .right {
     text-align: right;
 }
+
+.padding-8 {
+    &.full {
+        padding: 8px;
+    }
+    &.vertical {
+        padding: 8px 0;
+    }
+    &.horizontal {
+        padding: 0 8px;
+    }
+    &.left {
+        padding-left: 8px;
+    }
+    &.top {
+        padding-top: 8px;
+    }
+    &.right {
+        padding-right: 8px;
+    }
+    &.bottom {
+        padding-bottom: 8px;
+    }
+}
+
+.padding-16 {
+    &.full {
+        padding: 16px;
+    }
+    &.vertical {
+        padding: 16px 0;
+    }
+    &.horizontal {
+        padding: 0 16px;
+    }
+    &.left {
+        padding-left: 16px;
+    }
+    &.top {
+        padding-top: 16px;
+    }
+    &.right {
+        padding-right: 16px;
+    }
+    &.bottom {
+        padding-bottom: 16px;
+    }
+}

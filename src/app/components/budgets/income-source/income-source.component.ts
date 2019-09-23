@@ -15,7 +15,7 @@ export class IncomeSourceComponent implements OnInit {
     constructor(public modalCtrl: ModalController) { }
 
     ngOnInit() {
-        this.incomeSource = new IncomeSource(-1, 'my income source', 100);
+        this.incomeSource = new IncomeSource('my income source', 100);
     }
 
     ngOnDelete() {

@@ -2,10 +2,10 @@ import Spence from './Spence';
 import IncomeSource from './IncomeSource';
 
 export default class Budget {
+    public id: number;
     constructor(
-        public id: number, 
-        public limit: number,
         public name: string, 
+        public limit: number,
         public incomeSources: IncomeSource[] = [],
         public spences: Spence[] = [],
         public active: boolean = false

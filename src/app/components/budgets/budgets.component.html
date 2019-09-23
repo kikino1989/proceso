@@ -9,9 +9,12 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <div class="padding-8 full right">
+        <ion-button type="button" shape="round" size="small" (click)="addBudget()">Add Budget</ion-button>
+    </div>
     <ion-list>
         <ion-radio-group>
-            <ng-container *ngFor="let budget of budgets">
+            <ng-container *ngFor="let budget of budgets.reverse()">
                 <budget-card [(budget)]="budget" [removeBudget]="removeBudget.bind(this)"></budget-card>
             </ng-container>
         </ion-radio-group>

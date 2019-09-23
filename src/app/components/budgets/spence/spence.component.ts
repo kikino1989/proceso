@@ -15,7 +15,7 @@ export class SpenceComponent implements OnInit {
     constructor(public modalCtrl: ModalController) { }
 
     ngOnInit() {
-        this.spence = new Spence(-1, 'my spence', 100);
+        this.spence = new Spence('my spence', 100);
     }
 
     ngOnDelete() {

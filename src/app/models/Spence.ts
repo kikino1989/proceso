@@ -3,8 +3,8 @@ export const enum TYPE {
 }
 
 export default class Spence {
+    public id: number;
     constructor(
-        public id: number,
         public name: string,
         public value: number,
         public type: TYPE = TYPE.RECURRENT,
