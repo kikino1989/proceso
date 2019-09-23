@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import Budget from 'src/app/models/Budget';
 
 @Component({
@@ -8,10 +8,26 @@ import Budget from 'src/app/models/Budget';
 })
 export class BudgetProgressComponent implements OnInit {
     @Input() budget: Budget;
-    constructor() { }
+    @ViewChild('spendingBar', {static: false}) spendingBar: ElementRef;
+    constructor(
+        public renderer: Renderer2
+    ) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
+    ngAfterViewInit() {
+        this.growTo(this.spendingBarWidth);
+    }
+
+    growTo(width: number, i = 0) {
+        setTimeout(() => {
+            if (i < width) {
+                this.renderer.setStyle(this.spendingBar.nativeElement, 'width', `${i}%`);
+                this.growTo(width, i + 1)
+            }
+        }, 10);
+    }
     get totalSpending():number {
         return this.budget.spences.map(spence => spence.value).reduce((prev, cur) => prev + cur);
     }

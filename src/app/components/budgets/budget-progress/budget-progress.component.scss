@@ -1,7 +1,7 @@
-$green: green;
-$blue: blue;
-$orange: orange;
-$red: red;
+$green: #4e9c4e;
+$blue: #6a69c7;
+$orange: #daa677;
+$red: #c74b4b;
  
 
 .budget-progress-container {
@@ -12,28 +12,29 @@ $red: red;
         padding: 0 16px;
         height: 24px;
         width: 90%;
-        border: 1px solid #ccc;
         border-radius: 25px;
     }
     .budget-spending {
         position: absolute;
         color: #fff;
         left: 0;
+        width: 0;
         &.great {
-            background: green;
+            background: $green;
         }
         &.good {
-            background: blue;
+            background: $blue;
         }
         &.careful {
-            background: orange;
+            background: $orange;
         }
         &.bad {
-            background: red;
+            background: $red;
         }
     }
     .budget-limit {
         background: #ccc;
+        border: 1px solid #737373;
     }
     label, ion-label {
         &.great {
