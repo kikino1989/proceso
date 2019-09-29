@@ -8,6 +8,10 @@
         </ion-input>
     </ion-list-header>
     <ion-item *ngFor="let incomeSource of budget.incomeSources">
+        <ion-icon *ngIf="incomeSource.type === 'Variable'" 
+            color="warning" name="add" 
+            (click)="addToIncomeSource(incomeSource)">
+        </ion-icon>
         <ion-icon name="cash"></ion-icon>
         <ion-label>
             {{ incomeSource.name }}, 
@@ -17,10 +21,6 @@
                 <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
             </span>
         </ion-label>
-        <ion-icon *ngIf="incomeSource.type === 'Variable'" 
-            color="warning" name="add" 
-            (click)="addToIncomeSource(incomeSource)">
-        </ion-icon>
     </ion-item>
 </ion-list>
 <ion-list>
@@ -32,6 +32,9 @@
         </ion-input>
     </ion-list-header>
     <ion-item *ngFor="let spence of budget.spences">
+        <ion-icon *ngIf="spence.type === 'Occasional'"
+            color="warning" name="add" (click)="addToSpence(spence)">
+        </ion-icon>
         <ion-icon name="card"></ion-icon>
         <ion-label>
             {{ spence.name }}, 
@@ -41,8 +44,5 @@
                 <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
             </span>
         </ion-label>
-        <ion-icon *ngIf="spence.type === 'Occacional'"
-            color="warning" name="add" (click)="addToSpence(spence)">
-        </ion-icon>
     </ion-item>
 </ion-list>

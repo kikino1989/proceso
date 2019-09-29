@@ -6,6 +6,7 @@ import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-acce
 import { AlertController, ModalController } from '@ionic/angular';
 import { IncomeSourceComponent } from '../income-source/income-source.component';
 import { SpenceComponent } from '../spence/spence.component';
+import { AlertOptions } from '@ionic/core';
 
 @Component({
     selector: 'edit',
@@ -50,15 +51,12 @@ export default class EditComponent {
 
     addIncomeSource() {
         this.modalController.create({
-            component: IncomeSourceComponent,
-            componentProps: {
-                budget: this.budgetClone
-            }
+            component: IncomeSourceComponent
         }).then(modal => {
             modal.present();
             return modal.onWillDismiss().then(({data}) => {
                 if (data) {
-                    this.budgetClone = data;
+                    this.budgetClone.incomeSources.push(data);
                     this.orgIncomeSources = this.budgetClone.incomeSources.slice();
                     this.budgetChange.emit(this.budgetClone);
                 }
@@ -74,15 +72,12 @@ export default class EditComponent {
 
     addSpence() {
         this.modalController.create({
-            component: SpenceComponent,
-            componentProps: {
-                budget: this.budgetClone
-            }
+            component: SpenceComponent
         }).then(modal => {
             modal.present();
             return modal.onWillDismiss().then(({data}) => {
                 if (data) {
-                    this.budgetClone = data;
+                    this.budgetClone.spences.push(data);
                     this.orgSpences = this.budgetClone.spences.slice();
                     this.budgetChange.emit(this.budgetClone);
                 }
@@ -94,5 +89,35 @@ export default class EditComponent {
         const index = this.budgetClone.spences.indexOf(spence);
         this.budgetClone.spences.splice(index, 1);
         this.budgetChange.emit(this.budgetClone);
+    }
+
+    editSpence(spence) {
+        this.modalController.create({
+            component: SpenceComponent,
+            componentProps: {
+                spence: spence
+            }
+        }).then(modal => {
+            modal.present();
+            modal.onWillDismiss().then((data) => {
+                spence = data;
+                this.budgetChange.emit(this.budgetClone)
+            });
+        });
+    }
+
+    editIncome(incomeSource) {
+        this.modalController.create({
+            component: IncomeSourceComponent,
+            componentProps: {
+                incomeSource: incomeSource
+            }
+        }).then(modal => {
+            modal.present();
+            modal.onWillDismiss().then((data) => {
+                incomeSource = data;
+                this.budgetChange.emit(this.budgetClone);
+            })
+        });
     }
 }

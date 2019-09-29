@@ -10,12 +10,12 @@ import { ModalController } from '@ionic/angular';
     styleUrls: ['./income-source.component.scss'],
 })
 export class IncomeSourceComponent implements OnInit {
-    @Input() budget: Budget;
-    private incomeSource: IncomeSource;
+    @Input() incomeSource?: IncomeSource;
     constructor(public modalCtrl: ModalController) { }
 
     ngOnInit() {
-        this.incomeSource = new IncomeSource('my income source', 100);
+        if (!this.incomeSource)
+            this.incomeSource = new IncomeSource('my income source', 100);
     }
 
     ngOnDelete() {
@@ -23,8 +23,7 @@ export class IncomeSourceComponent implements OnInit {
     }
 
     onSubmit() {
-        this.budget.incomeSources.push(this.incomeSource);
-        this.modalCtrl.dismiss(this.budget);
+        this.modalCtrl.dismiss(this.incomeSource);
     }
 
     dismiss() {

@@ -1,7 +1,8 @@
 <ion-content>
     <form name="new-income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
-            <ion-label>New Income Source</ion-label>
+            <ion-label>
+                {{ !incomeSource ? 'New Income Source' : 'Edit ' + incomeSource.name }}</ion-label>
         </div>
         <div class="content">
             <ion-grid>
@@ -68,7 +69,9 @@
             <ion-button type="button" size="small" role="cancel" 
                 (click)="dismiss()" color="primary"> Cancel 
             </ion-button>
-            <ion-button type="submit" size="small" role="submit" color="success"> Add </ion-button>
+            <ion-button type="submit" size="small" role="submit" color="success">
+                {{ !incomeSource ? 'Add' : 'Save' }} 
+            </ion-button>
         </div>
     </form>
 </ion-content>

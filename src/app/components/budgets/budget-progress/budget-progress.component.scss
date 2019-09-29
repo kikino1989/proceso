@@ -1,7 +1,7 @@
-$green: #4e9c4e;
-$blue: #6a69c7;
-$orange: #daa677;
-$red: #c74b4b;
+$bar_green: #4e9c4e;
+$bar_blue: #6a69c7;
+$bar_orange: #daa677;
+$bar_red: #c74b4b;
  
 
 .budget-progress-container {
@@ -11,7 +11,7 @@ $red: #c74b4b;
         display: inline-block;
         padding: 0 16px;
         height: 24px;
-        width: 90%;
+        width: 100%;
         border-radius: 25px;
     }
     .budget-spending {
@@ -20,16 +20,16 @@ $red: #c74b4b;
         left: 0;
         width: 0;
         &.great {
-            background: $green;
+            background: $bar_green;
         }
         &.good {
-            background: $blue;
+            background: $bar_blue;
         }
         &.careful {
-            background: $orange;
+            background: $bar_orange;
         }
         &.bad {
-            background: $red;
+            background: $bar_red;
         }
     }
     .budget-limit {
@@ -38,16 +38,16 @@ $red: #c74b4b;
     }
     label, ion-label {
         &.great {
-            color: $green;
+            color: $bar_green;
         }
         &.good {
-            color: $blue;
+            color: $bar_blue;
         }
         &.careful {
-            color: $orange;
+            color: $bar_orange;
         }
         &.bad {
-            color: $red;
+            color: $bar_red;
         }
     }
 }

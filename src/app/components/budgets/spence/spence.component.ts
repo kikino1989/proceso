@@ -10,12 +10,12 @@ import Spence from 'src/app/models/Spence';
     styleUrls: ['./spence.component.scss'],
 })
 export class SpenceComponent implements OnInit {
-    @Input() budget: Budget;
-    private spence: Spence;
+    @Input() spence: Spence;
     constructor(public modalCtrl: ModalController) { }
 
     ngOnInit() {
-        this.spence = new Spence('my spence', 100);
+        if (!this.spence)
+            this.spence = new Spence('my spence', 100);
     }
 
     ngOnDelete() {
@@ -23,8 +23,7 @@ export class SpenceComponent implements OnInit {
     }
 
     onSubmit() {
-        this.budget.spences.push(this.spence);
-        this.modalCtrl.dismiss(this.budget);
+        this.modalCtrl.dismiss(this.spence);
     }
 
     dismiss() {

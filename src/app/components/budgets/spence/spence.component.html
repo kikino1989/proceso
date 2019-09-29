@@ -1,7 +1,7 @@
 <ion-content>
     <form name="new-spence-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
-            <ion-label>New Spence </ion-label>
+            <ion-label> {{ !spence ? 'New Spence' : 'Edit ' + spence.name }} </ion-label>
         </div>
         <div class="content">
             <ion-grid>
@@ -42,8 +42,8 @@
                     <ion-col size="12" size-sm>
                         <ion-item>
                             <ion-select name="type" [(ngModel)]="spence.type" placeholder="Select type...">
-                                <ion-select-option value="Fixed" selected>Fixed</ion-select-option>
-                                <ion-select-option value="Variable">Variable</ion-select-option>
+                                <ion-select-option value="Recurrent" selected>Recurrent</ion-select-option>
+                                <ion-select-option value="Occasional">Occasional</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
@@ -68,7 +68,9 @@
             <ion-button type="button" size="small" role="cancel" 
                 (click)="dismiss()" color="primary"> Cancel 
             </ion-button>
-            <ion-button type="submit" size="small" role="submit" color="success"> Add </ion-button>
+            <ion-button type="submit" size="small" role="submit" color="success">
+                {{ !spence ? 'Add' : 'Save' }} 
+            </ion-button>
         </div>
     </form>
 </ion-content>
