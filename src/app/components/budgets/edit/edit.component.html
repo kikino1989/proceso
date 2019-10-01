@@ -1,16 +1,26 @@
 <ion-item>
-    <ion-label>Budget name:</ion-label>
+    <ion-label>Budget Name:</ion-label>
     <ion-input required type="text" [(ngModel)]="budgetClone.name"
-        (input)="budgetChange.emit(budgetClone)"
-        (change)="budgetChange.emit(budgetClone)">
+        (ionInput)="budgetChange.emit(budgetClone)"
+        (ionChange)="budgetChange.emit(budgetClone)">
     </ion-input>
 </ion-item>
 <ion-item>
     <ion-label>Budget Limit:</ion-label>
     <ion-input required type="number" [(ngModel)]="budgetClone.limit"
-        (input)="budgetChange.emit(budgetClone)"
-        (change)="budgetChange.emit(budgetClone)">
+        (ionInput)="budgetChange.emit(budgetClone)"
+        (ionChange)="budgetChange.emit(budgetClone)">
     </ion-input>
+</ion-item>
+<ion-item>
+    <ion-label>Start Date:</ion-label>
+    <ion-select type="number" [(ngModel)]="budgetClone.startDate"
+        (ionInput)="budgetChange.emit(budgetClone)"
+        (ionChange)="budgetChange.emit(budgetClone)">
+        <ion-select-option [selected]="day.indexOf('1ST') > -1" *ngFor="let day of budgetDays" [value]="day">
+            {{ day }}
+        </ion-select-option>
+    </ion-select>
 </ion-item>
 <ion-list>
     <ion-list-header>

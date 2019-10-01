@@ -1,12 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import Budget from 'src/app/models/Budget';
+import Budget, { DAYS } from 'src/app/models/Budget';
 import IncomeSource from 'src/app/models/IncomeSource';
 import Spence from 'src/app/models/Spence';
 import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-accessors/value-accessor';
 import { AlertController, ModalController } from '@ionic/angular';
 import { IncomeSourceComponent } from '../income-source/income-source.component';
 import { SpenceComponent } from '../spence/spence.component';
-import { AlertOptions } from '@ionic/core';
 
 @Component({
     selector: 'edit',
@@ -119,5 +118,9 @@ export default class EditComponent {
                 this.budgetChange.emit(this.budgetClone);
             })
         });
+    }
+
+    get budgetDays() {
+        return Object.values(DAYS as object);
     }
 }
