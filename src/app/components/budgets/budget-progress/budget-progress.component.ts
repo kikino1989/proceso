@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, ElementRef, ViewChild, ApplicationRef } from '@angular/core';
 import Budget from 'src/app/models/Budget';
 
 @Component({
@@ -9,8 +9,10 @@ import Budget from 'src/app/models/Budget';
 export class BudgetProgressComponent implements OnInit {
     @Input() budget: Budget;
     @ViewChild('spendingBar', {static: false}) spendingBar: ElementRef;
+    private _growthWidth = 0;
     constructor(
-        public renderer: Renderer2
+        public renderer: Renderer2,
+        public app: ApplicationRef
     ) { }
 
     ngOnInit() {
@@ -24,7 +26,8 @@ export class BudgetProgressComponent implements OnInit {
         setTimeout(() => {
             if (i < width) {
                 this.renderer.setStyle(this.spendingBar.nativeElement, 'width', `${i}%`);
-                this.growTo(width, i + 1)
+                this.growthWidth = i;
+                this.growTo(width, i + 1);
             }
         }, 10);
     }
@@ -33,11 +36,11 @@ export class BudgetProgressComponent implements OnInit {
     }
 
     get spendingColor(): string {
-        const spendingPorcentage = this.spendingBarWidth;
+        const spendingPorcentage = this.growthWidth;
         if (spendingPorcentage < 50) return 'great';
-        else if (spendingPorcentage < 60) return 'good';
-        else if (spendingPorcentage < 70) return 'careful';
-        else if (spendingPorcentage >= 70) return 'bad';
+        else if (spendingPorcentage < 70) return 'good';
+        else if (spendingPorcentage < 85) return 'careful';
+        else if (spendingPorcentage >= 85) return 'bad';
 
         return 'secondary';
     }
@@ -47,6 +50,14 @@ export class BudgetProgressComponent implements OnInit {
         if (porcentage > 100)
             return 100;
         return porcentage;
+    }
+
+    get growthWidth() {
+        return this._growthWidth;
+    }
+
+    set growthWidth(value) {
+        this._growthWidth = value;
     }
 
 }

@@ -1,5 +1,4 @@
 -fix state management.
--add start date to the budget.
 -progress bar should change color as it resizes according to its state.
 -implement budget background functionality.
     save an snap for the given month shot every start day.
