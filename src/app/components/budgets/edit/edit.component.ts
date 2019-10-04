@@ -6,6 +6,7 @@ import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-acce
 import { AlertController, ModalController } from '@ionic/angular';
 import { IncomeSourceComponent } from '../income-source/income-source.component';
 import { SpenceComponent } from '../spence/spence.component';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'edit',
@@ -25,9 +26,9 @@ export default class EditComponent {
     ) { }
 
     ngOnInit() {
-        this.budgetClone = {...this.budget};
-        this.orgIncomeSources = this.budget.incomeSources.slice();
-        this.orgSpences = this.budget.spences.slice();
+        this.budgetClone = _.cloneDeep(this.budget);
+        this.orgIncomeSources = _.cloneDeep(this.budget.incomeSources);
+        this.orgSpences = _.cloneDeep(this.budget.spences);
     }
 
     ngOnDestroy() {
@@ -56,7 +57,8 @@ export default class EditComponent {
             return modal.onWillDismiss().then(({data}) => {
                 if (data) {
                     this.budgetClone.incomeSources.push(data);
-                    this.orgIncomeSources = this.budgetClone.incomeSources.slice();
+                    this.orgIncomeSources = _.cloneDeep(this.budgetClone.incomeSources);
+                    console.log('what is emitting::', this.budgetClone);
                     this.budgetChange.emit(this.budgetClone);
                 }
             });
@@ -77,7 +79,7 @@ export default class EditComponent {
             return modal.onWillDismiss().then(({data}) => {
                 if (data) {
                     this.budgetClone.spences.push(data);
-                    this.orgSpences = this.budgetClone.spences.slice();
+                    this.orgSpences = _.cloneDeep(this.budgetClone.spences);
                     this.budgetChange.emit(this.budgetClone);
                 }
             });

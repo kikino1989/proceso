@@ -46,10 +46,12 @@ export default class BudgetCardComponent implements OnInit {
     }
 
     presaveBudget(budget) {
+        console.log('budget changes::', this.budgetChanges)
         this.budgetChanges = budget;
     }
     
     saveBudget(save) {
+        console.log('save budget::', this.budgetChanges, this.budget)
         if (this.budgetChanges && save) {
             this.budget = this.budgetChanges;
             this.budgetChange.emit(this.budget);

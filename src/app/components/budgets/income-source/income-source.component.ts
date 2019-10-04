@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import Budget from 'src/app/models/Budget';
-import { Form } from '@angular/forms';
 import IncomeSource from 'src/app/models/IncomeSource';
 import { ModalController } from '@ionic/angular';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'income-source',
@@ -16,6 +15,8 @@ export class IncomeSourceComponent implements OnInit {
     ngOnInit() {
         if (!this.incomeSource)
             this.incomeSource = new IncomeSource('my income source', 100);
+        else
+            this.incomeSource = _.cloneDeep(this.incomeSource);
     }
 
     ngOnDelete() {

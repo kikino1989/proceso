@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import Budget from 'src/app/models/Budget';
-import { Form } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import Spence from 'src/app/models/Spence';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'spence',
@@ -16,6 +15,8 @@ export class SpenceComponent implements OnInit {
     ngOnInit() {
         if (!this.spence)
             this.spence = new Spence('my spence', 100);
+        else
+            this.spence = _.cloneDeep(this.spence);
     }
 
     ngOnDelete() {

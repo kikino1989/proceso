@@ -41,6 +41,7 @@ export default class Budget {
         public spences: Spence[] = [],
         public active: boolean = false,
         public startDate = DAYS.FIRST,
-        public snapshot = false
+        public snapshot: string | false = false,
+        public parentID?: number
     ) { }
 }

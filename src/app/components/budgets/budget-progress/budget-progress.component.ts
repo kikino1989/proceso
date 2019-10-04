@@ -22,9 +22,9 @@ export class BudgetProgressComponent implements OnInit {
         this.growTo(this.spendingBarWidth);
     }
 
-    growTo(width: number, i = 0) {
+    growTo(width: number, i = 1) {
         setTimeout(() => {
-            if (i < width) {
+            if (i <= width) {
                 this.renderer.setStyle(this.spendingBar.nativeElement, 'width', `${i}%`);
                 this.growthWidth = i;
                 this.growTo(width, i + 1);
