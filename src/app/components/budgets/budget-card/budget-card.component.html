@@ -24,9 +24,9 @@
                             <ion-icon name="stats"></ion-icon>
                         </span>
                         <span class="card-tab-link" 
-                            [ngClass]="{'active': isEdit() }"
-                            (click)="setEditMode()">
-                            <ion-icon [name]="isEdit() ? 'save' : 'create'"></ion-icon>
+                            [ngClass]="{'active': isEdit() || isSave() }"
+                            (click)="setEditSaveMode()">
+                            <ion-icon [name]="isSave() ? 'save' : 'create'"></ion-icon>
                         </span>
                     </ion-col>
                 </ion-row>
@@ -36,9 +36,11 @@
     <ion-card-content>
         <ng-container [ngSwitch]="mode">
             <summary *ngSwitchCase="'summary'" [budget]="budget"></summary>
-            <edit *ngSwitchCase="'edit'" [budget]="budget" (budgetChange)="presaveBudget(budget)"></edit>
+            <edit *ngIf="mode == 'edit' || mode == 'save'"
+                [budget]="budget" (budgetChanged)="setEditSaveMode($event);"
+                [saveBudget]="saveBudget" [saveEvent]="saveEvent">
+            </edit>
             <stats *ngSwitchCase="'stats'" [budget]="budget"></stats>
-            <summary *ngSwitchDefault [budget]="budget"></summary>
         </ng-container>
     </ion-card-content>
 </ion-card>

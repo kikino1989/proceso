@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import Budget, { DAYS } from 'src/app/models/Budget';
 import IncomeSource from 'src/app/models/IncomeSource';
 import Spence from 'src/app/models/Spence';
-import { ValueAccessor } from '@ionic/angular/dist/directives/control-value-accessors/value-accessor';
-import { AlertController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { IncomeSourceComponent } from '../income-source/income-source.component';
 import { SpenceComponent } from '../spence/spence.component';
 import * as _ from 'lodash';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'edit',
@@ -15,36 +16,65 @@ import * as _ from 'lodash';
 })
 export default class EditComponent {
     @Input() budget: Budget;
-    @Output() budgetChange = new EventEmitter<Budget>();
-    public budgetClone: Budget;
+    @Input() saveEvent: EventEmitter<boolean>;
+    @Input() saveBudget: (data) => void;
+    @Output() budgetChanged = new EventEmitter<boolean>();
+    public budgetForm: FormGroup;
+    public incomeSources: IncomeSource[];
+    public spences: Spence[];
     private orgIncomeSources: IncomeSource[];
     private orgSpences: Spence[];
+    private saveSubscription: Subscription;
+    private budgetSubscription: Subscription;
 
     constructor(
-        public alertController: AlertController,
-        public modalController: ModalController
+        private fb: FormBuilder,
+        private modalController: ModalController
     ) { }
 
     ngOnInit() {
-        this.budgetClone = _.cloneDeep(this.budget);
+        this.budgetForm = this.fb.group({
+            name: [this.budget.name, Validators.required],
+            limit: [this.budget.limit, Validators.required],
+            startDate: [this.budget.startDate, Validators.required]
+        });;
+        this.budgetSubscription = this.budgetForm.valueChanges.subscribe(() => {
+                this.budgetChanged.emit(this.budgetForm.valid);
+        });
+        this.incomeSources = _.cloneDeep(this.budget.incomeSources);
+        this.spences = _.cloneDeep(this.budget.spences);
         this.orgIncomeSources = _.cloneDeep(this.budget.incomeSources);
         this.orgSpences = _.cloneDeep(this.budget.spences);
+
+        this.saveSubscription = this.saveEvent.subscribe((saved) => {
+            if (saved) {
+                this.saveBudget({...this.budgetForm.value, ...{
+                    incomeSources: this.incomeSources,
+                    spences: this.spences}
+                });
+            }
+        });
     }
 
     ngOnDestroy() {
+        delete this.incomeSources;
+        delete this.spences;
         delete this.orgIncomeSources;
         delete this.orgSpences;
-        delete this.budgetClone;
+        delete this.budgetChanged;
+        delete this.budgetForm;
+        this.saveSubscription.unsubscribe();
+        this.budgetSubscription.unsubscribe();
     }
 
     filterIncomeSources(value: string) {
-        this.budgetClone.incomeSources = this.orgIncomeSources.filter(incomeSource => {
+        this.budget.incomeSources = this.orgIncomeSources.filter(incomeSource => {
             return !value || incomeSource.name.indexOf(value) > -1;
         });
     }
 
     filterSpences(value: string) {
-        this.budgetClone.spences = this.orgSpences.filter(spence => {
+        this.budget.spences = this.orgSpences.filter(spence => {
             return !value || spence.name.indexOf(value) > -1;
         });
     }
@@ -56,19 +86,18 @@ export default class EditComponent {
             modal.present();
             return modal.onWillDismiss().then(({data}) => {
                 if (data) {
-                    this.budgetClone.incomeSources.push(data);
-                    this.orgIncomeSources = _.cloneDeep(this.budgetClone.incomeSources);
-                    console.log('what is emitting::', this.budgetClone);
-                    this.budgetChange.emit(this.budgetClone);
+                    this.incomeSources.push(data);
+                    this.orgIncomeSources = _.cloneDeep(this.incomeSources);
+                    this.budgetChanged.emit(this.budgetForm.valid);
                 }
             });
         });
     }
 
     removeIncomeSource(incomeSource: IncomeSource) {
-        const index = this.budgetClone.incomeSources.indexOf(incomeSource);
-        this.budgetClone.incomeSources.splice(index, 1);
-        this.budgetChange.emit(this.budgetClone);
+        const index = this.incomeSources.indexOf(incomeSource);
+        this.incomeSources.splice(index, 1);
+        this.budgetChanged.emit(this.budgetForm.valid);
     }
 
     addSpence() {
@@ -78,18 +107,18 @@ export default class EditComponent {
             modal.present();
             return modal.onWillDismiss().then(({data}) => {
                 if (data) {
-                    this.budgetClone.spences.push(data);
-                    this.orgSpences = _.cloneDeep(this.budgetClone.spences);
-                    this.budgetChange.emit(this.budgetClone);
+                    this.spences.push(data);
+                    this.orgSpences = _.cloneDeep(this.spences);
+                    this.budgetChanged.emit(this.budgetForm.valid);
                 }
             });
         });
     }
 
     removeSpence(spence: Spence) {
-        const index = this.budgetClone.spences.indexOf(spence);
-        this.budgetClone.spences.splice(index, 1);
-        this.budgetChange.emit(this.budgetClone);
+        const index = this.spences.indexOf(spence);
+        this.spences.splice(index, 1);
+        this.budgetChanged.emit(this.budgetForm.valid);
     }
 
     editSpence(spence) {
@@ -102,7 +131,7 @@ export default class EditComponent {
             modal.present();
             modal.onWillDismiss().then((data) => {
                 spence = data;
-                this.budgetChange.emit(this.budgetClone)
+                this.budgetChanged.emit(this.budgetForm.valid);
             });
         });
     }
@@ -117,7 +146,7 @@ export default class EditComponent {
             modal.present();
             modal.onWillDismiss().then((data) => {
                 incomeSource = data;
-                this.budgetChange.emit(this.budgetClone);
+                this.budgetChanged.emit(this.budgetForm.valid);
             })
         });
     }

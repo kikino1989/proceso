@@ -14,14 +14,20 @@ export default class BudgetsService {
     }
 
     getBudget(id: number) {
+        
     }
 
-    createBudget() {
-
+    createBudget(data) {
+        // insert to te database
     }
 
-    updateBudget(budget: Budget) {
-
+    updateBudget(budget: Budget, data) {
+        for (const prop in data) {
+            if (budget.hasOwnProperty(prop)) {
+                budget[prop] = data[prop];
+            }
+        }
+        // save to the database
     }
 
     deleteBudget(budget: Budget) {

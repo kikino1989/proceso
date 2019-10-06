@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Budget from 'src/app/models/Budget';
+import BudgetsService from 'src/app/services/budgets.service';
 
-export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats' }
+export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats', SAVE = 'save' }
 
 @Component({
     selector: 'budget-card',
@@ -11,13 +12,28 @@ export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats' }
 export default class BudgetCardComponent implements OnInit {
     public mode: MODES = MODES.SUMMARY;
     @Input() budget: Budget;
-    @Input() removeBudget: (budget: Budget) => {};
+    @Input() removeBudget: (budget: Budget) => void;
     @Output() budgetChange = new EventEmitter<Budget>();
-    private budgetChanges: Budget;
+    public saveEvent = new EventEmitter<boolean>();
+    public saveBudget: (data) => void;
 
-    constructor() { }
+    constructor(private budgetService: BudgetsService) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.saveBudget = data => {
+            console.log('data::', data);
+            this.budgetService.updateBudget(this.budget, data);
+            this.mode = MODES.EDIT;
+        };
+    }
+
+    ngOnDestroy() {
+        delete this.saveBudget;
+    }
+
+    isSave() {
+        return this.mode === MODES.SAVE;
+    }
 
     isStats(): boolean {
         return this.mode === MODES.STATS;
@@ -35,29 +51,17 @@ export default class BudgetCardComponent implements OnInit {
         this.mode = MODES.STATS;
     }
 
-    setEditMode() {
-        if (!this.saveBudget(this.isEdit())) {
+    setEditSaveMode(budgetChanges = false) {
+        if (budgetChanges) {
+            this.mode = MODES.SAVE;
+        } else {
+            this.saveEvent.emit(this.isSave());
             this.mode = MODES.EDIT;
         }
+        console.log(this.mode)
     }
 
     setSummaryMode() {
         this.mode = MODES.SUMMARY;
-    }
-
-    presaveBudget(budget) {
-        console.log('budget changes::', this.budgetChanges)
-        this.budgetChanges = budget;
-    }
-    
-    saveBudget(save) {
-        console.log('save budget::', this.budgetChanges, this.budget)
-        if (this.budgetChanges && save) {
-            this.budget = this.budgetChanges;
-            this.budgetChange.emit(this.budget);
-            this.mode = MODES.SUMMARY;
-            return true;
-        }
-        return false;
     }
 }

@@ -1,100 +1,96 @@
-<ion-item>
-    <ion-label>Budget Name: </ion-label>
-    <ion-input required type="text" [(ngModel)]="budgetClone.name"
-        (ionInput)="budgetChange.emit(budgetClone)"
-        (ionChange)="budgetChange.emit(budgetClone)">
-    </ion-input>
-</ion-item>
-<ion-item>
-    <ion-label>Budget Limit:</ion-label>
-    <ion-input required type="number" [(ngModel)]="budgetClone.limit"
-        (ionInput)="budgetChange.emit(budgetClone)"
-        (ionChange)="budgetChange.emit(budgetClone)">
-    </ion-input>
-</ion-item>
-<ion-item>
-    <ion-label>Start Date:</ion-label>
-    <ion-select type="number" [(ngModel)]="budgetClone.startDate"
-        (ionInput)="budgetChange.emit(budgetClone)"
-        (ionChange)="budgetChange.emit(budgetClone)">
-        <ion-select-option [selected]="day.indexOf('1ST') > -1" *ngFor="let day of budgetDays" [value]="day">
-            {{ day }}
-        </ion-select-option>
-    </ion-select>
-</ion-item>
-<ion-list>
-    <ion-list-header>
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    Income Sources
-                </ion-col>
-                <ion-col class="card-title-side right">
-                    <ion-icon size="large" color="primary" name="add"
-                        (click)="addIncomeSource()">
-                    </ion-icon>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                    <ion-input type="text" clear-input="true" placeholder="Search..."
-                        (ionInput)="filterIncomeSources($event.target.value)"
-                        (ionChange)="filterIncomeSources($event.target.value)">
-                    </ion-input>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-list-header>
-    <ion-item *ngFor="let incomeSource of budgetClone.incomeSources">
-        <ion-icon size="large" color="danger" name="remove"
-            (click)="removeIncomeSource(incomeSource)">
-        </ion-icon>
-        <ion-icon name="cash"></ion-icon>
-        <ion-label class="editable" (click)="editIncome(incomeSource)">
-            {{ incomeSource.name }}, 
-            ${{ incomeSource.value }}, 
-            {{ incomeSource.type }}
-            <span *ngIf="incomeSource.date">
-                <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
-            </span>
-        </ion-label>
+<form [formGroup]="budgetForm">
+    <ion-item>
+        <ion-label>Budget Name: </ion-label>
+        <ion-input required type="text" formControlName="name">
+        </ion-input>
     </ion-item>
-</ion-list>
-<ion-list>
-    <ion-list-header>
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                   Spences
-                </ion-col>
-                <ion-col class="card-title-side right">
-                    <ion-icon size="large" color="primary" name="add"
-                        (click)="addSpence()">
-                    </ion-icon>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col>
-                    <ion-input type="text" clear-input="true" placeholder="Search..."
-                        (ionInput)="filterSpences($event.target.value)"
-                        (ionChange)="filterSpences($event.target.value)">
-                    </ion-input>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </ion-list-header>
-    <ion-item *ngFor="let spence of budgetClone.spences">
-        <ion-icon size="large" color="danger" name="remove"
-            (click)="removeSpence(spence)">
-        </ion-icon>
-        <ion-icon name="card"></ion-icon>
-        <ion-label class="editable" (click)="editSpence(spence)">
-            {{ spence.name }}, 
-            ${{ spence.value }},
-            {{ spence.type }}
-            <span *ngIf="spence.date">
-                <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
-            </span>
-        </ion-label>
+    <ion-item>
+        <ion-label>Budget Limit:</ion-label>
+        <ion-input required type="number" formControlName="limit">
+        </ion-input>
     </ion-item>
-</ion-list>
+    <ion-item>
+        <ion-label>Start Date:</ion-label>
+        <ion-select type="number" formControlName="startDate">
+            <ion-select-option [selected]="day.indexOf('1ST') > -1" *ngFor="let day of budgetDays" [value]="day">
+                {{ day }}
+            </ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-list>
+        <ion-list-header>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        Income Sources
+                    </ion-col>
+                    <ion-col class="card-title-side right">
+                        <ion-icon size="large" color="primary" name="add"
+                            (click)="addIncomeSource()">
+                        </ion-icon>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input type="text" clear-input="true" placeholder="Search..."
+                            (ionInput)="filterIncomeSources($event.target.value)"
+                            (ionChange)="filterIncomeSources($event.target.value)">
+                        </ion-input>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-list-header>
+        <ion-item *ngFor="let incomeSource of incomeSources">
+            <ion-icon size="large" color="danger" name="remove"
+                (click)="removeIncomeSource(incomeSource)">
+            </ion-icon>
+            <ion-icon name="cash"></ion-icon>
+            <ion-label class="editable" (click)="editIncome(incomeSource)">
+                {{ incomeSource.name }}, 
+                ${{ incomeSource.value }}, 
+                {{ incomeSource.type }}
+                <span *ngIf="incomeSource.date">
+                    <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
+                </span>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                    Spences
+                    </ion-col>
+                    <ion-col class="card-title-side right">
+                        <ion-icon size="large" color="primary" name="add"
+                            (click)="addSpence()">
+                        </ion-icon>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-input type="text" clear-input="true" placeholder="Search..."
+                            (ionInput)="filterSpences($event.target.value)"
+                            (ionChange)="filterSpences($event.target.value)">
+                        </ion-input>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-list-header>
+        <ion-item *ngFor="let spence of spences">
+            <ion-icon size="large" color="danger" name="remove"
+                (click)="removeSpence(spence)">
+            </ion-icon>
+            <ion-icon name="card"></ion-icon>
+            <ion-label class="editable" (click)="editSpence(spence)">
+                {{ spence.name }}, 
+                ${{ spence.value }},
+                {{ spence.type }}
+                <span *ngIf="spence.date">
+                    <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
+                </span>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</form>
