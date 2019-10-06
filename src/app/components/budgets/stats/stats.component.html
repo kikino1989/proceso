@@ -2,3 +2,22 @@
     <canvas [chartize]="spencesData"></canvas>
 </div>
 <budget-progress [budget]="budget"></budget-progress>
+
+<ion-label>Snapshots: </ion-label>
+<ion-input type="text" clear-input="true" placeholder="Search..."
+    (ionInput)="filterSnapshots($event.target.value)"
+    (ionChange)="filterSnapshots($event.target.value)">
+</ion-input>
+
+<ion-list lines="none">
+    <ion-item *ngFor="let snapshot of snapshots">
+        <ion-icon name="calculator"></ion-icon>
+        <ion-label [class]="snapshot.status">
+            {{ snapshot.name }}, 
+            <ion-icon [color]="snapshot.status" name="pulse"></ion-icon>{{ snapshot.status }},
+            ${{ snapshot.limit }}, 
+            <ion-icon [color]="snapshot.status" name="cash"></ion-icon>{{ snapshot.totalIncome }},
+            <ion-icon [color]="snapshot.status" name="card"></ion-icon>{{ snapshot.totalSpending }}
+        </ion-label>
+    </ion-item>
+</ion-list>

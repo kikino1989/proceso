@@ -1,9 +1,3 @@
-$bar_green: #4e9c4e;
-$bar_blue: #6a69c7;
-$bar_orange: #daa677;
-$bar_red: #c74b4b;
- 
-
 .budget-progress-container {
     position: relative;
     width: 100%;
@@ -20,34 +14,20 @@ $bar_red: #c74b4b;
         left: 0;
         width: 0;
         &.great {
-            background: $bar_green;
+            background: var(--ion-color-green);
         }
         &.good {
-            background: $bar_blue;
+            background: var(--ion-color-blue);
         }
         &.careful {
-            background: $bar_orange;
+            background: var(--ion-colo-orange);
         }
         &.bad {
-            background: $bar_red;
+            background: var(--ion-color-red);
         }
     }
     .budget-limit {
         background: #ccc;
         border: 1px solid #737373;
-    }
-    label, ion-label {
-        &.great {
-            color: $bar_green;
-        }
-        &.good {
-            color: $bar_blue;
-        }
-        &.careful {
-            color: $bar_orange;
-        }
-        &.bad {
-            color: $bar_red;
-        }
     }
 }

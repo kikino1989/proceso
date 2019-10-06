@@ -21,6 +21,7 @@ import { IncomeSourceComponent } from './components/budgets/income-source/income
 import { SpenceComponent } from './components/budgets/spence/spence.component';
 import { ChartizeDirective } from './directives/chartize.directive';
 import { BudgetProgressComponent } from './components/budgets/budget-progress/budget-progress.component';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { BudgetProgressComponent } from './components/budgets/budget-progress/bu
         BudgetsService,
         StatusBar,
         SplashScreen,
-        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        BackgroundMode
     ],
     bootstrap: [AppComponent]
 })

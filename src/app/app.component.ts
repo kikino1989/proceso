@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import BudgetsService from './services/budgets.service';
 
 @Component({
     selector: 'app-root',
@@ -26,7 +27,8 @@ export class AppComponent {
     constructor(
         private platform: Platform,
         private splashScreen: SplashScreen,
-        private statusBar: StatusBar
+        private statusBar: StatusBar,
+        private budgetService: BudgetsService
     ) {
         this.initializeApp();
     }
@@ -36,5 +38,6 @@ export class AppComponent {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
+        this.budgetService.watchBudget();
     }
 }

@@ -48,7 +48,7 @@ ion-card-subtitle {
 .card-tab-link {
     padding: 0 16px;
     &.active {
-        border-bottom: 1px solid blue;
+        border-bottom: 1px solid var(--ion-color-blue);
     }
     ion-icon {
         margin: 0 auto;
@@ -147,7 +147,25 @@ ion-card-subtitle {
 }
 
 .editable {
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid var(--ion-color-blue);
     cursor: pointer;
-    color: blue;
+    color: var(--ion-color-blue);
+}
+
+
+.great {
+    color: var(--ion-color-green) !important;
+    --color: var(--ion-color-green) !important;
+}
+.good {
+    color: var(--ion-color-blue) !important;
+    --color: var(--ion-color-blue) !important;
+}
+.careful {
+    color: var(--ion-color-orange) !important;
+    --color: var(--ion-color-orange) !important;
+}
+.bad {
+    color: var(--ion-color-red) !important;
+    --color: var(--ion-color-red) !important;
 }

@@ -1,5 +1,4 @@
 -implement budget background functionality.
-    save an snap for the given month shot every start day.
     reset the variable and occasianal spences and incomesources every start date.
 
 -add snap shots for the last 3, 6, 12 or all month and color coded status on if the budget goal was met.

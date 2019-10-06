@@ -17,7 +17,7 @@ export default class BudgetsComponent {
 
     ngOnInit() {
         this.budgetsSerivce
-            .getBudgets()
+            .getBudgets({snapshot: false})
             .subscribe(budgets => this.budgets = budgets);
     }
 
@@ -26,7 +26,7 @@ export default class BudgetsComponent {
     }
 
     addBudget() {
-        this.budgets.push(new Budget('example budget', 3000, [
+        const budget = new Budget('example budget', 3000, [
             new IncomeSource('Job', 1800)
         ], [
             new Spence('rent/mortgage', 1200),
@@ -41,6 +41,8 @@ export default class BudgetsComponent {
             new Spence('clothe', 40),
             new Spence('entertainment', 100),
             new Spence('debts', 1200),
-        ]));
+        ]);
+
+        this.budgetsSerivce.createBudget(budget);
     }
 }
