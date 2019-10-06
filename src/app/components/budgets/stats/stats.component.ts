@@ -11,12 +11,14 @@ export default class StatsComponent {
     constructor() { }
 
     get spencesData() {
-        return {
-            label: 'Spences distribution',
-            data: {
-                labels: this.budget.spences.map(spence => spence.name),
-                values: this.budget.spences.map(spence => spence.value)
-            }
-        };
+        if (this.budget.spences.length)
+            return {
+                label: 'Spences distribution',
+                data: {
+                    labels: this.budget.spences.map(spence => spence.name),
+                    values: this.budget.spences.map(spence => spence.value)
+                }
+            };
+        return false;
     }
 }

@@ -1,5 +1,7 @@
 {
   "name": "proceso",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

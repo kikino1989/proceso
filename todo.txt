@@ -1,4 +1,5 @@
 -fix bug on stats page when spences is an empty array.
+-add input validation to all forms and popups.
 -implement budget background functionality.
     save an snap for the given month shot every start day.
     reset the variable and occasianal spences and incomesources every start date.
