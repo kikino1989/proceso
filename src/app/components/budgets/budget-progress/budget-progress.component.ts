@@ -33,7 +33,9 @@ export class BudgetProgressComponent implements OnInit {
         }, 10);
     }
     get totalSpending():number {
-        return this.budget.spences.map(spence => spence.value).reduce((prev, cur) => prev + cur);
+        if (this.budget.spences.length)
+            return this.budget.spences.map(spence => spence.value).reduce((prev, cur) => prev + cur);
+        return 0;
     }
 
     get spendingColor(): string {

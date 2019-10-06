@@ -2,7 +2,8 @@
     <form name="new-income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
-                {{ !incomeSource ? 'New Income Source' : 'Edit ' + incomeSource.name }}</ion-label>
+                {{ !incomeSource ? 'New Income Source' : 'Edit ' + incomeSource.name }}
+            </ion-label>
         </div>
         <div class="content">
             <ion-grid>
@@ -15,7 +16,7 @@
                     <ion-col size="12" size-sm>
                         <ion-item>
                             <ion-input name="name" type="text" placeholder="name"
-                                [(ngModel)]="incomeSource.name">
+                                [(ngModel)]="incomeSource.name" required>
                             </ion-input>
                         </ion-item>
                     </ion-col>
@@ -29,7 +30,7 @@
                     <ion-col size="12" size-sm>
                         <ion-item>
                             <ion-input name="value" type="number" placeholder="value"
-                                [(ngModel)]="incomeSource.value">
+                                [(ngModel)]="incomeSource.value" required>
                             </ion-input>
                         </ion-item>
                     </ion-col>
@@ -42,7 +43,8 @@
                     </ion-col>
                     <ion-col size="12" size-sm>
                         <ion-item>
-                            <ion-select name="type" [(ngModel)]="incomeSource.type" placeholder="Select type...">
+                            <ion-select name="type" [(ngModel)]="incomeSource.type"
+                                placeholder="Select type..." required>
                                 <ion-select-option value="Fixed" selected>Fixed</ion-select-option>
                                 <ion-select-option value="Variable">Variable</ion-select-option>
                             </ion-select>
@@ -58,7 +60,7 @@
                     <ion-col size="12" size-sm>
                         <ion-item>
                             <ion-datetime placeholder="YYYY-MM-DD" format="YYYY-MM-DD"
-                                name="date" [(ngModel)]="incomeSource.date">
+                                name="date" [(ngModel)]="incomeSource.date" [required]="incomeSource.type === 'Fixed'">
                             </ion-datetime>
                         </ion-item>
                     </ion-col>

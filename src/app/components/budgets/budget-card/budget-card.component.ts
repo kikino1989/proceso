@@ -21,7 +21,6 @@ export default class BudgetCardComponent implements OnInit {
 
     ngOnInit() {
         this.saveBudget = data => {
-            console.log('data::', data);
             this.budgetService.updateBudget(this.budget, data);
             this.mode = MODES.EDIT;
         };
@@ -58,7 +57,6 @@ export default class BudgetCardComponent implements OnInit {
             this.saveEvent.emit(this.isSave());
             this.mode = MODES.EDIT;
         }
-        console.log(this.mode)
     }
 
     setSummaryMode() {

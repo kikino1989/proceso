@@ -14,7 +14,7 @@
                     <ion-col size="12" size-sm>
                         <ion-item>
                             <ion-input name="name" type="text" placeholder="name"
-                                [(ngModel)]="spence.name">
+                                [(ngModel)]="spence.name" required>
                             </ion-input>
                         </ion-item>
                     </ion-col>
@@ -28,7 +28,7 @@
                     <ion-col size="12" size-sm>
                         <ion-item>
                             <ion-input name="value" type="number" placeholder="value"
-                                [(ngModel)]="spence.value">
+                                [(ngModel)]="spence.value" required>
                             </ion-input>
                         </ion-item>
                     </ion-col>
@@ -41,7 +41,8 @@
                     </ion-col>
                     <ion-col size="12" size-sm>
                         <ion-item>
-                            <ion-select name="type" [(ngModel)]="spence.type" placeholder="Select type...">
+                            <ion-select name="type" [(ngModel)]="spence.type"
+                                placeholder="Select Type..." required>
                                 <ion-select-option value="Recurrent" selected>Recurrent</ion-select-option>
                                 <ion-select-option value="Occasional">Occasional</ion-select-option>
                             </ion-select>
@@ -57,7 +58,8 @@
                     <ion-col size="12" size-sm>
                         <ion-item>
                             <ion-datetime placeholder="YYYY-MM-DD" format="YYYY-MM-DD"
-                                name="date" [(ngModel)]="spence.dueDate">
+                                name="date" [(ngModel)]="spence.dueDate" 
+                                [required]="spence.type === 'Recurrent'">
                             </ion-datetime>
                         </ion-item>
                     </ion-col>

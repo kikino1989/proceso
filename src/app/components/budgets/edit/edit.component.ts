@@ -84,7 +84,7 @@ export default class EditComponent {
             component: IncomeSourceComponent
         }).then(modal => {
             modal.present();
-            return modal.onWillDismiss().then(({data}) => {
+            modal.onWillDismiss().then(({data}) => {
                 if (data) {
                     this.incomeSources.push(data);
                     this.orgIncomeSources = _.cloneDeep(this.incomeSources);
@@ -105,7 +105,7 @@ export default class EditComponent {
             component: SpenceComponent
         }).then(modal => {
             modal.present();
-            return modal.onWillDismiss().then(({data}) => {
+            modal.onWillDismiss().then(({data}) => {
                 if (data) {
                     this.spences.push(data);
                     this.orgSpences = _.cloneDeep(this.spences);
@@ -129,9 +129,11 @@ export default class EditComponent {
             }
         }).then(modal => {
             modal.present();
-            modal.onWillDismiss().then((data) => {
-                spence = data;
-                this.budgetChanged.emit(this.budgetForm.valid);
+            modal.onWillDismiss().then(({data}) => {
+                if (data) {
+                    spence = data;
+                    this.budgetChanged.emit(this.budgetForm.valid);
+                }
             });
         });
     }
@@ -144,9 +146,11 @@ export default class EditComponent {
             }
         }).then(modal => {
             modal.present();
-            modal.onWillDismiss().then((data) => {
-                incomeSource = data;
-                this.budgetChanged.emit(this.budgetForm.valid);
+            modal.onWillDismiss().then(({data}) => {
+                if (data) {
+                    incomeSource = data;
+                    this.budgetChanged.emit(this.budgetForm.valid);
+                }
             })
         });
     }

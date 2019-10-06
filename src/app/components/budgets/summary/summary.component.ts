@@ -42,7 +42,7 @@ export default class SummaryComponent {
                 {
                     text: 'Add',
                     handler: ({value}) => {
-                        incomeSource.value += parseInt(value);
+                        incomeSource.value += value ? parseInt(value) : 0;
                     }
                 }, 
                 {
@@ -70,7 +70,7 @@ export default class SummaryComponent {
                 {
                     text: 'Add',
                     handler: ({value}) => {
-                        spence.value += parseInt(value);
+                        spence.value += value ? parseInt(value) : 0;
                     }
                 }, 
                 {
