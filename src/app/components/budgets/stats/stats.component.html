@@ -11,9 +11,8 @@
 
 <ion-list lines="none">
     <ion-item *ngFor="let snapshot of snapshots">
-        <ion-icon name="calculator"></ion-icon>
         <ion-label [class]="snapshot.status">
-            {{ snapshot.name }}, 
+            <ion-icon name="calculator"></ion-icon>{{ snapshot.name }}, 
             <ion-icon [color]="snapshot.status" name="pulse"></ion-icon>{{ snapshot.status }},
             ${{ snapshot.limit }}, 
             <ion-icon [color]="snapshot.status" name="cash"></ion-icon>{{ snapshot.totalIncome }},
