@@ -37,8 +37,8 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
         ChartizeDirective,
     ],
     entryComponents: [
-        IncomeSourceComponent,
         BudgetCardComponent,
+        IncomeSourceComponent,
         SpenceComponent
     ],
     imports: [
