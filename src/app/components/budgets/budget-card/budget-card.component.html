@@ -4,8 +4,13 @@
             <ion-grid>
                 <ion-row>
                     <ion-col class="card-title-side">
-                        <ion-radio mode="md" [(checked)]="budget.active"></ion-radio>
+                        <ion-radio *ngIf="!budget.snapshot; else closeButton" mode="md" [(checked)]="budget.active"></ion-radio>
                         {{ budget.name }}
+                        <ng-template #closeButton>
+                            <ion-button class="ion-no-padding ion-no-margin" (click)="dismiss()">
+                                <ion-icon slot="icon-only" name="close"></ion-icon>
+                            </ion-button>
+                        </ng-template>
                     </ion-col>
                     <ion-col class="card-title-side right" size="2">
                         <ion-icon name="trash" color="danger" (click)="removeBudget(budget)"></ion-icon>
@@ -23,7 +28,7 @@
                             (click)="setStatsMode()">
                             <ion-icon name="stats"></ion-icon>
                         </span>
-                        <span class="card-tab-link" 
+                        <span *ngIf="!budget.snapshot" class="card-tab-link" 
                             [ngClass]="{'active': isEdit() || isSave() }"
                             (click)="setEditSaveMode()">
                             <ion-icon [name]="isSave() ? 'save' : 'create'"></ion-icon>

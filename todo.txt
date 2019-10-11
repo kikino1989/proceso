@@ -1,4 +1,2 @@
--implement budget background functionality.
-    reset the variable and occasianal spences and incomesources every start date.
-
--add snap shots for the last 3, 6, 12 or all month and color coded status on if the budget goal was met.
+-open snapshot functionality.
+-remove the delete button of budget card when viewing snapshot

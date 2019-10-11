@@ -1,10 +1,12 @@
 
 import { Observable, of } from 'rxjs';
 
-interface Condition {
-    operator?: "=" | "!=" | ">" | "<" | "<=" | ">="; 
-    joint: "OR" | "AND" | "NOR";
+abstract class Cond {
+    operator: "=" | "!=" | ">" | "<" | "<=" | ">=" = "="; 
+    joint: "OR" | "AND" | "NOR" = "AND";
 }
+
+export type Condition = Cond | any;
 
 export default class BaseService<T> {
     protected entities: any;
@@ -42,12 +44,7 @@ export default class BaseService<T> {
         }
     }
 
-    update(entity: T, data: T, conditions?: Condition | Condition[] ) {
-        for (const prop in data) {
-            if (entity.hasOwnProperty(prop)) {
-                entity[prop] = data[prop];
-            }
-        }
+    update(entity: T, conditions?: Condition | Condition[] ) {
         if (window.cordova) {
             // save to the database
         }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Budget from 'src/app/models/Budget';
 import BudgetsService from 'src/app/services/budgets.service';
+import { ModalController } from '@ionic/angular';
 
 export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats', SAVE = 'save' }
 
@@ -12,12 +13,15 @@ export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats', S
 export default class BudgetCardComponent implements OnInit {
     public mode: MODES = MODES.SUMMARY;
     @Input() budget: Budget;
-    @Input() removeBudget: (budget: Budget) => void;
+    @Input() removeBudget?: (budget: Budget) => void;
     @Output() budgetChange = new EventEmitter<Budget>();
     public saveEvent = new EventEmitter<boolean>();
     public saveBudget: (data) => void;
 
-    constructor(private budgetService: BudgetsService) { }
+    constructor(
+        private budgetService: BudgetsService,
+        private modalCtrl: ModalController
+    ) { }
 
     ngOnInit() {
         this.saveBudget = data => {
@@ -61,5 +65,9 @@ export default class BudgetCardComponent implements OnInit {
 
     setSummaryMode() {
         this.mode = MODES.SUMMARY;
+    }
+
+    dismiss() {
+        this.modalCtrl.dismiss();
     }
 }

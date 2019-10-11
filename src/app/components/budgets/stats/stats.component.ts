@@ -3,6 +3,8 @@ import Budget from 'src/app/models/Budget';
 import BudgetsService from 'src/app/services/budgets.service';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
+import { ModalController } from '@ionic/angular';
+import BudgetCardComponent from '../budget-card/budget-card.component';
 
 @Component({
     selector: 'stats',
@@ -15,7 +17,10 @@ export default class StatsComponent {
     private snapshotSubscriptions: Subscription;
     private orgSnapshots: Budget[];
 
-    constructor(private budgetService: BudgetsService) { }
+    constructor(
+        private budgetService: BudgetsService,
+        private modalCtrl: ModalController
+    ) { }
 
     ngOnInit() {
         this.snapshotSubscriptions =
@@ -48,5 +53,16 @@ export default class StatsComponent {
         this.snapshots = this.orgSnapshots.filter(snapshot => {
             return !value || snapshot.name.indexOf(value) > -1;
         });
+    }
+
+    openSnapshot(snapshot: Budget) {
+        this.modalCtrl.create({
+            component: BudgetCardComponent,
+            componentProps: {
+                budget: snapshot
+            }
+        }).then(modal => {
+            modal.present();
+        })
     }
 }

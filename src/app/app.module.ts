@@ -38,6 +38,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
     ],
     entryComponents: [
         IncomeSourceComponent,
+        BudgetCardComponent,
         SpenceComponent
     ],
     imports: [

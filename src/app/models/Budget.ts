@@ -1,5 +1,5 @@
-import Spence from './Spence';
-import IncomeSource from './IncomeSource';
+import Spence, {TYPE as SPTYPES } from './Spence';
+import IncomeSource, {TYPE as INTYPES}  from './IncomeSource';
 
 export enum DAYS {
     FIRST = "1st of the month",
@@ -70,4 +70,16 @@ export default class Budget {
         return 'secondary';
     }
 
+    reset() {
+        this.incomeSources.forEach(incomeSource => {
+            if (incomeSource.type === INTYPES.VARIABLE) {
+                incomeSource.value = 0;
+            }
+        });
+        this.spences.forEach(spence => {
+            if (spence.type === SPTYPES.OCCASIONAL) {
+                spence.value = 0;
+            }
+        })
+    }
 }

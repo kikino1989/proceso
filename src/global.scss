@@ -169,3 +169,28 @@ ion-card-subtitle {
     color: var(--ion-color-red) !important;
     --color: var(--ion-color-red) !important;
 }
+
+.great-background {
+    --background: var(--ion-color-green) !important;
+    background: var(--ion-color-green) !important;
+    color: white;
+    --color: white;
+}
+.good-background {
+    --background: var(--ion-color-blue) !important;
+    background: var(--ion-color-blue) !important;
+    color: white;
+    --color: white;
+}
+.careful-background {
+    --background: var(--ion-color-orange) !important;
+    background: var(--ion-color-orange) !important;
+    color: white;
+    --color: white;
+}
+.bad-background {
+    --background: var(--ion-color-red) !important;
+    background: var(--ion-color-red) !important;
+    color: white;
+    --color: white;
+}
