@@ -61,6 +61,7 @@ export default class BaseService<T> {
         }
         const index = this.entities.indexOf(entity);
         this.entities.splice(index, 1);
+        console.log('this is delete::', index, entity)
         if (window.cordova) {
 
         }

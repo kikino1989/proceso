@@ -3,7 +3,7 @@
 </div>
 <budget-progress [budget]="budget"></budget-progress>
 
-<ion-list lines="none" class="ion-margin-vertical">
+<ion-list *ngIf="!budget.snapshot" lines="none" class="ion-margin-vertical">
     <ion-list-header>
         <ion-label>Snapshots: </ion-label>
         <ion-input type="text" clear-input="true" placeholder="Search..."
@@ -12,10 +12,11 @@
         </ion-input>
     </ion-list-header>
     <ion-item (click)="openSnapshot(snapshot)" *ngFor="let snapshot of snapshots" [class]="snapshot.status + '-background'" detail>
-        <ion-label>
-            <ion-icon name="calculator"></ion-icon>{{ snapshot.name }}, 
+        <ion-label> 
+            <ion-icon name="clock"></ion-icon>{{ snapshot.snapshot }},
             <ion-icon name="pulse"></ion-icon>{{ snapshot.status }},
-            ${{ snapshot.limit }}, 
+            <ion-icon name="calculator"></ion-icon>{{ snapshot.name }},
+            ${{ snapshot.limit }},
             <ion-icon name="cash"></ion-icon>{{ snapshot.totalIncome }},
             <ion-icon name="card"></ion-icon>{{ snapshot.totalSpending }}
         </ion-label>

@@ -9,7 +9,7 @@ import moment from 'moment';
 import * as _ from 'lodash';
 import BaseService, { Condition} from '../libs/base.service';
 
-const HOUR_PERIOD = 1000 * 60 * 60;
+const HOUR_PERIOD = 1000; // 1000 * 60 * 60;
 
 @Injectable({
     providedIn: 'root',
@@ -45,11 +45,11 @@ export default class BudgetsService extends BaseService<Budget> {
         const activeBudget = await this.getActiveBudget();
         setTimeout(async () => {
             const hasSnapshot = await this.snapshotForThisMonth(activeBudget);
-            if (activeBudget.startDate.indexOf(today) && !hasSnapshot) {
+            if (activeBudget && activeBudget.startDate.indexOf(today) && !hasSnapshot) {
                 this.takeSnapshot();
             } 
             this.watchBudget(today);
-        }, 1000) //HOUR_PERIOD);
+        }, HOUR_PERIOD);
     }
 
     async getActiveBudget(): Promise<Budget> {
@@ -59,12 +59,14 @@ export default class BudgetsService extends BaseService<Budget> {
 
     async takeSnapshot() {
         const activeBudget = await this.getActiveBudget();
-        const snapshot = _.cloneDeep(activeBudget);
-        snapshot.snapshot = moment().subtract(1, 'day').format('MM-DD-YYYY');
-        snapshot.parentID = activeBudget.id;
-        snapshot.id++;
-        this.createBudget(snapshot);
-        this.resetBudget(activeBudget);
+        if (activeBudget) {
+            const snapshot = _.cloneDeep(activeBudget);
+            snapshot.snapshot = moment().subtract(1, 'day').format('MM-DD-YYYY');
+            snapshot.parentID = activeBudget.id;
+            snapshot.id++;
+            this.createBudget(snapshot);
+            this.resetBudget(activeBudget);
+        }
     }
 
     resetBudget(budget: Budget) {
@@ -73,7 +75,10 @@ export default class BudgetsService extends BaseService<Budget> {
     }
 
     async snapshotForThisMonth(budget: Budget): Promise<boolean> {
-        const budgets = await this.getBudgets({parentID: budget.id, snapshot: moment().format('MM-DD-YYYY')}).toPromise();
+        if (!budget)
+            return true;
+
+        const budgets = await this.getBudgets({parentID: budget.id, snapshot: moment().subtract(1, 'day').format('MM-DD-YYYY')}).toPromise();
         return !!budgets.length;
     }
 

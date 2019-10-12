@@ -1,3 +1,2 @@
--open snapshot functionality.
--remove the delete button of budget card when viewing snapshot
--filter snapshots by date
+-fix delete budget functionality.
+-add projections to the stats page.

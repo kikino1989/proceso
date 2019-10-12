@@ -50,8 +50,8 @@ export default class StatsComponent {
     }
 
     filterSnapshots(value: string) {
-        this.snapshots = this.orgSnapshots.filter(snapshot => {
-            return !value || snapshot.name.indexOf(value) > -1;
+        this.snapshots = this.orgSnapshots.filter(({snapshot}) => {
+            return !value || (snapshot && (snapshot as string).indexOf(value) > -1);
         });
     }
 
