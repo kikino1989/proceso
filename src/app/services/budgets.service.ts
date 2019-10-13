@@ -8,15 +8,16 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import moment from 'moment';
 import * as _ from 'lodash';
 import BaseService, { Condition} from '../libs/base.service';
+import IncomeSource from '../models/IncomeSource';
 
-const HOUR_PERIOD = 1000; // 1000 * 60 * 60;
+const HOUR_PERIOD = 1000; // 8 * 1000 * 60 * 60;
 
 @Injectable({
     providedIn: 'root',
 })
 export default class BudgetsService extends BaseService<Budget> {
 
-    constructor(private bm: BackgroundMode) { super(); this.entities = budgets; }
+    constructor(private bm: BackgroundMode) { super(); }
 
     getBudgets(condition: Condition | Condition[]): Observable<Budget[]> {
         return this.all(condition);
@@ -26,16 +27,25 @@ export default class BudgetsService extends BaseService<Budget> {
         return this.one(id);
     }
 
-    createBudget(budget: Budget) {
+    createBudget() {
+        const budget = new Budget('example budget', 3000, [
+            new IncomeSource('Job', 1800)
+        ], [
+            new Spence('rent/mortgage', 1200),
+            new Spence('phone', 120),
+            new Spence('electricity', 180),
+            new Spence('gas', 120),
+            new Spence('water', 100),
+            new Spence('cable/internet', 80),
+            new Spence('garbage', 100),
+            new Spence('transportation', 120),
+            new Spence('food', 200),
+            new Spence('clothe', 40),
+            new Spence('entertainment', 100),
+            new Spence('debts', 1200),
+        ]);
         this.insert(budget);
-    }
-
-    updateBudget(budget: Budget, data: any) {
-        this.update({...budget, ...data});
-    }
-
-    deleteBudget(budget: Budget) {
-        this.delete(budget.id);
+        return budget;
     }
 
     async watchBudget(today = moment().format('Do')) {
@@ -64,7 +74,7 @@ export default class BudgetsService extends BaseService<Budget> {
             snapshot.snapshot = moment().subtract(1, 'day').format('MM-DD-YYYY');
             snapshot.parentID = activeBudget.id;
             snapshot.id++;
-            this.createBudget(snapshot);
+            this.insert(snapshot);
             this.resetBudget(activeBudget);
         }
     }

@@ -9,7 +9,16 @@ abstract class Cond {
 export type Condition = Cond | any;
 
 export default class BaseService<T> {
-    protected entities: any;
+    protected _entities: any;
+
+    set entities(value) {
+        this._entities = value; 
+    }
+
+    get entities() {
+        return this._entities;
+    }
+
     all(conditions?: Condition | Condition[]): Observable<T[]> {
         if (window.cordova) {
             // do sqlite
@@ -51,17 +60,6 @@ export default class BaseService<T> {
     }
 
     delete(conditions?: number | Condition | Condition[]) {
-        let entity;
-        if (typeof conditions === 'number') {
-            entity = this.entities.filter(entity => entity.id == conditions)
-        } else if (Array.isArray(conditions)) {
-
-        } else {
-
-        }
-        const index = this.entities.indexOf(entity);
-        this.entities.splice(index, 1);
-        console.log('this is delete::', index, entity)
         if (window.cordova) {
 
         }
@@ -71,8 +69,6 @@ export default class BaseService<T> {
     insert(entity: T) {
         if (window.cordova) {
             // save to the database
-        } else {
-            this.entities.push(entity);
         }
 
     }

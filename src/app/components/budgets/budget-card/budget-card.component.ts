@@ -25,7 +25,7 @@ export default class BudgetCardComponent implements OnInit {
 
     ngOnInit() {
         this.saveBudget = data => {
-            this.budgetService.updateBudget(this.budget, data);
+            this.budget = {...this.budget, ...data};
             this.mode = MODES.EDIT;
         };
     }
