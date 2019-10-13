@@ -12,7 +12,7 @@
     <div class="budget-limit right">
         ${{ budget.limit }}
     </div>
-    <div #spendingBar [ngClass]="['budget-spending', 'right', spendingColor]">
+    <div #spendingBar [ngClass]="['budget-spending', 'right', spendingColor + '-background']">
         ${{ totalSpending }} 
     </div>
 </div>

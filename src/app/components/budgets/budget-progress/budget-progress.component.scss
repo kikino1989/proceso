@@ -13,18 +13,8 @@
         color: #fff;
         left: 0;
         width: 0;
-        &.great {
-            background: var(--ion-color-green);
-        }
-        &.good {
-            background: var(--ion-color-blue);
-        }
-        &.careful {
-            background: var(--ion-colo-orange);
-        }
-        &.bad {
-            background: var(--ion-color-red);
-        }
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .budget-limit {
         background: #ccc;
