@@ -69,13 +69,13 @@ export default class EditComponent {
     }
 
     filterIncomeSources(value: string) {
-        this.budget.incomeSources = this.orgIncomeSources.filter(incomeSource => {
+        this.incomeSources = this.orgIncomeSources.filter(incomeSource => {
             return !value || incomeSource.name.indexOf(value) > -1;
         });
     }
 
     filterSpences(value: string) {
-        this.budget.spences = this.orgSpences.filter(spence => {
+        this.spences = this.orgSpences.filter(spence => {
             return !value || spence.name.indexOf(value) > -1;
         });
     }

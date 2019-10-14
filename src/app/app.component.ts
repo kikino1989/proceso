@@ -40,6 +40,6 @@ export class AppComponent {
             this.splashScreen.hide();
         });
         this.budgetService.entities = budgets;
-        // this.budgetService.watchBudget();
+        this.budgetService.watchBudget();
     }
 }

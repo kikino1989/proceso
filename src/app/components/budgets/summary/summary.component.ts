@@ -3,6 +3,7 @@ import Budget from '../../../models/Budget';
 import IncomeSource from '../../../models/IncomeSource';
 import Spence from '../../../models/Spence';
 import { AlertController } from '@ionic/angular';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'summary',
@@ -13,22 +14,33 @@ export default class SummaryComponent {
     @Input() budget: Budget;
     private orgIncomeSources: IncomeSource[];
     private orgSpences: Spence[];
+    private incomeSources: IncomeSource[];
+    private spences: Spence[];
 
     constructor(public alertController: AlertController) { }
 
     ngOnInit() {
         this.orgIncomeSources = this.budget.incomeSources;
         this.orgSpences = this.budget.spences;
+        this.incomeSources = _.cloneDeep(this.orgIncomeSources);
+        this.spences = _.cloneDeep(this.orgSpences);
+    }
+
+    ngOnDelete() {
+        delete this.orgIncomeSources;
+        delete this.orgSpences;
+        delete this.incomeSources;
+        delete this.spences;
     }
 
     filterIncomeSources(value: string) {
-        this.budget.incomeSources = this.orgIncomeSources.filter(incomeSource => {
+        this.incomeSources = this.orgIncomeSources.filter(incomeSource => {
             return !value || incomeSource.name.indexOf(value) > -1;
         });
     }
 
     filterSpences(value: string) {
-        this.budget.spences = this.orgSpences.filter(spence => {
+        this.spences = this.orgSpences.filter(spence => {
             return !value || spence.name.indexOf(value) > -1;
         });
     }

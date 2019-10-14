@@ -1,2 +1,2 @@
--filter functionality doesn't work properly
 -snapshot functionality broke.
+-fix state management again.
