@@ -73,6 +73,7 @@ export default class BudgetsService extends BaseService<Budget> {
             snapshot.parentID = activeBudget.id;
             snapshot.id++;
             this.insert(snapshot);
+            if (this.entities) this.entities.push(snapshot);
             this.resetBudget(activeBudget);
         }
     }
