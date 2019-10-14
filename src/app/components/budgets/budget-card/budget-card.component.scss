@@ -1,0 +1,5 @@
+ion-card-content {
+    --overflow: auto @important;
+    overflow: auto;
+    height: calc(100% - 112px);
+}

@@ -1,2 +1,1 @@
--snapshot functionality broke.
 -fix state management again.
