@@ -1,3 +1,8 @@
-<p>
-  projections works!
-</p>
+<div class="ion-margin-vertical">
+    <h3 class="ion-margin-bottom ion-text-center">PROJECTIONS</h3>
+    <p>Net Profit: $ {{ budget.profit }}</p>
+    <p>Yearly Profit: $ {{ budget.profit * 12 }}</p>
+    <div *ngIf="projectionsData">
+        <canvas [chartize]="projectionsData" type="line"></canvas>
+    </div>
+</div>

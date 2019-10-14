@@ -22,6 +22,7 @@ import { SpenceComponent } from './components/budgets/spence/spence.component';
 import { ChartizeDirective } from './directives/chartize.directive';
 import { BudgetProgressComponent } from './components/budgets/budget-progress/budget-progress.component';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { ProjectionsComponent } from './components/budgets/projections/projections.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
         SpenceComponent,
         BudgetProgressComponent,
         ChartizeDirective,
+        ProjectionsComponent
     ],
     entryComponents: [
         BudgetCardComponent,

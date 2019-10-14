@@ -1,2 +1,2 @@
--fix delete budget functionality.
--add projections to the stats page.
+-filter functionality doesn't work properly
+-snapshot functionality broke.

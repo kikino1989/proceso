@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import Budget, { DAYS } from 'src/app/models/Budget';
-import IncomeSource from 'src/app/models/IncomeSource';
-import Spence from 'src/app/models/Spence';
+import Budget from '../../../models/Budget';
+import {DAYS} from '../../../models/DAYS'
+import IncomeSource from '../../../models/IncomeSource';
+import Spence from '../../../models/Spence';
 import { ModalController } from '@ionic/angular';
 import { IncomeSourceComponent } from '../income-source/income-source.component';
 import { SpenceComponent } from '../spence/spence.component';

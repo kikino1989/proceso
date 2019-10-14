@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import BudgetsService from '../../services/budgets.service';
 import Budget from '../../models/Budget';
-import IncomeSource from 'src/app/models/IncomeSource';
-import Spence from 'src/app/models/Spence';
 import {budgets} from '../../services/testdata';
 
 @Component({

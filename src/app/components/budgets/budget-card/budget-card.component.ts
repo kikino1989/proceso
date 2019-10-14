@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import Budget from 'src/app/models/Budget';
-import BudgetsService from 'src/app/services/budgets.service';
+import Budget from '../../../models/Budget';
+import BudgetsService from '../../../services/budgets.service';
 import { ModalController } from '@ionic/angular';
 
 export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats', SAVE = 'save' }

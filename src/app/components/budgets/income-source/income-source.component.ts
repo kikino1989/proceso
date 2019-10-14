@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import IncomeSource from 'src/app/models/IncomeSource';
+import IncomeSource from '../../../models/IncomeSource';
 import { ModalController } from '@ionic/angular';
 import * as _ from 'lodash';
 

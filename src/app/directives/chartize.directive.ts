@@ -13,13 +13,14 @@ export class ChartizeDirective {
             values: any[] | number[]
         }
     };
+    @Input() type = 'bar';
     constructor(
         private el: ElementRef
     ) { }
 
     ngOnInit() {
         var myChart = new Chart(this.el.nativeElement, {
-            type: 'bar',
+            type: this.type,
             data: {
                 labels: this.chartize.data.labels,
                 datasets: [{

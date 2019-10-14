@@ -2,6 +2,7 @@
     <canvas [chartize]="spencesData"></canvas>
 </div>
 <budget-progress [budget]="budget"></budget-progress>
+<projections [budget]="budget"></projections>
 
 <ion-list *ngIf="!budget.snapshot" lines="none" class="ion-margin-vertical">
     <ion-list-header>

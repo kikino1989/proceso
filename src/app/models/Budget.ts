@@ -1,36 +1,6 @@
 import Spence, {TYPE as SPTYPES } from './Spence';
 import IncomeSource, {TYPE as INTYPES}  from './IncomeSource';
-
-export enum DAYS {
-    FIRST = "1st of the month",
-    SECOND = "2nd of the month",
-    THIRD = "3rd of the month",
-    FORTH = "4th of the month",
-    FIFTH = "5th of the month",
-    SIXTH = "6th of the month",
-    SEVENTH = "7th of the month",
-    EIGHTH = "8th of the month",
-    NINTH = "9th of the month",
-    TENTH = "10th of the month",
-    ELEVENTH = "11th of the month",
-    TWELFTH = "12th of the month",
-    THIRTEENTH = "13th of the month",
-    FORTEENTH = "14th of the month",
-    FIFTEENTH = "15th of the month",
-    SIXTEENTH = "16th of the month",
-    SEVENTEENTH = "17th of the month",
-    EIGHTEENTH = "18th of the month",
-    NINTEENTH = "19th of the month",
-    TWENTIETH = "20th of the month",
-    TWENTYFIRST = "21st of the month",
-    TWENTYSECOND = "22nd of the month",
-    TWENTYTHIRD = "23rd of the month",
-    TWENYFORTH = "24th of the month",
-    TWENTYFIFTH = "25th of the month",
-    TWENTYSIXTH = "26th of the month",
-    TWENTYSEVENTH = "27th of the month",
-    TWENTYEIGHTH = "28th of the month" 
-};
+import { DAYS } from './DAYS';
 
 export default class Budget {
     public id: number = 1;
@@ -51,6 +21,28 @@ export default class Budget {
 
     get totalSpending(): number {
         return this.getTotal(this.spences);
+    }
+
+    get profit() {
+        if (!this.totalIncome)
+            return 0;
+        return this.totalIncome - this.totalSpending;
+    }
+
+    get yearProfic() {
+        return this.profit * 12;
+    }
+
+    get energencyFundTime() {
+        return Math.ceil(1000 / this.profit);
+    }
+
+    get fullyFundedEmergencyFund() {
+        return this.totalSpending * 3;
+    }
+
+    get fullyFundedEmergencyFundTime() {
+        return this.fullyFundedEmergencyFund / this.profit;
     }
 
     getTotal(entities: {value: number}[]): number {
