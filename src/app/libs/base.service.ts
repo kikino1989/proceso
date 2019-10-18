@@ -8,7 +8,7 @@ abstract class Cond {
 
 export type Condition = Cond | any;
 
-export default class BaseService<T> {
+export class BaseService<T> {
     protected _entities: any;
 
     set entities(value) {

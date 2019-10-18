@@ -1,8 +1,8 @@
-import Spence, {TYPE as SPTYPES } from './Spence';
-import IncomeSource, {TYPE as INTYPES}  from './IncomeSource';
+import {Spence, TYPE as SPTYPES } from './Spence';
+import {IncomeSource, TYPE as INTYPES}  from './IncomeSource';
 import { DAYS } from './DAYS';
 
-export default class Budget {
+export class Budget {
     public id: number = 1;
     constructor(
         public name: string, 

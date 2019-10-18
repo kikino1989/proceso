@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import BudgetsService from '../../services/budgets.service';
-import Budget from '../../models/Budget';
+import {BudgetsService} from '../../services/budgets.service';
+import {Budget} from '../../models/Budget';
 import {budgets} from '../../services/testdata';
 
 @Component({
@@ -8,7 +8,7 @@ import {budgets} from '../../services/testdata';
     templateUrl: 'budgets.component.html',
     styleUrls: ['budgets.component.scss']
 })
-export default class BudgetsComponent {
+export class BudgetsComponent {
     public budgets: Budget[];
     constructor(
         public budgetsService: BudgetsService

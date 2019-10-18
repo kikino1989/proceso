@@ -1,17 +1,17 @@
 import { Component, Input } from '@angular/core';
-import Budget from '../../../models/Budget';
-import BudgetsService from '../../../services/budgets.service';
+import {Budget} from '../../../models/Budget';
+import {BudgetsService} from '../../../services/budgets.service';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { ModalController } from '@ionic/angular';
-import BudgetCardComponent from '../budget-card/budget-card.component';
+import {BudgetCardComponent} from '../budget-card/budget-card.component';
 
 @Component({
     selector: 'stats',
     templateUrl: 'stats.component.html',
     styleUrls: ['stats.component.scss']
 })
-export default class StatsComponent {
+export class StatsComponent {
     @Input() budget: Budget;
     public snapshots: Budget[];
     private snapshotSubscriptions: Subscription;

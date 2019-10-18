@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import Budget from '../../../models/Budget';
+import {Budget} from '../../../models/Budget';
 import {DAYS} from '../../../models/DAYS'
-import IncomeSource from '../../../models/IncomeSource';
-import Spence from '../../../models/Spence';
+import {IncomeSource} from '../../../models/IncomeSource';
+import {Spence} from '../../../models/Spence';
 import { ModalController } from '@ionic/angular';
 import { IncomeSourceComponent } from '../income-source/income-source.component';
 import { SpenceComponent } from '../spence/spence.component';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
     templateUrl: 'edit.component.html',
     styleUrls: ['edit.component.scss']
 })
-export default class EditComponent {
+export class EditComponent {
     @Input() budget: Budget;
     @Input() saveEvent: EventEmitter<boolean>;
     @Input() saveBudget: (data) => void;

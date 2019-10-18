@@ -1,19 +1,19 @@
-import Budget from '../models/Budget';
-import Spence from '../models/Spence';
+import {Budget} from '../models/Budget';
+import {Spence} from '../models/Spence';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import moment from 'moment';
 import * as _ from 'lodash';
-import BaseService, { Condition} from '../libs/base.service';
-import IncomeSource from '../models/IncomeSource';
+import {BaseService, Condition} from '../libs/base.service';
+import {IncomeSource} from '../models/IncomeSource';
 
-const HOUR_PERIOD = 1000; // 8 * 1000 * 60 * 60;
+const HOUR_PERIOD = 8 * 1000 * 60 * 60;
 
 @Injectable({
     providedIn: 'root',
 })
-export default class BudgetsService extends BaseService<Budget> {
+export class BudgetsService extends BaseService<Budget> {
 
     constructor(private bm: BackgroundMode) { super(); }
 

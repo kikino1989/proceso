@@ -11,18 +11,19 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import BudgetsComponent from './components/budgets/budgets.component';
-import BudgetsService from './services/budgets.service';
-import EditComponent from './components/budgets/edit/edit.component';
-import StatsComponent from './components/budgets/stats/stats.component';
-import BudgetCardComponent from './components/budgets/budget-card/budget-card.component';
-import SummaryComponent from './components/budgets/summary/summary.component';
+import { BudgetsComponent } from './components/budgets/budgets.component';
+import { BudgetsService } from './services/budgets.service';
+import { EditComponent } from './components/budgets/edit/edit.component';
+import { StatsComponent } from './components/budgets/stats/stats.component';
+import { BudgetCardComponent } from './components/budgets/budget-card/budget-card.component';
+import { SummaryComponent } from './components/budgets/summary/summary.component';
 import { IncomeSourceComponent } from './components/budgets/income-source/income-source.component';
 import { SpenceComponent } from './components/budgets/spence/spence.component';
 import { ChartizeDirective } from './directives/chartize.directive';
 import { BudgetProgressComponent } from './components/budgets/budget-progress/budget-progress.component';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { ProjectionsComponent } from './components/budgets/projections/projections.component';
+import { ProspectsComponent } from './components/prospects/prospects/prospects.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { ProjectionsComponent } from './components/budgets/projections/projectio
         SpenceComponent,
         BudgetProgressComponent,
         ChartizeDirective,
-        ProjectionsComponent
+        ProjectionsComponent,
+        ProspectsComponent
     ],
     entryComponents: [
         BudgetCardComponent,

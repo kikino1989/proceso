@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import Budget from '../../../models/Budget';
+import {Budget} from '../../../models/Budget';
 
 @Component({
     selector: 'projections',

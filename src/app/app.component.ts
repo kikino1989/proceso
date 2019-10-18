@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import BudgetsService from './services/budgets.service';
+import { BudgetsService } from './services/budgets.service';
 import { budgets } from './services/testdata';
 
 @Component({
@@ -22,6 +22,11 @@ export class AppComponent {
             title: 'Budgets',
             url: '/budgets',
             icon: 'calculator'
+        },
+        {
+            title: 'Prospects',
+            url: '/prospects',
+            icon: 'people'
         }
     ];
 
@@ -30,9 +35,7 @@ export class AppComponent {
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private budgetService: BudgetsService
-    ) {
-        this.initializeApp();
-    }
+    ) { this.initializeApp(); }
 
     initializeApp() {
         this.platform.ready().then(() => {

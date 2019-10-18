@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import Budget from '../../../models/Budget';
-import BudgetsService from '../../../services/budgets.service';
+import {Budget} from '../../../models/Budget';
+import {BudgetsService} from '../../../services/budgets.service';
 import { ModalController } from '@ionic/angular';
 
 export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats', SAVE = 'save' }
@@ -10,7 +10,7 @@ export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats', S
     templateUrl: './budget-card.component.html',
     styleUrls: ['./budget-card.component.scss'],
 })
-export default class BudgetCardComponent implements OnInit {
+export class BudgetCardComponent implements OnInit {
     public mode: MODES = MODES.SUMMARY;
     @Input() budget: Budget;
     @Input() removeBudget?: (budget: Budget) => void;

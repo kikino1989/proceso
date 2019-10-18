@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import Spence from '../../../models/Spence';
+import {Spence} from '../../../models/Spence';
 import * as _ from 'lodash';
 
 @Component({

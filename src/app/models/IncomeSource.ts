@@ -2,7 +2,7 @@ export const enum TYPE {
     FIXED = 'Fixed', VARIABLE = 'Variable'
 }
 
-export default class IncomeSource {
+export class IncomeSource {
     public id: number;
     constructor(
         public name: string,

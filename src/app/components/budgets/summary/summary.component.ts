@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import Budget from '../../../models/Budget';
-import IncomeSource from '../../../models/IncomeSource';
-import Spence from '../../../models/Spence';
+import {Budget} from '../../../models/Budget';
+import {IncomeSource} from '../../../models/IncomeSource';
+import {Spence} from '../../../models/Spence';
 import { AlertController } from '@ionic/angular';
 import * as _ from 'lodash';
 
@@ -10,7 +10,7 @@ import * as _ from 'lodash';
     templateUrl: 'summary.component.html',
     styleUrls: ['summary.component.scss']
 })
-export default class SummaryComponent {
+export class SummaryComponent {
     @Input() budget: Budget;
     private orgIncomeSources: IncomeSource[];
     private orgSpences: Spence[];
