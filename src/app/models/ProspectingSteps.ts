@@ -1,12 +1,15 @@
 export class ProspectingSteps {
-    position: number;
-    name: string;
-    description: string;
-    tools?: string;
-    pointA: string;
-    pointB?: string;
+    id: number;
+    constructor(
+        public position: number,
+        public name: string,
+        public description: string,
+        public pointA: string,
+        public tools?: string,
+        public pointB?: string
+    ) { }
 
-    get defaultSteps(): ProspectingSteps[] {
+    static getDefaultSteps(): ProspectingSteps[] {
         return <ProspectingSteps[]>[
             {
                 position: 0,

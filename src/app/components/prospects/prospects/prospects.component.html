@@ -1,3 +1,38 @@
-<p>
-  prospects works!
-</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Prospects.
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="padding-8 full right">
+        <ion-button type="button" shape="round" size="small" (click)="addProspect()">Add Prospect</ion-button>
+    </div>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>Prospects: </ion-label>
+            <ion-input type="text" clear-input="true" placeholder="Prospect name..."
+                (ionInput)="filterProspects($event.target.value)"
+                (ionChange)="filterProspects($event.target.value)">
+            </ion-input>
+        </ion-list-header>
+        <ion-item *ngFor="let prospect of prospects">
+            <ion-avatar slot="start">
+                <img [src]="prospect.image" *ngIf="prospect.image; else placeholder">
+                <ng-template #placeholder>
+                    <ion-icon name="person" role="image"></ion-icon>
+                </ng-template>
+            </ion-avatar>
+            <ion-label>
+                <h1>{{ prospectingSteps[prospect.step].name }}</h1>
+                <h3>{{ prospect.name }}</h3>
+                <h5>{{ prospect.phone }}</h5>
+                <p>{{ prospect.email }}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

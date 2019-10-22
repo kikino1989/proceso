@@ -132,7 +132,10 @@ export class EditComponent {
             modal.present();
             modal.onWillDismiss().then(({data}) => {
                 if (data) {
-                    spence = data;
+                    for (let prop in data) {
+                        if (spence.hasOwnProperty(prop))
+                            spence[prop] = data[prop];
+                    }
                     this.budgetChanged.emit(this.budgetForm.valid);
                 }
             });
@@ -149,7 +152,10 @@ export class EditComponent {
             modal.present();
             modal.onWillDismiss().then(({data}) => {
                 if (data) {
-                    incomeSource = data;
+                    for (let prop in data) {
+                        if (incomeSource.hasOwnProperty(prop))
+                            incomeSource[prop] = data[prop];
+                    }
                     this.budgetChanged.emit(this.budgetForm.valid);
                 }
             })

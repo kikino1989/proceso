@@ -24,6 +24,7 @@ import { BudgetProgressComponent } from './components/budgets/budget-progress/bu
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { ProjectionsComponent } from './components/budgets/projections/projections.component';
 import { ProspectsComponent } from './components/prospects/prospects/prospects.component';
+import { ProspectService } from './services/prospect.service';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import { ProspectsComponent } from './components/prospects/prospects/prospects.c
     ],
     providers: [
         BudgetsService,
+        ProspectService,
         StatusBar,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
