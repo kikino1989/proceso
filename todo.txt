@@ -1,3 +1,4 @@
+-bug in the projections section when spences are greater than income.
 -fix state management again.
 
 -prospects module.

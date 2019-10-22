@@ -25,7 +25,10 @@ export class BudgetCardComponent implements OnInit {
 
     ngOnInit() {
         this.saveBudget = data => {
-            this.budget = {...this.budget, ...data};
+            for(let prop in data) {
+                if (this.budget.hasOwnProperty(prop))
+                    this.budget[prop] = data[prop];
+            }
             this.mode = MODES.EDIT;
         };
     }
