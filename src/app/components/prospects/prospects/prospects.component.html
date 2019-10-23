@@ -20,19 +20,20 @@
                 (ionChange)="filterProspects($event.target.value)">
             </ion-input>
         </ion-list-header>
-        <ion-item *ngFor="let prospect of prospects">
-            <ion-avatar slot="start">
-                <img [src]="prospect.image" *ngIf="prospect.image; else placeholder">
-                <ng-template #placeholder>
-                    <ion-icon name="person" role="image"></ion-icon>
-                </ng-template>
+        <ion-item class="ion-no-padding" *ngFor="let prospect of prospects">
+            <ion-avatar class="ion-margin-horizontal">
+                <img [src]="prospect.image ? prospect.image : '/assets/avatar.svg'">
             </ion-avatar>
-            <ion-label>
-                <h1>{{ prospectingSteps[prospect.step].name }}</h1>
-                <h3>{{ prospect.name }}</h3>
-                <h5>{{ prospect.phone }}</h5>
+            <ion-label class="ion-margin-end">
+                <h1>{{ prospect.name }}</h1>
+                <h5>{{ prospectingSteps[prospect.step].name }}</h5>
+                <p>{{ prospect.phone }}</p>
                 <p>{{ prospect.email }}</p>
             </ion-label>
+            <span>
+                <ion-icon color="danger" size="large" name="trash" (click)="deleteProspect(prospect)"></ion-icon><br />
+                <ion-icon color="secondary" size="large" name="eye" (click)="viewProspect(prospect)"></ion-icon>
+            </span>
         </ion-item>
     </ion-list>
 </ion-content>

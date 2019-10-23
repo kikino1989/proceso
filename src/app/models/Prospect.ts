@@ -1,7 +1,7 @@
 import { ProspectingSteps } from './ProspectingSteps';
 
 export class Prospect {
-    id: number;
+    public id: number = 0;
     constructor(
         public name: string,
         public phone: string,

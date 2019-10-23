@@ -10,5 +10,5 @@ export class Spence {
         public type: TYPE = TYPE.RECURRENT,
         public dueDate?: string,
         public limit?: number
-    ) {}
+    ) { }
 }

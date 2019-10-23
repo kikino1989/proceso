@@ -1,5 +1,5 @@
 export class ProspectingSteps {
-    id: number;
+    static id: number;
     constructor(
         public position: number,
         public name: string,
@@ -7,7 +7,7 @@ export class ProspectingSteps {
         public pointA: string,
         public tools?: string,
         public pointB?: string
-    ) { }
+    ) { ProspectingSteps.id++ }
 
     static getDefaultSteps(): ProspectingSteps[] {
         return <ProspectingSteps[]>[

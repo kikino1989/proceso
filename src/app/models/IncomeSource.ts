@@ -9,5 +9,5 @@ export class IncomeSource {
         public value: number,
         public type: TYPE = TYPE.FIXED,
         public date?: string
-    ) {}
+    ) { }
 }

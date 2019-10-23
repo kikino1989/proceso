@@ -8,6 +8,6 @@ export const budgets = [
 ];
 
 export const prospects = [
-    new Prospect('bil neits', '7867097661', 'kikino1989@gmial.com'),
-    new Prospect('jonny kage', '7867097661', 'kikino1989@yahoo.com')
+    {id: 1, name: 'bil neits', phone: '7867097661', email: 'kikino1989@gmial.com', step: 0},
+    {id: 2, name: 'jonny kage', phone: '7867097661', email: 'kikino1989@yahoo.com', step: 1}
 ]

@@ -3,7 +3,7 @@ import {IncomeSource, TYPE as INTYPES}  from './IncomeSource';
 import { DAYS } from './DAYS';
 
 export class Budget {
-    public id: number = 1;
+    public id: number = 0;
     constructor(
         public name: string, 
         public limit: number,
