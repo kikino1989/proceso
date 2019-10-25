@@ -198,3 +198,16 @@ ion-card-subtitle {
 .budget-card__modal-mode--height {
     height: 100%;
 }
+
+.no-inner-padding {
+    --inner-padding-start: 0 !important;
+    --inner-padding-end: 0 !important;
+}
+
+.underline-text {
+    text-decoration: underline;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

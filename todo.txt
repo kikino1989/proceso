@@ -1,10 +1,5 @@
--bug in the projections section when spences are greater than income.
--fix state management again.
-
 -prospects module.
 ++Add prospect.
-++Delete prospect.
 ++View/set prospect processing status.
 ++Set prospect next step reminder.
 ++View/set process status.
-++Set next step goal.)

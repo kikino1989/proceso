@@ -4,6 +4,7 @@ import { ProspectService } from 'src/app/services/prospect.service';
 import { Subscription } from 'rxjs';
 import { ProspectingSteps } from 'src/app/models/ProspectingSteps';
 import * as _ from 'lodash';
+import { AlertController } from '@ionic/angular';
 
 @Component({
     selector: 'app-prospects',
@@ -17,7 +18,10 @@ export class ProspectsComponent implements OnInit {
     prospectingSteps: ProspectingSteps[];
     prospectSubscription: Subscription;
     stepsSubscription: Subscription;
-    constructor(private prospectService: ProspectService) { }
+    constructor(
+        private prospectService: ProspectService,
+        private alertCtrl: AlertController
+    ) { }
 
     ngOnInit() {
         this.prospectSubscription = this.prospectService.getProspects().subscribe(prospects => {
@@ -48,17 +52,38 @@ export class ProspectsComponent implements OnInit {
         this.prospectService.delete(prospect.id);
     }
 
-    viewProspect() {
-
-    }
-
-    editProspect() {
+    editProspect(prospect: Prospect) {
 
     }
 
     filterProspects(value) {
         this.prospects = this.orgProspects.filter(prospect => {
             return !value || prospect.name.indexOf(value) > -1;
+        });
+    }
+
+    changeStep(prospect: Prospect) {
+        const inputs = [];
+        this.prospectingSteps.forEach(step => {
+            inputs.push({
+                name: step.name,
+                type: "radio",
+                label: step.name,
+                value: step.position,
+                checked: step.position == prospect.step
+            });
+        });
+        this.alertCtrl.create({
+            header: "Choose step",
+            inputs: inputs,
+            buttons: [
+                {text: "Cancel", role: "cancel"},
+                {text: "OK", handler: step => {
+                    prospect.step = step;
+                }}
+            ]
+        }).then(alert => {
+            alert.present();
         });
     }
 
