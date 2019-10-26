@@ -1,3 +1,4 @@
++create visual prospecting steps component.
 +create reminders model.
 +inport from contacts. 
 +create reminders module.
