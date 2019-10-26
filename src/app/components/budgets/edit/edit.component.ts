@@ -126,7 +126,7 @@ export class EditComponent {
         this.modalController.create({
             component: SpenceComponent,
             componentProps: {
-                spence: spence
+                orgSpence: spence
             }
         }).then(modal => {
             modal.present();
@@ -146,7 +146,7 @@ export class EditComponent {
         this.modalController.create({
             component: IncomeSourceComponent,
             componentProps: {
-                incomeSource: incomeSource
+                orgIncomeSource: incomeSource
             }
         }).then(modal => {
             modal.present();

@@ -9,17 +9,19 @@ import * as _ from 'lodash';
     styleUrls: ['./spence.component.scss'],
 })
 export class SpenceComponent implements OnInit {
-    @Input() spence: Spence;
+    @Input() orgSpence: Spence;
+    public spence: Spence;
     constructor(public modalCtrl: ModalController) { }
 
     ngOnInit() {
-        if (!this.spence)
+        if (!this.orgSpence)
             this.spence = new Spence('my spence', 100);
         else
-            this.spence = _.cloneDeep(this.spence);
+            this.spence = _.cloneDeep(this.orgSpence);
     }
 
     ngOnDelete() {
+        delete this.orgSpence;
         delete this.spence;
     }
 

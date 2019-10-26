@@ -1,0 +1,115 @@
+<ion-content>
+    <form name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+        <div class="header">
+            <ion-label>
+                {{ !orgProspect ? 'New Prospect' : 'Edit ' + prospect.name }}
+            </ion-label>
+        </div>
+        <div class="content">
+            <ion-grid>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-avatar>
+                            <img [src]="prospect.image ? prospect.image : '/assets/avatar.svg'" />
+                        </ion-avatar>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-input name="image" type="file" placeholder="image"
+                            [(ngModel)]="prospect.image">
+                        </ion-input>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12" >
+                        <ion-item>
+                            <ion-label>Name</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" >
+                        <ion-item>
+                            <ion-input name="name" type="text" placeholder="name"
+                                [(ngModel)]="prospect.name" required>
+                            </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Phone</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-input name="phone" type="tel" placeholder="(XXX) XXX-XXXX"
+                                [(ngModel)]="prospect.phone" required>
+                            </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Email</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-input name="email" type="email" placeholder="example@yahoo.com"
+                                [(ngModel)]="prospect.email">
+                            </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Step</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" >
+                        <ion-item>
+                            <ion-select name="step" [(ngModel)]="prospect.step" placeholder="Select step..." required>
+                                <ion-select-option *ngFor="let step of prospectingSteps" [value]="step.position">{{ step.name }}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12" >
+                        <ion-item>
+                            <ion-label>Reminder</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" >
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="6" sizeXs="12">
+                                    <ion-item>
+                                        <ion-datetime placeholder="YYYY-MM-DD" format="YYYY-MM-DD"
+                                            name="date" [(ngModel)]="reminder.date">
+                                        </ion-datetime>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col size="6" sizeXs="12">
+                                    <ion-item>
+                                        <ion-textarea name="note" [(ngModel)]="reminder.note" placeholder="Your note here...">
+                                        </ion-textarea>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+        <div class="footer">
+            <ion-button type="button" size="small" role="cancel" 
+                (click)="dismiss()" color="primary"> Cancel 
+            </ion-button>
+            <ion-button type="submit" size="small" role="submit" color="success">
+                {{ !orgProspect ? 'Add' : 'Save' }} 
+            </ion-button>
+        </div>
+    </form>
+</ion-content>

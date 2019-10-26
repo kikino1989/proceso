@@ -1,17 +1,17 @@
 <ion-content>
-    <form name="new-spence-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+    <form name="spence-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
-            <ion-label> {{ !spence ? 'New Spence' : 'Edit ' + spence.name }} </ion-label>
+            <ion-label> {{ !orgSpence ? 'New Spence' : 'Edit ' + spence.name }} </ion-label>
         </div>
         <div class="content">
             <ion-grid>
                 <ion-row>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-label>Name</ion-label>
                         </ion-item>
                     </ion-col>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-input name="name" type="text" placeholder="name"
                                 [(ngModel)]="spence.name" required>
@@ -20,12 +20,12 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-label>Value</ion-label>
                         </ion-item>
                     </ion-col>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-input name="value" type="number" placeholder="value"
                                 [(ngModel)]="spence.value" required>
@@ -34,12 +34,12 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-label>Type</ion-label>
                         </ion-item>
                     </ion-col>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-select name="type" [(ngModel)]="spence.type"
                                 placeholder="Select Type..." required>
@@ -50,12 +50,12 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-label>Due Date</ion-label>
                         </ion-item>
                     </ion-col>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-datetime placeholder="YYYY-MM-DD" format="YYYY-MM-DD"
                                 name="date" [(ngModel)]="spence.dueDate" 
@@ -71,7 +71,7 @@
                 (click)="dismiss()" color="primary"> Cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !spence ? 'Add' : 'Save' }} 
+                {{ !orgSpence ? 'Add' : 'Save' }} 
             </ion-button>
         </div>
     </form>

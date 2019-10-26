@@ -9,17 +9,19 @@ import * as _ from 'lodash';
     styleUrls: ['./income-source.component.scss'],
 })
 export class IncomeSourceComponent implements OnInit {
-    @Input() incomeSource?: IncomeSource;
+    @Input() orgIncomeSource?: IncomeSource;
+    public incomeSource: IncomeSource;
     constructor(public modalCtrl: ModalController) { }
 
     ngOnInit() {
-        if (!this.incomeSource)
+        if (!this.orgIncomeSource)
             this.incomeSource = new IncomeSource('my income source', 100);
         else
-            this.incomeSource = _.cloneDeep(this.incomeSource);
+            this.incomeSource = _.cloneDeep(this.orgIncomeSource);
     }
 
     ngOnDelete() {
+        delete this.orgIncomeSource;
         delete this.incomeSource;
     }
 

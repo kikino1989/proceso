@@ -1,5 +1,4 @@
--prospects module.
-++Add prospect.
-++View/set prospect processing status.
-++Set prospect next step reminder.
-++View/set process status.
++create reminders model.
++inport from contacts. 
++create reminders module.
++create settings module and edit steps section.

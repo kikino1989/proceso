@@ -25,6 +25,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import { ProjectionsComponent } from './components/budgets/projections/projections.component';
 import { ProspectsComponent } from './components/prospects/prospects/prospects.component';
 import { ProspectService } from './services/prospect.service';
+import { ProspectComponent } from './components/prospects/prospect/prospect.component';
 
 @NgModule({
     declarations: [
@@ -39,12 +40,14 @@ import { ProspectService } from './services/prospect.service';
         BudgetProgressComponent,
         ChartizeDirective,
         ProjectionsComponent,
-        ProspectsComponent
+        ProspectsComponent,
+        ProspectComponent
     ],
     entryComponents: [
         BudgetCardComponent,
         IncomeSourceComponent,
-        SpenceComponent
+        SpenceComponent,
+        ProspectComponent
     ],
     imports: [
         BrowserModule,

@@ -36,6 +36,15 @@ ion-card-subtitle {
     text-transform: capitalize;
 }
 
+ion-input,
+ion-textarea,
+ion-select,
+ion-datepicker {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+}
+
 .card-title-side {
     min-width: 118px;
     text-overflow: 'ellipse';

@@ -4,7 +4,7 @@
         <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>
-            Prospects.
+            Prospects
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -25,7 +25,7 @@
                 <ion-row>
                     <ion-col sizeXs="3" sizeSm="2" size="1">
                         <ion-avatar>
-                            <img [src]="prospect.image ? prospect.image : '/assets/avatar.svg'">
+                            <img [src]="prospect.image ? prospect.image : '/assets/avatar.svg'" />
                         </ion-avatar>
                     </ion-col>
                     <ion-col size="9" sizeXs="7" sizeSm="8"> 
@@ -43,7 +43,7 @@
                                     <ion-icon color="danger" size="large" name="trash" (click)="deleteProspect(prospect)"></ion-icon>
                                 </ion-col>
                                 <ion-col class="ion-text-end" size="6" sizeXs="12">
-                                    <ion-icon color="secondary" size="large" name="pen" (click)="editProspect(prospect)"></ion-icon>
+                                    <ion-icon color="success" size="large" name="create" mode="md" (click)="editProspect(prospect)"></ion-icon>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>

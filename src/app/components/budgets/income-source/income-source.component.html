@@ -1,19 +1,19 @@
 <ion-content>
-    <form name="new-income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+    <form name="income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
-                {{ !incomeSource ? 'New Income Source' : 'Edit ' + incomeSource.name }}
+                {{ !orgIncomeSource ? 'New Income Source' : 'Edit ' + incomeSource.name }}
             </ion-label>
         </div>
         <div class="content">
             <ion-grid>
                 <ion-row>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-label>Name</ion-label>
                         </ion-item>
                     </ion-col>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-input name="name" type="text" placeholder="name"
                                 [(ngModel)]="incomeSource.name" required>
@@ -22,12 +22,12 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-label>Value</ion-label>
                         </ion-item>
                     </ion-col>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-input name="value" type="number" placeholder="value"
                                 [(ngModel)]="incomeSource.value" required>
@@ -36,12 +36,12 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-label>Type</ion-label>
                         </ion-item>
                     </ion-col>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-select name="type" [(ngModel)]="incomeSource.type"
                                 placeholder="Select type..." required>
@@ -52,12 +52,12 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-label>Date</ion-label>
                         </ion-item>
                     </ion-col>
-                    <ion-col size="12" size-sm>
+                    <ion-col size="12" >
                         <ion-item>
                             <ion-datetime placeholder="YYYY-MM-DD" format="YYYY-MM-DD"
                                 name="date" [(ngModel)]="incomeSource.date" [required]="incomeSource.type === 'Fixed'">
@@ -72,7 +72,7 @@
                 (click)="dismiss()" color="primary"> Cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !incomeSource ? 'Add' : 'Save' }} 
+                {{ !orgIncomeSource ? 'Add' : 'Save' }} 
             </ion-button>
         </div>
     </form>

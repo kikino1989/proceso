@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Prospect } from 'src/app/models/Prospect';
-import { ProspectService } from 'src/app/services/prospect.service';
+import { Prospect } from '../../../models/Prospect';
+import { ProspectService } from '../../../services/prospect.service';
 import { Subscription } from 'rxjs';
-import { ProspectingSteps } from 'src/app/models/ProspectingSteps';
+import { ProspectingSteps } from '../../../models/ProspectingSteps';
 import * as _ from 'lodash';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { ProspectComponent } from '../prospect/prospect.component';
 
 @Component({
     selector: 'app-prospects',
@@ -20,7 +21,8 @@ export class ProspectsComponent implements OnInit {
     stepsSubscription: Subscription;
     constructor(
         private prospectService: ProspectService,
-        private alertCtrl: AlertController
+        private alertCtrl: AlertController,
+        private modalCtrl: ModalController
     ) { }
 
     ngOnInit() {
@@ -40,7 +42,38 @@ export class ProspectsComponent implements OnInit {
     }
 
     addProspect() {
-        
+        this.modalCtrl.create({
+            component: ProspectComponent,
+            componentProps: {
+                prospectingSteps: this.prospectingSteps
+            }
+        }).then(modal => {
+            modal.present();
+            modal.onWillDismiss().then(({data: prospect}) => {
+                this.orgProspects.push(prospect);
+                this.prospects.push(prospect);
+                this.prospectService.insert(prospect)
+            });
+        });
+    }
+
+    editProspect(prospect: Prospect) {
+        this.modalCtrl.create({
+            component: ProspectComponent,
+            componentProps: {
+                orgProspect: prospect,
+                prospectingSteps: this.prospectingSteps
+            }
+        }).then(modal => {
+            modal.present();
+            modal.onWillDismiss().then(({data}) => {
+                for (let prop in data) {
+                    if (prospect.hasOwnProperty(prop))
+                        prospect[prop] = data[prop];
+                }
+                this.prospectService.update(prospect);
+            });
+        });
     }
 
     deleteProspect(prospect: Prospect) {
@@ -50,10 +83,6 @@ export class ProspectsComponent implements OnInit {
         this.prospects.splice(index, 1);
         this.orgProspects.splice(index, 1);
         this.prospectService.delete(prospect.id);
-    }
-
-    editProspect(prospect: Prospect) {
-
     }
 
     filterProspects(value) {

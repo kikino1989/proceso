@@ -29,7 +29,7 @@
                         <span *ngIf="!budget.snapshot" class="card-tab-link" 
                             [ngClass]="{'active': isEdit() || isSave() }"
                             (click)="setEditSaveMode()">
-                            <ion-icon [name]="isSave() ? 'save' : 'create'"></ion-icon>
+                            <ion-icon mode="md" [name]="isSave() ? 'save' : 'create'"></ion-icon>
                         </span>
                     </ion-col>
                 </ion-row>
