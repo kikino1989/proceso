@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { Prospect } from '../../../models/Prospect';
 import { ProspectingSteps } from '../../../models/ProspectingSteps';
 import * as _  from 'lodash';
+import { Reminder } from '../../../models/Reminer';
+import { RemindersService } from '../../../services/reminders.service';
 
 @Component({
     selector: 'prospect',
@@ -14,11 +16,14 @@ export class ProspectComponent implements OnInit {
     @Input() orgProspect?: Prospect;
     @Input() prospectingSteps: ProspectingSteps;
     public prospect: Prospect;
-    public reminder? = {};
-    constructor(private modalCtrl: ModalController) { }
+    public reminder?: Reminder;
+    constructor(
+        private modalCtrl: ModalController,
+        private reminderService: RemindersService
+    ) { }
 
     ngOnInit() {
-        console.info('this is prospect::', this.orgProspect);
+        this.reminder = new Reminder(this.prospect.id, Prospect.name);
         if (this.orgProspect)
             this.prospect = _.cloneDeep(this.orgProspect);
         else
@@ -33,6 +38,8 @@ export class ProspectComponent implements OnInit {
     }
 
     onSubmit() {
+        if (this.reminder.note && this.reminder.date)
+            this.reminderService.insert(this.reminder);
         this.modalCtrl.dismiss(this.prospect);
     }
 

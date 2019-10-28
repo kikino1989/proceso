@@ -26,6 +26,8 @@ import { ProjectionsComponent } from './components/budgets/projections/projectio
 import { ProspectsComponent } from './components/prospects/prospects/prospects.component';
 import { ProspectService } from './services/prospect.service';
 import { ProspectComponent } from './components/prospects/prospect/prospect.component';
+import { RemindersService } from './services/reminders.service';
+import { RemindersComponent } from './components/reminders/reminders.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,8 @@ import { ProspectComponent } from './components/prospects/prospect/prospect.comp
         ChartizeDirective,
         ProjectionsComponent,
         ProspectsComponent,
-        ProspectComponent
+        ProspectComponent,
+        RemindersComponent
     ],
     entryComponents: [
         BudgetCardComponent,
@@ -57,6 +60,7 @@ import { ProspectComponent } from './components/prospects/prospect/prospect.comp
         ReactiveFormsModule
     ],
     providers: [
+        RemindersService,
         BudgetsService,
         ProspectService,
         StatusBar,

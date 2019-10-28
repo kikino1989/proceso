@@ -27,6 +27,11 @@ export class AppComponent {
             title: 'Prospects',
             url: '/prospects',
             icon: 'people'
+        },
+        {
+            title: 'Reminders',
+            url: '/reminders',
+            icon: 'clock'
         }
     ];
 

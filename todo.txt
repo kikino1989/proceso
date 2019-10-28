@@ -1,5 +1,3 @@
-+create visual prospecting steps component.
-+create reminders model.
++add the avility to change reminder type.
 +inport from contacts. 
-+create reminders module.
 +create settings module and edit steps section.

@@ -10,4 +10,9 @@ export const budgets = [
 export const prospects = [
     {id: 1, name: 'bil neits', phone: '7867097661', email: 'kikino1989@gmial.com', step: 0},
     {id: 2, name: 'jonny kage', phone: '7867097661', email: 'kikino1989@yahoo.com', step: 1}
-]
+];
+
+export const reminders = [
+    {id: 1, date: "10/20/1989", note: "I was borned.", entityId: 1, entityClass: "Prospect"}
+];
+
