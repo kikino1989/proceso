@@ -28,6 +28,8 @@ import { ProspectService } from './services/prospect.service';
 import { ProspectComponent } from './components/prospects/prospect/prospect.component';
 import { RemindersService } from './services/reminders.service';
 import { RemindersComponent } from './components/reminders/reminders.component';
+import { HeadbarComponent } from './home/headbar/headbar.component';
+import { HomePageModule } from './home/home.module';
 
 @NgModule({
     declarations: [
@@ -57,7 +59,8 @@ import { RemindersComponent } from './components/reminders/reminders.component';
         IonicModule.forRoot(),
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HomePageModule
     ],
     providers: [
         RemindersService,

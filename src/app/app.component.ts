@@ -50,4 +50,8 @@ export class AppComponent {
         this.budgetService.entities = budgets;
         this.budgetService.watchBudget();
     }
+
+    ngOnDelete() {
+        delete this.appPages;
+    }
 }

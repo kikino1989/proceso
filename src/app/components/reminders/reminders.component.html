@@ -1,13 +1,4 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>
-            Reminders
-        </ion-title>
-    </ion-toolbar>
-</ion-header>
+<headbar>Reminders</headbar>
 <ion-content>
     <ion-list>
         <ion-list-header>
@@ -25,8 +16,8 @@
                         <ion-text>{{ reminder.date }}</ion-text>
                     </ion-col>
                     <ion-col class="ion-text-end">
-                        <ion-button size="small" color="warning" (click)="dismissReminder(reminder)">
-                            <ion-icon name="close" mode="md" shape="round"></ion-icon>Dismiss
+                        <ion-button shape="round" size="small" color="danger" (click)="dismissReminder(reminder)">
+                            Dismiss
                         </ion-button>
                     </ion-col>
                 </ion-row>

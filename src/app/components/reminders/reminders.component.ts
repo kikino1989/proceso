@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Reminder } from 'src/app/models/Reminer';
-import { RemindersService } from 'src/app/services/reminders.service';
+import { Reminder } from '../../models/Reminer';
+import { RemindersService } from '../../services/reminders.service';
 import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 
@@ -36,7 +36,7 @@ export class RemindersComponent implements OnInit {
     }
 
     dismissReminder(reminder) {
-        const index = this.orgReminders.findIndex(_reminder => reminder.id = _reminder.id);
+        const index = this.orgReminders.findIndex(_reminder => reminder.id === _reminder.id);
         this.reminders.splice(index, 1);
         this.orgReminders.splice(index, 1);
         this.remindersService.delete(reminder.id);

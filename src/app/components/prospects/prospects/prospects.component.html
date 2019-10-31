@@ -1,13 +1,4 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>
-            Prospects
-        </ion-title>
-    </ion-toolbar>
-</ion-header>
+<headbar>Prospects</headbar>
 <ion-content>
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addProspect()">Add Prospect</ion-button>
@@ -20,7 +11,7 @@
                 (ionChange)="filterProspects($event.target.value)">
             </ion-input>
         </ion-list-header>
-        <ion-item class="ion-no-padding no-inner-padding" *ngFor="let prospect of prospects">
+        <ion-item (swipeLeft)="deleteProspect(prospect)" class="ion-no-padding no-inner-padding" *ngFor="let prospect of prospects">
             <ion-grid class="ion-no-padding">
                 <ion-row>
                     <ion-col sizeXs="3" sizeSm="2" size="1">

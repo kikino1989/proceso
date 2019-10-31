@@ -1,3 +1,4 @@
++create header component.
 +add the avility to change reminder type.
 +inport from contacts. 
 +create settings module and edit steps section.
