@@ -28,8 +28,9 @@ import { ProspectService } from './services/prospect.service';
 import { ProspectComponent } from './components/prospects/prospect/prospect.component';
 import { RemindersService } from './services/reminders.service';
 import { RemindersComponent } from './components/reminders/reminders.component';
-import { HeadbarComponent } from './home/headbar/headbar.component';
 import { HomePageModule } from './home/home.module';
+import { SettingsComponent } from './components/settings/settings.component';
+import { HabitsComponent } from './components/habits/habits.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,9 @@ import { HomePageModule } from './home/home.module';
         ProjectionsComponent,
         ProspectsComponent,
         ProspectComponent,
-        RemindersComponent
+        RemindersComponent,
+        SettingsComponent,
+        HabitsComponent
     ],
     entryComponents: [
         BudgetCardComponent,

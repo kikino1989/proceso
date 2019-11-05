@@ -3,6 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { BudgetsComponent } from '../app/components/budgets/budgets.component';
 import { ProspectsComponent } from './components/prospects/prospects/prospects.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { HabitsComponent } from './components/habits/habits.component';
 
 const routes: Routes = [
     {
@@ -25,6 +27,14 @@ const routes: Routes = [
     {
         path: 'reminders',
         component: RemindersComponent
+    },
+    {
+        path: 'habits',
+        component: SettingsComponent
+    },
+    {
+        path: 'settings',
+        component: HabitsComponent
     }
 ];
 

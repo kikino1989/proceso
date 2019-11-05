@@ -4,6 +4,7 @@ import { Prospect } from '../../../models/Prospect';
 import { ProspectingSteps } from '../../../models/ProspectingSteps';
 import * as _  from 'lodash';
 import { Reminder } from '../../../models/Reminer';
+import { OCCURS } from '../../../models/OCCURS';
 import { RemindersService } from '../../../services/reminders.service';
 
 @Component({
@@ -23,11 +24,12 @@ export class ProspectComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.reminder = new Reminder(this.prospect.id, Prospect.name);
         if (this.orgProspect)
             this.prospect = _.cloneDeep(this.orgProspect);
         else
             this.prospect = new Prospect("", "");
+
+        this.reminder = new Reminder(this.prospect.id, Prospect.name);
     }
 
     ngOnDelete() {
@@ -45,5 +47,9 @@ export class ProspectComponent implements OnInit {
 
     dismiss() {
         this.modalCtrl.dismiss();
+    }
+
+    get occurs() {
+        return Object.keys(OCCURS as object);
     }
 }

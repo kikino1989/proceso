@@ -1,0 +1,33 @@
+<headbar>Habits Tracker</headbar>
+<ion-content>
+    <div class="padding-8 full right">
+        <ion-button type="button" shape="round" size="small" (click)="addHabit()">Add Habit</ion-button>
+    </div>
+    <ion-list lines="full">
+        <ion-list-header>
+            <ion-label>Habits: </ion-label>
+            <ion-input type="text" clear-input="true" placeholder="Habit name..."
+                (ionInput)="filterHabits($event.target.value)"
+                (ionChange)="filterHabits($event.target.value)">
+            </ion-input>
+        </ion-list-header>
+        <ion-item (swipeLeft)="checkoff(habit)" class="ion-no-padding no-inner-padding" *ngFor="let habit of habits">
+            <ion-grid class="ion-no-padding">
+                <ion-row>
+                    <ion-col sizeXs="3" sizeSm="2" size="1">
+                        <ion-icon name="checkmark-circle-outline" mode="md"></ion-icon>
+                    </ion-col>
+                    <ion-col size="9" sizeXs="7" sizeSm="8"> 
+                        <ion-label class="ion-margin-end">
+                            <h1>{{ habit.name }}</h1>
+                            <!-- need to work in this fields -->
+                        </ion-label>
+                    </ion-col>
+                    <ion-col sizeXs="2" size="1">
+                        <ion-icon color="danger" size="large" name="trash" (click)="checkoff(habit)"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>   
+        </ion-item>
+    </ion-list>
+</ion-content>

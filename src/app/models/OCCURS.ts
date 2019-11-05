@@ -1,0 +1,2 @@
+export enum OCCURS { DAILY = "DAILY", ONCE = "ONCE", WEEKLY = "WEEKLY", MONTHLY = "MONTHLY", YEARLY = "YEARLY" }
+

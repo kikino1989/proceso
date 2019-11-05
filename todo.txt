@@ -1,4 +1,10 @@
-+create header component.
-+add the avility to change reminder type.
-+inport from contacts. 
+
+-habits manager
+++view/Set goals
+++Daily checklist management.
+
+
+
 +create settings module and edit steps section.
++image upload in prospects.
++inport from contacts. 

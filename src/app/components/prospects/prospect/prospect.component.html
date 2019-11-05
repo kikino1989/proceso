@@ -82,16 +82,27 @@
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
-                        <ion-grid>
+                        <ion-grid class="ion-no-padding">
                             <ion-row>
-                                <ion-col size="6" sizeXs="12">
+                                <ion-col size="6" sizeXs="12" class="ion-no-padding">
                                     <ion-item>
-                                        <ion-datetime placeholder="YYYY-MM-DD" format="YYYY-MM-DD"
-                                            name="date" [(ngModel)]="reminder.date">
-                                        </ion-datetime>
+                                        <ion-grid class="ion-no-padding">
+                                            <ion-row>
+                                                <ion-col class="ion-no-padding">
+                                                    <ion-datetime placeholder="YYYY-MM-DD" format="YYYY-MM-DD"
+                                                        name="date" [(ngModel)]="reminder.date">
+                                                    </ion-datetime>
+                                                </ion-col>
+                                                <ion-col class="ion-no-pading">
+                                                    <ion-select name="frequency" placeholder="frequency" [(ngModel)]="reminder.frequency">
+                                                        <ion-select-option *ngFor="let occur of occurs" [value]="occur">{{ occur }}</ion-select-option>
+                                                    </ion-select>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-grid>
                                     </ion-item>
                                 </ion-col>
-                                <ion-col size="6" sizeXs="12">
+                                <ion-col size="6" sizeXs="12" class="ion-no-padding">
                                     <ion-item>
                                         <ion-textarea name="note" [(ngModel)]="reminder.note" placeholder="Your note here...">
                                         </ion-textarea>

@@ -1,8 +1,6 @@
 
 -progress module.
--habits manager
-++view/Set goals
-++Daily checklist management.
+++fazes of the process
 -reading list
 ++View/add/set progress on books. (Req, opt
 -tax savings estimator.

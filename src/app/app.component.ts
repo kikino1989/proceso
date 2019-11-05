@@ -32,6 +32,16 @@ export class AppComponent {
             title: 'Reminders',
             url: '/reminders',
             icon: 'clock'
+        },
+        {
+            title: 'Settings',
+            url: '/settings',
+            icon: 'settings'
+        },
+        {
+            title: 'Habits Tracker',
+            url: '/habits',
+            icon: 'clipboard'
         }
     ];
 

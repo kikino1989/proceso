@@ -1,10 +1,10 @@
-export enum OCCURS { ONCE, WEEKLY, MONTHLY, YEARLY }
+import { OCCURS } from "./OCCURS";
 
 export class Reminder {
     public id: number;
     public date: string;
     public note: string;
-    public occurrence = OCCURS.ONCE;
+    public frequency = OCCURS.ONCE;
     constructor(
         public entityId: number,
         public entityClass: string
