@@ -29,11 +29,11 @@ const routes: Routes = [
         component: RemindersComponent
     },
     {
-        path: 'habits',
+        path: 'settings',
         component: SettingsComponent
     },
     {
-        path: 'settings',
+        path: 'habits',
         component: HabitsComponent
     }
 ];

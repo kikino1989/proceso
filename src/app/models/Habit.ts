@@ -13,7 +13,7 @@ export class Habit {
         public dueDate = moment().format("MM/DD/YYYY")
     ) { }
 
-    static getDefaultHabits() {
+    static getDefaultHabits(): Habit[] {
         return <Habit[]> [
             {
                 id: 1,

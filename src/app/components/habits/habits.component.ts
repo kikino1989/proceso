@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Habit } from 'src/app/models/Habit';
+import { Subscription } from 'rxjs';
+import { habitsService } from 'src/app/services/habits.service';
 
 @Component({
     selector: 'habits',
@@ -7,8 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HabitsComponent implements OnInit {
 
-    constructor() { }
+    public habits: Habit[];
+    private habitsSubscription: Subscription;
+    constructor(private habitsService: habitsService) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.habitsSubscription = this.habitsService.getHabits().subscribe(habits => this.habits = habits);
+    }
+
+    ngOnDelete() {
+        delete this.habits;
+        this.habitsSubscription.unsubscribe();
+    }
 
 }
