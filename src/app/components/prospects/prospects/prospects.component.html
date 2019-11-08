@@ -40,7 +40,15 @@
                         </ion-grid>
                     </ion-col>
                 </ion-row>
-            </ion-grid>   
+                <ion-row>
+                    <ion-col>
+                        <ion-range class="ion-no-padding ion-padding-horizontal" snaps pin ticks mode="ios" [(ngModel)]="prospect.step" min="0" [max]="prospectingSteps.length - 1" step="1">
+                            <ion-icon size="small" slot="start" name="thermometer"></ion-icon>
+                            <ion-icon slot="end" name="thermometer"></ion-icon>
+                        </ion-range>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-item>
     </ion-list>
 </ion-content>
