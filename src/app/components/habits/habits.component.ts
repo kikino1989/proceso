@@ -22,5 +22,4 @@ export class HabitsComponent implements OnInit {
         delete this.habits;
         this.habitsSubscription.unsubscribe();
     }
-
 }

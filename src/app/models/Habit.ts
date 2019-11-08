@@ -5,57 +5,40 @@ export enum HABITS_STATUS { STARTED = "STARTED", IN_PROGRESS = "IN PROGRESS", CR
 
 export class Habit {
     public id: number;
-
+    public done: false;
     constructor(
         public name: string,
         public timeGoal?: number,
+        public description?: string, 
         public frequency = OCCURS.DAILY,
         public dueDate = moment().format("MM/DD/YYYY")
     ) { }
 
     static getDefaultHabits(): Habit[] {
         return <Habit[]> [
-            {
-                id: 1,
-                name: "Listen to Audio",
-                timeGoal: 30,
-                frequency: OCCURS.DAILY,
-                dueDate: moment().format("MM/DD/YYYY")
-            },
-            {
-                id: 2,
-                name: "Reed",
-                timeGoal: 15,
-                frequency: OCCURS.DAILY,
-                dueDate: moment().format("MM/DD/YYYY")
-            },
-            {
-                id: 3,
-                name: "Use Products",
-                frequency: OCCURS.DAILY,
-                dueDate: moment().format("MM/DD/YYYY")
-            },
-            {
-                id: 4,
-                name: "Consultation Upline/Downline",
-                timeGoal: 15,
-                frequency: OCCURS.WEEKLY,
-                dueDate: moment().format("ddd")
-            },
-            {
-                id: 5,
-                name: "Create Relationships.",
-                timeGoal: 60,
-                frequency: OCCURS.DAILY,
-                dueDate: moment().format("MM/DD/YYYY")
-            },
-            {
-                id: 6,
-                name: "Share Story/Recruit.",
-                timeGoal: 60,
-                frequency: OCCURS.DAILY,
-                dueDate: moment().format("MM/DD/YYYY")
-            }
+            new Habit(
+                "Listen to Audio",
+                30
+            ),
+            new Habit(
+                "Reed",
+                15
+            ),
+            new Habit(
+                "Use Products",
+            ),
+            new Habit(
+                "Consultation Upline/Downline",
+                15
+            ),
+            new Habit(
+                "Create Relationships.",
+                60
+            ),
+            new Habit(
+                "Share Story/Recruit.",
+                60
+            )
         ];
     }
 
@@ -69,5 +52,15 @@ export class Habit {
 
     get status() {
         return; // to be implemented
+    }
+
+    get time(): string {
+        if (!this.timeGoal)
+            return "";
+        if (this.timeGoal < 60)
+            return `${this.timeGoal} Minutes`;
+        
+        const mins = this.timeGoal % 60;
+        return `${this.timeGoal / 60}:${mins || "00"} Hours`;
     }
 }
