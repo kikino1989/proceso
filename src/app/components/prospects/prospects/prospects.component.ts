@@ -50,9 +50,11 @@ export class ProspectsComponent implements OnInit {
         }).then(modal => {
             modal.present();
             modal.onWillDismiss().then(({data: prospect}) => {
-                this.orgProspects.push(prospect);
-                this.prospects.push(prospect);
-                this.prospectService.insert(prospect)
+                if (prospect) {
+                    this.orgProspects.push(prospect);
+                    this.prospects.push(prospect);
+                    this.prospectService.insert(prospect);
+                }
             });
         });
     }
@@ -91,26 +93,17 @@ export class ProspectsComponent implements OnInit {
         });
     }
 
-    changeStep(prospect: Prospect) {
-        const inputs = [];
-        this.prospectingSteps.forEach(step => {
-            inputs.push({
-                name: step.name,
-                type: "radio",
-                label: step.name,
-                value: step.position,
-                checked: step.position == prospect.step
-            });
-        });
+    viewStep(prospect: Prospect) {
+        const step = this.prospectingSteps[prospect.step];
         this.alertCtrl.create({
-            header: "Choose step",
-            inputs: inputs,
-            buttons: [
-                {text: "Cancel", role: "cancel"},
-                {text: "OK", handler: step => {
-                    prospect.step = step;
-                }}
-            ]
+            mode: 'ios',
+            header: `(${step.name})`,
+            subHeader: `Tools Needed: ${step.tools || 'N/A'}`,
+            message: 
+                `<b>Description:</b> ${step.description || 'N/A'} <br /><br />
+                <b>Starting Point:</b> ${step.pointA || 'N/A'} <br /><br />
+                <b>End Point:</b> ${step.pointB || 'N/A'}`,
+            buttons: [{text: "OK", role: "ok"}]
         }).then(alert => {
             alert.present();
         });

@@ -22,7 +22,7 @@
                     <ion-col size="9" sizeXs="7" sizeSm="8"> 
                         <ion-label class="ion-margin-end">
                             <h1>{{ prospect.name }}</h1>
-                            <ion-text color="primary"><h5 class="underline-text cursor-pointer" (click)="changeStep(prospect)"><ion-icon name="clipboard"></ion-icon>{{ prospectingSteps[prospect.step].name }}</h5></ion-text>
+                            <ion-text color="primary"><h5 class="underline-text cursor-pointer" (click)="viewStep(prospect)"><ion-icon name="thermometer"></ion-icon>{{ prospectingSteps[prospect.step].name }}</h5></ion-text>
                             <p><a [href]="'tel:' + prospect.phone"><ion-icon name="call"></ion-icon>{{ prospect.phone }}</a></p>
                             <p><a [href]="'mailto:' + prospect.email"><ion-icon name="mail"></ion-icon>{{ prospect.email }}</a></p>
                         </ion-label>
@@ -41,7 +41,7 @@
                     </ion-col>
                 </ion-row>
                 <ion-row>
-                    <ion-col>
+                    <ion-col class="steps-container" size-md="10" offset-md="1.5">
                         <ion-range class="ion-no-padding ion-padding-horizontal" snaps pin ticks mode="ios" [(ngModel)]="prospect.step" min="0" [max]="prospectingSteps.length - 1" step="1">
                             <ion-icon size="small" slot="start" name="thermometer"></ion-icon>
                             <ion-icon slot="end" name="thermometer"></ion-icon>

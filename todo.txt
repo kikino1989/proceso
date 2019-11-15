@@ -4,9 +4,6 @@
 ++background process for habits.
 ++habits track
 
--show prospecting step details when the user clicks on the steps name.
-
-
 +create settings module to edit steps.
 +image upload in prospects.
 +inport from contacts. 
