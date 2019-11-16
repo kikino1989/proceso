@@ -2,9 +2,9 @@ import { OCCURS } from './OCCURS';
 import moment from 'moment';
 
 export enum HABITS_STATUS { STARTED = "STARTED", IN_PROGRESS = "IN PROGRESS", CREATE = "CREATE", BROKEN = "BROKEN", PERFECT = "PERFECT" }
-
+const idTracker = { trackIds: 0 }; // temp
 export class Habit {
-    public id: number;
+    public id: number = idTracker.trackIds;
     public done: false;
     constructor(
         public name: string,
@@ -12,7 +12,7 @@ export class Habit {
         public description?: string, 
         public frequency = OCCURS.DAILY,
         public dueDate = moment().format("MM/DD/YYYY")
-    ) { }
+    ) { idTracker.trackIds++ }
 
     static getDefaultHabits(): Habit[] {
         return <Habit[]> [

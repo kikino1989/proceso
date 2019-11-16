@@ -1,9 +1,10 @@
 
 -habits manager
-++add/delete/edit
-++background process for habits.
-++habits track
+++view/add/delete habits records
 
-+create settings module to edit steps.
-+image upload in prospects.
-+inport from contacts. 
+-Prospecting steps
+++add/edit/delete
+
+*create settings module to edit steps.
+*image upload in prospects.
+*inport from contacts. 

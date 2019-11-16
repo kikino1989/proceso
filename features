@@ -4,7 +4,10 @@
 -reading list
 ++View/add/set progress on books. (Req, opt
 -tax savings estimator.
-
+++view potential tax savings
+-goal planer
+++user should be able to add goals and break them down into smaller goals by year, quaters, month, week and day.
+++should be displayed in a tree like or hirerchy structure.
 
 link bank account.
 Sync to Google drive

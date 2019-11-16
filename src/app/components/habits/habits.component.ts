@@ -76,7 +76,36 @@ export class HabitsComponent implements OnInit {
         });
     }
 
-    viewHabitRecord(habit: Habit) {
+    deleteHabit(habit: Habit) {
+        const index = this.habits.findIndex(_habit => {
+            return habit.id === _habit.id;
+        });
+        this.habits.splice(index, 1);
+        this.orgHabits.splice(index, 1);
+        this.habitsService.delete(habit.id);
+        this.deleteHabitRecords(habit);
+    }
+
+    changeHabit(habit) {
+        if (habit.done)
+            this.addHabitRecord(habit);
+        else
+            this.deleteHabitRecord(habit);
+    }
+
+    viewHabitRecords(habit: Habit) {
+
+    }
+
+    addHabitRecord(habit: Habit) {
+
+    }
+
+    deleteHabitRecord(habit: Habit) {
+
+    }
+
+    deleteHabitRecords(habit: Habit) {
 
     }
 }
