@@ -96,13 +96,12 @@ export class ProspectsComponent implements OnInit {
     viewStep(prospect: Prospect) {
         const step = this.prospectingSteps[prospect.step];
         this.alertCtrl.create({
-            mode: 'ios',
             header: `(${step.name})`,
             subHeader: `Tools Needed: ${step.tools || 'N/A'}`,
             message: 
                 `<b>Description:</b> ${step.description || 'N/A'} <br /><br />
                 <b>Starting Point:</b> ${step.pointA || 'N/A'} <br /><br />
-                <b>End Point:</b> ${step.pointB || 'N/A'}`,
+                <b>Goal:</b> ${step.pointB || 'N/A'}`,
             buttons: [{text: "OK", role: "ok"}]
         }).then(alert => {
             alert.present();
