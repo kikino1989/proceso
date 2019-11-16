@@ -3,7 +3,6 @@
 ++add/delete/edit
 ++background process for habits.
 ++habits track
-++automatic habits checker
 
 +create settings module to edit steps.
 +image upload in prospects.

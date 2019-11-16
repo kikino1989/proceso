@@ -1,0 +1,77 @@
+<ion-content>
+    <form name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+        <div class="header">
+            <ion-label>
+                {{ !orgHabit ? 'New Habit' : 'Edit ' + habit.name }}
+            </ion-label>
+        </div>
+        <div class="content">
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="12" >
+                        <ion-item>
+                            <ion-label>Name</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" >
+                        <ion-item>
+                            <ion-input name="name" type="text" placeholder="name"
+                                [(ngModel)]="habit.name" required>
+                            </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Description</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-textarea name="description" type="text" placeholder="description"
+                                [(ngModel)]="habit.description">
+                            </ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Time Goal</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-input name="time-goal" type="number" placeholder="15min"
+                                [(ngModel)]="habit.timeGoal">
+                            </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label>Frequency</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col size="12" >
+                        <ion-item>
+                            <ion-select name="frequency" [(ngModel)]="habit.frequency" placeholder="Select Frequency">
+                                <ion-select-option *ngFor="let frequency of frequencies" [value]="frequency">{{ frequency }}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+        <div class="footer">
+            <ion-button type="button" size="small" role="cancel" 
+                (click)="dismiss()" color="primary"> Cancel 
+            </ion-button>
+            <ion-button type="submit" size="small" role="submit" color="success">
+                {{ !orgHabit ? 'Add' : 'Save' }} 
+            </ion-button>
+        </div>
+    </form>
+</ion-content>
