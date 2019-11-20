@@ -11,7 +11,7 @@
                 (ionChange)="filterHabits($event.target.value)">
             </ion-input>
         </ion-list-header>
-        <ion-item class="no-inner-padding" *ngFor="let habit of habits">
+        <ion-item class="no-inner-padding" *ngFor="let habit of habits" (swipeLeft)="deleteHabit(habit)">
             <ion-grid class="ion-no-padding">
                 <ion-row>
                     <ion-col sizeXs="3" sizeSm="2" size="1">

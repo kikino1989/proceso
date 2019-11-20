@@ -32,6 +32,7 @@ import { HomePageModule } from './home/home.module';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HabitsComponent } from './components/habits/habits.component';
 import { HabitComponent } from './components/habits/habit/habit.component';
+import { HabitsRecordComponent } from './components/habits/habits-record/habits-record.component';
 
 @NgModule({
     declarations: [
@@ -51,14 +52,16 @@ import { HabitComponent } from './components/habits/habit/habit.component';
         RemindersComponent,
         SettingsComponent,
         HabitsComponent,
-        HabitComponent
+        HabitComponent,
+        HabitsRecordComponent
     ],
     entryComponents: [
         BudgetCardComponent,
         IncomeSourceComponent,
         SpenceComponent,
         ProspectComponent,
-        HabitComponent
+        HabitComponent,
+        HabitsRecordComponent
     ],
     imports: [
         BrowserModule,

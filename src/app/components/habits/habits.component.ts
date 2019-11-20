@@ -5,6 +5,9 @@ import { habitsService } from '../../services/habits.service';
 import * as _ from 'lodash';
 import { ModalController } from '@ionic/angular';
 import { HabitComponent } from './habit/habit.component';
+import { HabitsRecordComponent } from './habits-record/habits-record.component';
+import { HabitsRecord } from '../../../app/models/HabitsRecord';
+import moment from 'moment';
 
 @Component({
     selector: 'habits',
@@ -94,17 +97,40 @@ export class HabitsComponent implements OnInit {
     }
 
     viewHabitRecords(habit: Habit) {
-
+        this.habitsService.getHabitsRecord(habit).subscribe(habitsRecords => {
+            this.modalCtrl.create({
+                component: HabitsRecordComponent,
+                componentProps: {
+                    habitName: habit.name,
+                    habitsRecords
+                }
+            }).then(modal => {
+                modal.present();
+            });
+        });
     }
 
     addHabitRecord(habit: Habit) {
-
+        this.habitsService.getHabitsRecord(habit).subscribe(habitsRecords => {
+            const habitRecord = new HabitsRecord(habit.id, moment().format('YYYY-MM-DD'));
+            habitsRecords.push(habitRecord);
+            this.habitsService.insertHabitsRecord(habitRecord);
+        });
     }
 
     deleteHabitRecord(habit: Habit) {
-
+        this.habitsService.getHabitsRecord(habit).subscribe(habitsRecords => {
+            const index = habitsRecords.findIndex(habitsRecord => {
+                return habitsRecord.habitID === habit.id && habitsRecord.date === moment().format('YYYY-MM-DD');
+            });
+            if (index > -1) {
+                const habitsRecord = habitsRecords.splice(index, 1)[0];
+                this.habitsService.deleteHabitsRecord(habitsRecord.id);
+            }
+        });
     }
 
+    
     deleteHabitRecords(habit: Habit) {
 
     }

@@ -1,10 +1,7 @@
 
--habits manager
-++view/add/delete habits records
-
 -Prospecting steps
 ++add/edit/delete
 
 *create settings module to edit steps.
 *image upload in prospects.
-*inport from contacts. 
+*import from contacts. 

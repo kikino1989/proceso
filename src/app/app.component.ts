@@ -34,14 +34,14 @@ export class AppComponent {
             icon: 'clock'
         },
         {
-            title: 'Settings',
-            url: '/settings',
-            icon: 'settings'
-        },
-        {
             title: 'Habits Tracker',
             url: '/habits',
             icon: 'clipboard'
+        },
+        {
+            title: 'Settings',
+            url: '/settings',
+            icon: 'settings'
         }
     ];
 
