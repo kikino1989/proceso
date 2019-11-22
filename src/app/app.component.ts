@@ -29,6 +29,11 @@ export class AppComponent {
             icon: 'people'
         },
         {
+            title: 'Recruiting Steps',
+            url: '/steps',
+            icon: 'thermometer'
+        },
+        {
             title: 'Reminders',
             url: '/reminders',
             icon: 'clock'

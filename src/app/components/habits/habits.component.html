@@ -14,11 +14,11 @@
         <ion-item class="no-inner-padding" *ngFor="let habit of habits" (swipeLeft)="deleteHabit(habit)">
             <ion-grid class="ion-no-padding">
                 <ion-row>
-                    <ion-col sizeXs="3" sizeSm="2" size="1">
+                    <ion-col size="1.5">
                         <ion-checkbox mode="md" color="primary" [(ngModel)]="habit.done" (ionChange)="changeHabit(habit)"></ion-checkbox>
                     </ion-col>
                     <ion-col> 
-                        <ion-label class="ion-margin-end">
+                        <ion-label class="ion-margin-end" sizeXs="8.5" size="9.5">
                             <ion-text color="primary" (click)="viewHabitRecords(habit)"><h3 class="underline-text cursor-pointer">{{ habit.name }}</h3></ion-text>
                             <h6>{{ habit.frequency }}{{ habit.time? ', ' + habit.time : '' }}</h6>
                             <p>{{ habit.description }}</p>

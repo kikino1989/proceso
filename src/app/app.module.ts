@@ -33,6 +33,8 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { HabitsComponent } from './components/habits/habits.component';
 import { HabitComponent } from './components/habits/habit/habit.component';
 import { HabitsRecordComponent } from './components/habits/habits-record/habits-record.component';
+import { StepsComponent } from './components/steps/steps.component';
+import { StepComponent } from './components/steps/step/step.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +55,9 @@ import { HabitsRecordComponent } from './components/habits/habits-record/habits-
         SettingsComponent,
         HabitsComponent,
         HabitComponent,
-        HabitsRecordComponent
+        HabitsRecordComponent,
+        StepsComponent,
+        StepComponent
     ],
     entryComponents: [
         BudgetCardComponent,
@@ -61,7 +65,8 @@ import { HabitsRecordComponent } from './components/habits/habits-record/habits-
         SpenceComponent,
         ProspectComponent,
         HabitComponent,
-        HabitsRecordComponent
+        HabitsRecordComponent,
+        StepComponent
     ],
     imports: [
         BrowserModule,

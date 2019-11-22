@@ -1,5 +1,6 @@
+const idTracker = {id: 0};
 export class ProspectingSteps {
-    static id: number;
+    id: number;
     constructor(
         public position: number,
         public name: string,
@@ -7,7 +8,7 @@ export class ProspectingSteps {
         public pointA: string,
         public tools?: string,
         public pointB?: string
-    ) { ProspectingSteps.id++ }
+    ) { idTracker.id++ }
 
     static getDefaultSteps(): ProspectingSteps[] {
         return <ProspectingSteps[]>[

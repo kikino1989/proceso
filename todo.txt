@@ -1,7 +1,3 @@
 
 -Prospecting steps
 ++add/edit/delete
-
-*create settings module to edit steps.
-*image upload in prospects.
-*import from contacts. 

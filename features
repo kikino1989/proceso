@@ -8,7 +8,13 @@
 -goal planer
 ++user should be able to add goals and break them down into smaller goals by year, quaters, month, week and day.
 ++should be displayed in a tree like or hirerchy structure.
+-create settings module to edit steps.
+++set language options.
+****use device laguage by default.
+++link bank account.?
+++Sync to Google drive.?
+++import and export configurations.
+****contacts, laguage, budget, habits, steps
 
-link bank account.
-Sync to Google drive.
-import and export configurations.
+image upload in prospects.
+import from contacts. 

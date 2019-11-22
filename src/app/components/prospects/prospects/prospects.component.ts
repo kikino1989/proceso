@@ -8,7 +8,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { ProspectComponent } from '../prospect/prospect.component';
 
 @Component({
-    selector: 'app-prospects',
+    selector: 'prospects',
     templateUrl: './prospects.component.html',
     styleUrls: ['./prospects.component.scss'],
 })
