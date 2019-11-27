@@ -31,7 +31,7 @@ export class RemindersComponent implements OnInit {
 
     filterReminders(value) {
         this.reminders = this.orgReminders.filter(reminder => {
-            return !value || reminder.note.toLocaleLowerCase().indexOf(value) > -1 || reminder.date.indexOf(value) > -1;
+            return !value || reminder.note.toLowerCase().indexOf(value) > -1 || reminder.date.indexOf(value) > -1;
         });
     }
 

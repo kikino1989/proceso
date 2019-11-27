@@ -89,7 +89,7 @@ export class ProspectsComponent implements OnInit {
 
     filterProspects(value) {
         this.prospects = this.orgProspects.filter(prospect => {
-            return !value || prospect.name.indexOf(value) > -1;
+            return !value || prospect.name.toLowerCase().indexOf(value) > -1;
         });
     }
 

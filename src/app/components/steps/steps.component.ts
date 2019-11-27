@@ -38,7 +38,10 @@ export class StepsComponent implements OnInit {
 
     addProspectingStep() {
         this.modalCtrl.create({
-            component: StepComponent
+            component: StepComponent,
+            componentProps: {
+                lastPosition: this.prospectingSteps.length
+            }
         }).then(modal => {
             modal.present();
             modal.onWillDismiss().then(({data: prospectingStep}) => {
@@ -50,11 +53,11 @@ export class StepsComponent implements OnInit {
         });
     }
 
-    editProspect(prospectingStep: ProspectingSteps) {
+    editProspectingStep(prospectingStep: ProspectingSteps) {
         this.modalCtrl.create({
             component: StepComponent,
             componentProps: {
-                prospectingStep
+                orgProspectingStep: prospectingStep
             }
         }).then(modal => {
             modal.present();
@@ -67,7 +70,7 @@ export class StepsComponent implements OnInit {
         });
     }
 
-    deleteProspect(prospectingStep: ProspectingSteps) {
+    deleteProspectingStep(prospectingStep: ProspectingSteps) {
         const index = this.prospectingSteps.findIndex(_prospectingStep => {
             return prospectingStep.id === _prospectingStep.id;
         });
@@ -76,8 +79,8 @@ export class StepsComponent implements OnInit {
     }
 
     filterProspectingSteps(value) {
-        this.prospectingSteps = this.orgProspectingSteps.filter(prospect => {
-            return !value || prospect.name.indexOf(value) > -1;
+        this.prospectingSteps = this.orgProspectingSteps.filter(step => {
+            return !value || step.name.toLowerCase().indexOf(value) > -1;
         });
     }
 

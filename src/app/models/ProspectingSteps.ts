@@ -5,7 +5,7 @@ export class ProspectingSteps {
         public position: number,
         public name: string,
         public description: string,
-        public pointA: string,
+        public pointA?: string,
         public tools?: string,
         public pointB?: string
     ) { idTracker.id++ }

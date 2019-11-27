@@ -33,6 +33,7 @@
                         ],
                         "styles": [
                             "node_modules/animate.css/animate.min.css",
+                            "node_modules/jquery-ui-dist/jquery-ui.min.css",
                             {
                                 "input": "src/theme/variables.scss"
                             },
@@ -40,7 +41,10 @@
                                 "input": "src/global.scss"
                             }
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "node_modules/jquery/dist/jquery.min.js",
+                            "node_modules/jquery-ui-dist/jquery-ui.min.js"
+                        ]
                     },
                     "configurations": {
                         "production": {

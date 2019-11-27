@@ -51,7 +51,7 @@ export class StatsComponent {
 
     filterSnapshots(value: string) {
         this.snapshots = this.orgSnapshots.filter(({snapshot}) => {
-            return !value || (snapshot && (snapshot as string).indexOf(value) > -1);
+            return !value || (snapshot && (snapshot as string).toLowerCase().indexOf(value) > -1);
         });
     }
 

@@ -35,13 +35,13 @@ export class SummaryComponent {
 
     filterIncomeSources(value: string) {
         this.incomeSources = this.orgIncomeSources.filter(incomeSource => {
-            return !value || incomeSource.name.indexOf(value) > -1;
+            return !value || incomeSource.name.toLowerCase().indexOf(value) > -1;
         });
     }
 
     filterSpences(value: string) {
         this.spences = this.orgSpences.filter(spence => {
-            return !value || spence.name.indexOf(value) > -1;
+            return !value || spence.name.toLowerCase().indexOf(value) > -1;
         });
     }
 
