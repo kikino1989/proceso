@@ -98,4 +98,10 @@ export class StepsComponent implements OnInit {
         });
     }
 
+    move(step, index, dir) {
+        const temp = this.prospectingSteps[index  + dir];
+        this.prospectingSteps.splice(index + dir, 1, step);
+        this.prospectingSteps.splice(index, 1, temp);
+        step.position = step.position + dir;
+    }
 }

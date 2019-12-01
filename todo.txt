@@ -1,3 +1,6 @@
+-settings page
+++restore defaults for prospecting steps and habits
+++change language
 
--Prospecting steps
-++re-position
+-home page
+++resumen of budget, reminders, habits and viewing those item from home page.

@@ -11,14 +11,15 @@
                 (ionChange)="filterProspectingSteps($event.target.value)">
             </ion-input>
         </ion-list-header>
-        <ion-item class="no-inner-padding" *ngFor="let step of prospectingSteps" (swipeLeft)="deleteProspectingStep(step)">
+        <ion-item class="ion-no-padding no-inner-padding" *ngFor="let step of prospectingSteps; index as i" (swipeLeft)="deleteProspectingStep(step)">
             <ion-grid class="ion-no-padding">
                 <ion-row>
-                    <ion-col size="1.5">
-                        <ion-icon name="hand" size="large"></ion-icon>
+                    <ion-col size="1.5"> 
+                        <ion-icon *ngIf="i > 0" size="large" name="arrow-round-up" (click)="move(step, i, -1)"></ion-icon>
+                        <ion-icon *ngIf="i < prospectingSteps.length - 1" size="large" name="arrow-round-down" (click)="move(step, i, 1)"></ion-icon>
                     </ion-col>
                     <ion-col> 
-                        <ion-label class="ion-margin-end" sizeXs="8.5" size="9.5">
+                        <ion-label class="ion-margin-end">
                             <ion-text color="primary" (click)="viewStep(step)">
                                 <h3 class="underline-text cursor-pointer">
                                     <ion-icon name="thermometer"></ion-icon>{{ step.name }}
