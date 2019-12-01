@@ -44,6 +44,11 @@ export class AppComponent {
             icon: 'clipboard'
         },
         {
+            title: 'Reading List',
+            url: '/reading',
+            icon: 'book'
+        },
+        {
             title: 'Settings',
             url: '/settings',
             icon: 'settings'

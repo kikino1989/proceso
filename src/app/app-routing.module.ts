@@ -6,6 +6,7 @@ import { RemindersComponent } from './components/reminders/reminders.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HabitsComponent } from './components/habits/habits.component';
 import { StepsComponent } from './components/steps/steps.component';
+import { ReadingListComponent } from './components/reading-list/reading-list.component';
 
 const routes: Routes = [
     {
@@ -40,6 +41,10 @@ const routes: Routes = [
     {
         path: 'habits',
         component: HabitsComponent
+    },
+    {
+        path: 'reading',
+        component: ReadingListComponent
     }
 ];
 

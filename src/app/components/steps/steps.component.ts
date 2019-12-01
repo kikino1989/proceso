@@ -103,5 +103,6 @@ export class StepsComponent implements OnInit {
         this.prospectingSteps.splice(index + dir, 1, step);
         this.prospectingSteps.splice(index, 1, temp);
         step.position = step.position + dir;
+        this.orgProspectingSteps = _.cloneDeep(this.prospectingSteps);
     }
 }

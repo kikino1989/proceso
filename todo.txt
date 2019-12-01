@@ -1,6 +1,16 @@
+
+-tax savings estimator.
+++view potential tax savings
+
 -settings page
-++restore defaults for prospecting steps and habits
+++restore defaults for prospecting steps, reading list and habits
 ++change language
+****use device laguage by default.
+
+-goal planer
+++user should be able to add goals and break them down into smaller goals by year, quaters, month, week and day.
+++should be displayed in a tree like or hirerchy structure.
 
 -home page
 ++resumen of budget, reminders, habits and viewing those item from home page.
+++display/set progress/faze of the process.

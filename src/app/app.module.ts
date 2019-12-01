@@ -35,6 +35,8 @@ import { HabitComponent } from './components/habits/habit/habit.component';
 import { HabitsRecordComponent } from './components/habits/habits-record/habits-record.component';
 import { StepsComponent } from './components/steps/steps.component';
 import { StepComponent } from './components/steps/step/step.component';
+import { ReadingListComponent } from './components/reading-list/reading-list.component';
+import { BooksService } from './services/booksService';
 
 @NgModule({
     declarations: [
@@ -57,7 +59,8 @@ import { StepComponent } from './components/steps/step/step.component';
         HabitComponent,
         HabitsRecordComponent,
         StepsComponent,
-        StepComponent
+        StepComponent,
+        ReadingListComponent
     ],
     entryComponents: [
         BudgetCardComponent,
@@ -81,6 +84,7 @@ import { StepComponent } from './components/steps/step/step.component';
         BudgetsService,
         ProspectService,
         StatusBar,
+        BooksService,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         BackgroundMode
