@@ -85,5 +85,6 @@ export class ReadingListComponent implements OnInit {
         } else {
             book.progress = 0;
         }
+        console.log('update happended')
     }
 }

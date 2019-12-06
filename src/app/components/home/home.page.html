@@ -1,0 +1,28 @@
+<headbar>Home</headbar>
+
+<ion-content>
+    <ion-item lines="full" (click)="gotoReminders()">
+        <ion-icon color="primary" size="large" name="clock"></ion-icon>
+        <ion-text color="primary">Reminders</ion-text> 
+        <ion-badge color="primary" slot="end">{{ remindersCount }}</ion-badge>
+    </ion-item>
+    <ion-item lines="full" (click)="gotoProspects()">
+        <ion-icon color="danger" size="large" name="people"></ion-icon>
+        <ion-text color="danger">Prospects</ion-text>
+        <ion-badge color="danger" slot="end">{{ prospectsCount }}</ion-badge>
+    </ion-item>
+    <ion-item lines="full" (click)="gotoProspects()">
+        <ion-icon color="warning" size="large" name="book"></ion-icon>
+        <ion-text color="warning" >Books read</ion-text>
+        <ion-badge color="warning" slot="end">{{ booksCount }}</ion-badge>
+    </ion-item>
+
+    <ion-card (click)="gotoBudgets()">
+        <ion-card-content>
+            <ion-item lines="none" class="ion-no-padding">
+                <ion-icon size="large" name="calculator"></ion-icon> {{ budget?.name }}
+            </ion-item>
+            <stats *ngIf="budget" [budget]="budget"></stats>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

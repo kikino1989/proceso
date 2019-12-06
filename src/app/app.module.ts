@@ -28,7 +28,6 @@ import { ProspectService } from './services/prospect.service';
 import { ProspectComponent } from './components/prospects/prospect/prospect.component';
 import { RemindersService } from './services/reminders.service';
 import { RemindersComponent } from './components/reminders/reminders.component';
-import { HomePageModule } from './home/home.module';
 import { SettingsComponent } from './components/settings/settings.component';
 import { HabitsComponent } from './components/habits/habits.component';
 import { HabitComponent } from './components/habits/habit/habit.component';
@@ -37,6 +36,9 @@ import { StepsComponent } from './components/steps/steps.component';
 import { StepComponent } from './components/steps/step/step.component';
 import { ReadingListComponent } from './components/reading-list/reading-list.component';
 import { BooksService } from './services/booksService';
+import { HomePage } from './components/home/home.page';
+import { HeadbarComponent } from './components/headbar/headbar.component';
+import { ReminderComponent } from './components/reminders/reminder/reminder.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +62,10 @@ import { BooksService } from './services/booksService';
         HabitsRecordComponent,
         StepsComponent,
         StepComponent,
-        ReadingListComponent
+        ReadingListComponent,
+        HomePage,
+        HeadbarComponent,
+        ReminderComponent
     ],
     entryComponents: [
         BudgetCardComponent,
@@ -76,8 +81,7 @@ import { BooksService } from './services/booksService';
         IonicModule.forRoot(),
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule,
-        HomePageModule
+        ReactiveFormsModule
     ],
     providers: [
         RemindersService,

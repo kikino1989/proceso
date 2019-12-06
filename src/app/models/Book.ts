@@ -13,8 +13,8 @@ export class Book {
             {
                 position: 0,
                 name: "Business of the 21st Century Book",
-                progress: 0,
-                read: false
+                progress: 100,
+                read: true
             },
             {
                 position: 1,

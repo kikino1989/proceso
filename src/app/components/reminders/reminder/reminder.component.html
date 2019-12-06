@@ -1,0 +1,24 @@
+<ion-item lines="both" color="light" class="ion-no-padding no-inner-padding">
+    <ion-grid>
+        <ion-row class="reminder-header">
+            <ion-col class="ion-text-start">
+                <ion-icon name="clock" size="large" mode="md"></ion-icon>
+                <ion-text>{{ reminder.date }}</ion-text>
+            </ion-col>
+            <ion-col class="ion-text-end">
+                <ion-button shape="round" size="small" color="danger" (click)="dismissReminder.emit()">
+                    Dismiss
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="ion-no-padding"> 
+                <ion-card color="white" class="ion-no-margin ion-margin-bottom ion-margin-horizontal">
+                    <ion-card-content>
+                        {{ reminder.note }}
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>   
+</ion-item>
