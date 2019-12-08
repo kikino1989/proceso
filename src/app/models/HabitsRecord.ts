@@ -1,8 +1,8 @@
-const iDtracker = {id: 0};
-export class HabitsRecord {
-    public id = iDtracker.id;
+import { BaseModel } from '../libs/base.model';
+
+export class HabitsRecord extends BaseModel {
     constructor(
-        public habitID: number,
-        public date: string
-    ) { iDtracker.id++ }
+        public habitID?: number,
+        public date?: string
+    ) { super(); }
 }

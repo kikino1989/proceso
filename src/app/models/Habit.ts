@@ -1,18 +1,18 @@
 import { OCCURS } from './OCCURS';
 import moment from 'moment';
+import { BaseModel } from '../libs/base.model';
 
 export enum HABITS_STATUS { STARTED = "STARTED", IN_PROGRESS = "IN PROGRESS", CREATE = "CREATE", BROKEN = "BROKEN", PERFECT = "PERFECT" }
-const idTracker = { trackIds: 0 }; // temp
-export class Habit {
-    public id: number = idTracker.trackIds;
-    public done: false;
+
+export class Habit extends BaseModel {
+    public done = false;
     constructor(
-        public name: string,
+        public name?: string,
         public timeGoal?: number,
         public description?: string, 
         public frequency = OCCURS.DAILY,
         public dueDate = moment().format("MM/DD/YYYY")
-    ) { idTracker.trackIds++ }
+    ) { super(); }
 
     static getDefaultHabits(): Habit[] {
         return <Habit[]> [

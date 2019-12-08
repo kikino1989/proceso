@@ -1,6 +1,6 @@
-const idTracker = {id: 0};
-export class ProspectingSteps {
-    id: number;
+import { BaseModel } from '../libs/base.model';
+
+export class ProspectingSteps extends BaseModel {
     constructor(
         public position: number,
         public name: string,
@@ -8,7 +8,7 @@ export class ProspectingSteps {
         public pointA?: string,
         public tools?: string,
         public pointB?: string
-    ) { idTracker.id++ }
+    ) { super(); }
 
     static getDefaultSteps(): ProspectingSteps[] {
         return <ProspectingSteps[]>[

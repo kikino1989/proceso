@@ -1,20 +1,20 @@
-const idTracker = {id: 0};
-export class Book {
-    id: number;
+import { BaseModel } from '../libs/base.model';
+
+export class Book extends BaseModel {
     constructor(
-        public position: number,
-        public name: string,
+        public position?: number,
+        public name?: string,
         public progress = 0,
         public read = false
-    ) { idTracker.id++ }
+    ) { super(); }
 
     static getDefaultBooks(): Book[] {
         return <Book[]>[
             {
                 position: 0,
                 name: "Business of the 21st Century Book",
-                progress: 100,
-                read: true
+                progress: 0,
+                read: false
             },
             {
                 position: 1,

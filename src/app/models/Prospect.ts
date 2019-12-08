@@ -1,12 +1,11 @@
-import { ProspectingSteps } from './ProspectingSteps';
+import { BaseModel } from '../libs/base.model';
 
-export class Prospect {
-    public id: number = 0;
+export class Prospect extends BaseModel {
     constructor(
-        public name: string,
-        public phone: string,
+        public name?: string,
+        public phone?: string,
         public email?: string,
         public image?: string,
         public step = 0
-    ) { }
+    ) { super(); }
 }

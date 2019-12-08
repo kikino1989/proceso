@@ -1,19 +1,20 @@
 import {Spence, TYPE as SPTYPES } from './Spence';
 import {IncomeSource, TYPE as INTYPES}  from './IncomeSource';
 import { DAYS } from './DAYS';
+import { BaseModel } from '../libs/base.model';
+import { IValuable } from '../libs/IValuable';
 
-export class Budget {
-    public id: number = 0;
+export class Budget extends BaseModel {
     constructor(
-        public name: string, 
-        public limit: number,
+        public name?: string, 
+        public limit?: number,
         public incomeSources: IncomeSource[] = [],
         public spences: Spence[] = [],
         public active: boolean = false,
         public startDate = DAYS.FIRST,
         public snapshot: string | false = false,
         public parentID?: number
-    ) { }
+    ) { super(); }
 
     get totalIncome(): number {
         return this.getTotal(this.incomeSources);
@@ -45,10 +46,11 @@ export class Budget {
         return this.fullyFundedEmergencyFund / this.profit;
     }
 
-    getTotal(entities: {value: number}[]): number {
+    getTotal(entities: IValuable[]): number {
         if (entities.length)
-            return entities.map(entity => entity.value)
-                        .reduce((value, cur) => (value + cur));
+            return entities
+                    .map(entity => entity.value)
+                    .reduce((value, cur) => (value + cur));
         return 0;
     }
 
