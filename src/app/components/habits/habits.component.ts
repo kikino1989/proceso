@@ -18,14 +18,13 @@ export class HabitsComponent implements OnInit {
 
     public habits: Habit[];
     public orgHabits: Habit[];
-    private habitsSubscription: Subscription;
     constructor(
         private habitsService: habitsService,
         private modalCtrl: ModalController
     ) { }
 
     ngOnInit() {
-        this.habitsSubscription = this.habitsService.getHabits().subscribe(habits => {
+        this.habitsService.getHabits().then(habits => {
             this.habits = habits;
             this.orgHabits = _.cloneDeep(this.habits);
         });
@@ -34,7 +33,6 @@ export class HabitsComponent implements OnInit {
     ngOnDelete() {
         delete this.habits;
         delete this.orgHabits;
-        this.habitsSubscription.unsubscribe();
     }
 
     filterHabits(value: string) {
@@ -53,7 +51,7 @@ export class HabitsComponent implements OnInit {
                 if (habit) {
                     this.habits.push(habit);
                     this.orgHabits.push(_.cloneDeep(habit));
-                    this.habitsService.insert(habit);
+                    habit.insert();
                 }
             });
         });
@@ -73,7 +71,7 @@ export class HabitsComponent implements OnInit {
                         if (habit.hasOwnProperty(prop))
                             habit[prop] = data[prop];
                     }
-                    this.habitsService.update(habit);
+                    habit.update();
                 }
             });
         });
@@ -85,7 +83,7 @@ export class HabitsComponent implements OnInit {
         });
         this.habits.splice(index, 1);
         this.orgHabits.splice(index, 1);
-        this.habitsService.delete(habit.id);
+        this.habitsService.deleteHabit(habit);
         this.deleteHabitRecords(habit);
     }
 
@@ -97,7 +95,7 @@ export class HabitsComponent implements OnInit {
     }
 
     viewHabitRecords(habit: Habit) {
-        this.habitsService.getHabitsRecord(habit).subscribe(habitsRecords => {
+        this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
             this.modalCtrl.create({
                 component: HabitsRecordComponent,
                 componentProps: {
@@ -111,7 +109,7 @@ export class HabitsComponent implements OnInit {
     }
 
     addHabitRecord(habit: Habit) {
-        this.habitsService.getHabitsRecord(habit).subscribe(habitsRecords => {
+        this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
             const habitRecord = new HabitsRecord(habit.id, moment().format('YYYY-MM-DD'));
             habitsRecords.push(habitRecord);
             this.habitsService.insertHabitsRecord(habitRecord);
@@ -119,7 +117,7 @@ export class HabitsComponent implements OnInit {
     }
 
     deleteHabitRecord(habit: Habit) {
-        this.habitsService.getHabitsRecord(habit).subscribe(habitsRecords => {
+        this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
             const index = habitsRecords.findIndex(habitsRecord => {
                 return habitsRecord.habitID === habit.id && habitsRecord.date === moment().format('YYYY-MM-DD');
             });

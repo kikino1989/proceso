@@ -14,21 +14,19 @@ export class ReadingListComponent implements OnInit {
     
     orgBooks: Book[];
     books: Book[];
-    booksSubscription: Subscription;
     constructor(
         private booksService: BooksService,
         private alertCtrl: AlertController
     ) { }
 
     ngOnInit() {
-        this.booksSubscription = this.booksService.getReadingList().subscribe(books => {
+        this.booksService.getReadingList().then(books => {
             this.books = books;
             this.orgBooks = _.cloneDeep(books);
         });
     }
 
     ngOnDelete() {
-        this.booksSubscription.unsubscribe();
         delete this.orgBooks;
         delete this.books;
     }
@@ -85,6 +83,5 @@ export class ReadingListComponent implements OnInit {
         } else {
             book.progress = 0;
         }
-        console.log('update happended')
     }
 }

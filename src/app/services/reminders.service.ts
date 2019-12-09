@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../libs/base.service';
 import { Reminder } from '../models/Reminer';
-import { Observable, of } from 'rxjs';
-import { reminders } from './testdata';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RemindersService extends BaseService<Reminder> {
-    public getReminders(): Observable<Reminder[]> {
-        return of(reminders);
+export class RemindersService {
+    private model = new Reminder();
+
+    public getReminders(): Promise<Reminder[]> {
+        return this.model.all() as Promise<Reminder[]>;
     }
 }

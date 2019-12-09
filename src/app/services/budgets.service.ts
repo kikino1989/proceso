@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import moment from 'moment';
 import * as _ from 'lodash';
-import {BaseService, Condition} from '../libs/base.service';
 import {IncomeSource} from '../models/IncomeSource';
 
 const HOUR_PERIOD = 8 * 1000 * 60 * 60;
@@ -13,16 +12,16 @@ const HOUR_PERIOD = 8 * 1000 * 60 * 60;
 @Injectable({
     providedIn: 'root',
 })
-export class BudgetsService extends BaseService<Budget> {
+export class BudgetsService {
+    private model = new Budget();
+    constructor(private bm: BackgroundMode) { }
 
-    constructor(private bm: BackgroundMode) { super(); }
-
-    getBudgets(condition: Condition | Condition[]): Observable<Budget[]> {
-        return this.all(condition);
+    getBudgets(where = '', args = []): Promise<Budget[]> {
+        return this.model.all(where, args) as Promise<Budget[]>;
     }
 
-    getBudget(id: number): Observable<Budget> {
-        return this.one(id);
+    getBudget(id: number): Promise<Budget> {
+        return this.model.one('WHERE id = ?', [id]) as Promise<Budget>;
     }
 
     createBudget() {
@@ -42,7 +41,7 @@ export class BudgetsService extends BaseService<Budget> {
             new Spence('entertainment', 100),
             new Spence('debts', 1200),
         ]);
-        this.insert(budget);
+        budget.insert();
         return budget;
     }
 
@@ -61,7 +60,7 @@ export class BudgetsService extends BaseService<Budget> {
     }
 
     async getActiveBudget(): Promise<Budget> {
-        const matches = await this.getBudgets({active: true}).toPromise();
+        const matches = await this.getBudgets('WHERE active = ?', [true]);
         return matches.length ? matches[0] : null;
     }
 
@@ -72,26 +71,29 @@ export class BudgetsService extends BaseService<Budget> {
             snapshot.snapshot = moment().subtract(1, 'day').format('MM-DD-YYYY');
             snapshot.parentID = activeBudget.id;
             snapshot.id++;
-            this.insert(snapshot);
-            if (this.entities) this.entities.push(snapshot);
+            snapshot.insert();
             this.resetBudget(activeBudget);
         }
     }
 
     resetBudget(budget: Budget) {
         budget.reset();
-        this.update(budget);
+        budget.update();
     }
 
     async snapshotForThisMonth(budget: Budget): Promise<boolean> {
         if (!budget)
             return true;
 
-        const budgets = await this.getBudgets({parentID: budget.id, snapshot: moment().subtract(1, 'day').format('MM-DD-YYYY')}).toPromise();
+        const where = 'WHERE parentID = ? AND snapshot = ?';
+        const args = [budget.id, moment().subtract(1, 'day').format('MM-DD-YYYY')];
+        const budgets = await this.getBudgets(where, args);
         return !!budgets.length;
     }
 
-    getSnapshots(budget: Budget): Observable<Budget[]> {
-        return this.getBudgets({parentID: budget.id});
+    getSnapshots(budget: Budget): Promise<Budget[]> {
+        const where = 'WHERE parentID = ?';
+        const args = [budget.id];
+        return this.getBudgets(where, args);
     }
 }

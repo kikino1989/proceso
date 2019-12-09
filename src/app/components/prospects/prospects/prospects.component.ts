@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Prospect } from '../../../models/Prospect';
 import { ProspectService } from '../../../services/prospect.service';
-import { Subscription } from 'rxjs';
 import { ProspectingSteps } from '../../../models/ProspectingSteps';
 import * as _ from 'lodash';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -17,8 +16,6 @@ export class ProspectsComponent implements OnInit {
     prospects: Prospect[];
     orgProspects: Prospect[];
     prospectingSteps: ProspectingSteps[];
-    prospectSubscription: Subscription;
-    stepsSubscription: Subscription;
     constructor(
         private prospectService: ProspectService,
         private alertCtrl: AlertController,
@@ -26,16 +23,14 @@ export class ProspectsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.prospectSubscription = this.prospectService.getProspects().subscribe(prospects => {
+        this.prospectService.getProspects().then(prospects => {
             this.prospects = prospects;
             this.orgProspects = _.cloneDeep(this.prospects);
         });
-        this.stepsSubscription = this.prospectService.getProspectingSteps().subscribe(steps => this.prospectingSteps = steps);
+        this.prospectService.getProspectingSteps().then(steps => this.prospectingSteps = steps);
     }
 
     ngOnDelete() {
-        this.prospectSubscription.unsubscribe();
-        this.stepsSubscription.unsubscribe();
         delete this.prospects;
         delete this.orgProspects;
         delete this.prospectingSteps;
@@ -53,7 +48,7 @@ export class ProspectsComponent implements OnInit {
                 if (prospect) {
                     this.orgProspects.push(prospect);
                     this.prospects.push(prospect);
-                    this.prospectService.insert(prospect);
+                    prospect.insert();
                 }
             });
         });
@@ -73,7 +68,7 @@ export class ProspectsComponent implements OnInit {
                     if (prospect.hasOwnProperty(prop))
                         prospect[prop] = data[prop];
                 }
-                this.prospectService.update(prospect);
+                prospect.update();
             });
         });
     }
@@ -84,7 +79,7 @@ export class ProspectsComponent implements OnInit {
         });
         this.prospects.splice(index, 1);
         this.orgProspects.splice(index, 1);
-        this.prospectService.delete(prospect.id);
+        prospect.delete();
     }
 
     filterProspects(value) {

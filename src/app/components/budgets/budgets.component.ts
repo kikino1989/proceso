@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {BudgetsService} from '../../services/budgets.service';
 import {Budget} from '../../models/Budget';
-import {budgets} from '../../services/testdata';
 
 @Component({
     selector: 'budgets',
@@ -15,10 +14,9 @@ export class BudgetsComponent {
     ) { }
 
     ngOnInit() {
-        this.budgetsService.entities = budgets;
         this.budgetsService
-            .getBudgets({snapshot: false})
-            .subscribe(budgets => this.budgets = budgets);
+            .getBudgets('WHERE snapshot = ?', [false])
+            .then(budgets => this.budgets = budgets);
     }
 
     removeBudget(budget) {

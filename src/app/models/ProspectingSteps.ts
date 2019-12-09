@@ -2,9 +2,9 @@ import { BaseModel } from '../libs/base.model';
 
 export class ProspectingSteps extends BaseModel {
     constructor(
-        public position: number,
-        public name: string,
-        public description: string,
+        public position?: number,
+        public name?: string,
+        public description?: string,
         public pointA?: string,
         public tools?: string,
         public pointB?: string

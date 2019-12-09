@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProspectingSteps } from '../../models/ProspectingSteps';
-import { Subscription } from 'rxjs';
 import { ProspectService } from '../../services/prospect.service';
 import { AlertController, ModalController } from '@ionic/angular';
 import * as _ from 'lodash';
@@ -16,7 +15,6 @@ export class StepsComponent implements OnInit {
     
     orgProspectingSteps: ProspectingSteps[];
     prospectingSteps: ProspectingSteps[];
-    stepsSubscription: Subscription;
     constructor(
         private prospectService: ProspectService,
         private alertCtrl: AlertController,
@@ -24,14 +22,13 @@ export class StepsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.stepsSubscription = this.prospectService.getProspectingSteps().subscribe(steps => {
+        this.prospectService.getProspectingSteps().then(steps => {
             this.prospectingSteps = steps;
             this.orgProspectingSteps = _.cloneDeep(steps);
         });
     }
 
     ngOnDelete() {
-        this.stepsSubscription.unsubscribe();
         delete this.orgProspectingSteps;
         delete this.prospectingSteps;
     }

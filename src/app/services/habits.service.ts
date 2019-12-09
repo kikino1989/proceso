@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../libs/base.service';
 import { Observable, of } from 'rxjs';
 import { Habit } from '../models/Habit';
-import { habitsRecords } from './testdata';
 import { HabitsRecord } from '../models/HabitsRecord';
 
 @Injectable({
     providedIn: 'root'
 })
-export class habitsService extends BaseService <Habit> {
+export class habitsService {
+    private model = new Habit();
+    private submodel = new HabitsRecord();
 
-    getHabits(): Observable<Habit[]> {
-        return of(Habit.getDefaultHabits());
+    getHabits(): Promise<Habit[]> {
+        return this.model.all() as Promise<Habit[]>;
     }
     
-    getHabitsRecord(habit: Habit) {
-        return of(habitsRecords.filter(habitsRecord => {
-            return habitsRecord.habitID === habit.id;
-        }));
+    getHabitsRecord(habit: Habit): Promise<HabitsRecord[]> {
+        return new Promise((resolve) => {
+            this.submodel.all().then(habitRecords => {
+                resolve(habitRecords.filter((habitsRecord: HabitsRecord) => {
+                    return habitsRecord.habitID === habit.id;
+                }));
+            });
+        });
+    }
+
+    deleteHabit(habit: Habit) {
+        habit.delete();
     }
 
     insertHabitsRecord(habitsRecord: HabitsRecord) {

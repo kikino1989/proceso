@@ -14,7 +14,6 @@ import {BudgetCardComponent} from '../budget-card/budget-card.component';
 export class StatsComponent {
     @Input() budget: Budget;
     public snapshots: Budget[];
-    private snapshotSubscriptions: Subscription;
     private orgSnapshots: Budget[];
 
     constructor(
@@ -23,18 +22,16 @@ export class StatsComponent {
     ) { }
 
     ngOnInit() {
-        this.snapshotSubscriptions =
-            this.budgetService
-                .getSnapshots(this.budget)
-                .subscribe(snapshots => {
-                    this.snapshots = snapshots;
-                    this.orgSnapshots = _.cloneDeep(this.snapshots);
-                });
+        this.budgetService
+            .getSnapshots(this.budget)
+            .then(snapshots => {
+                this.snapshots = snapshots;
+                this.orgSnapshots = _.cloneDeep(this.snapshots);
+            });
     }
 
     ngOnDestroy() {
         delete this.snapshots;
-        this.snapshotSubscriptions.unsubscribe();
     }
 
     get spencesData() {

@@ -1,6 +1,6 @@
 -implement native functionality
 ++database
-**** extend basemodel in all models.
+**** create database service.
 
 image upload in prospects.
 import from contacts.

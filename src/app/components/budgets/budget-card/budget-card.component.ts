@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Budget} from '../../../models/Budget';
-import {BudgetsService} from '../../../services/budgets.service';
 import { ModalController } from '@ionic/angular';
 
 export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats', SAVE = 'save' }
@@ -19,7 +18,6 @@ export class BudgetCardComponent implements OnInit {
     public saveBudget: (data) => void;
 
     constructor(
-        private budgetService: BudgetsService,
         private modalCtrl: ModalController
     ) { }
 

@@ -19,8 +19,7 @@ export class ProspectComponent implements OnInit {
     public prospect: Prospect;
     public reminder?: Reminder;
     constructor(
-        private modalCtrl: ModalController,
-        private reminderService: RemindersService
+        private modalCtrl: ModalController
     ) { }
 
     ngOnInit() {
@@ -41,7 +40,7 @@ export class ProspectComponent implements OnInit {
 
     onSubmit() {
         if (this.reminder.note && this.reminder.date)
-            this.reminderService.insert(this.reminder);
+            this.reminder.insert();
         this.modalCtrl.dismiss(this.prospect);
     }
 
