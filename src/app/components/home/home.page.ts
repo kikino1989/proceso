@@ -4,7 +4,7 @@ import { BudgetsService } from '../../services/budgets.service';
 import { NavController } from '@ionic/angular';
 import { RemindersService } from 'src/app/services/reminders.service';
 import { ProspectService } from 'src/app/services/prospect.service';
-import { BooksService } from 'src/app/services/booksService';
+import { BooksService } from 'src/app/services/books.service';
 
 @Component({
     selector: 'home',

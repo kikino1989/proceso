@@ -35,7 +35,7 @@ import { HabitsRecordComponent } from './components/habits/habits-record/habits-
 import { StepsComponent } from './components/steps/steps.component';
 import { StepComponent } from './components/steps/step/step.component';
 import { ReadingListComponent } from './components/reading-list/reading-list.component';
-import { BooksService } from './services/booksService';
+import { BooksService } from './services/books.service';
 import { HomePage } from './components/home/home.page';
 import { HeadbarComponent } from './components/headbar/headbar.component';
 import { ReminderComponent } from './components/reminders/reminder/reminder.component';

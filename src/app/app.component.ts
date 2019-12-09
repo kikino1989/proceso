@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { BudgetsService } from './services/budgets.service';
-import { SQLite } from '@ionic-native/sqlite/ngx';
+import { DatabaseService } from './services/database.service';
 
 @Component({
     selector: 'app-root',
@@ -56,8 +56,8 @@ export class AppComponent {
     ];
 
     constructor(
-        private sqlite: SQLite,
         private platform: Platform,
+        private dbService: DatabaseService,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private budgetService: BudgetsService
@@ -65,11 +65,12 @@ export class AppComponent {
 
     initializeApp() {
         this.platform.ready().then(() => {
-            (window as any).sqlite = this.sqlite;
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+            this.dbService.openDatabase().then(() => {
+                this.budgetService.watchBudget();
+            });
         });
-        this.budgetService.watchBudget();
     }
 
     ngOnDelete() {

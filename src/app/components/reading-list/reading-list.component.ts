@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 import * as _ from 'lodash';
-import { BooksService } from '../../services/booksService';
+import { BooksService } from '../../services/books.service';
 import { Book } from '../../models/Book';
 
 @Component({
