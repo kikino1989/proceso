@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Habit } from '../../models/Habit';
-import { Subscription } from 'rxjs';
 import { habitsService } from '../../services/habits.service';
 import * as _ from 'lodash';
 import { ModalController } from '@ionic/angular';

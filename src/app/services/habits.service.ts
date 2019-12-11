@@ -16,10 +16,8 @@ export class habitsService {
     
     getHabitsRecord(habit: Habit): Promise<HabitsRecord[]> {
         return new Promise((resolve) => {
-            this.submodel.all().then(habitRecords => {
-                resolve(habitRecords.filter((habitsRecord: HabitsRecord) => {
-                    return habitsRecord.habitID === habit.id;
-                }));
+            this.submodel.all({habitID: habit.id}).then(habitRecords => {
+                resolve(habitRecords);
             });
         });
     }

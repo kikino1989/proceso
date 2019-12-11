@@ -16,12 +16,12 @@ export class BudgetsService {
     private model = new Budget();
     constructor(private bm: BackgroundMode) { }
 
-    getBudgets(where = '', args = []): Promise<Budget[]> {
-        return this.model.all(where, args) as Promise<Budget[]>;
+    getBudgets(where): Promise<Budget[]> {
+        return this.model.all(where) as Promise<Budget[]>;
     }
 
     getBudget(id: number): Promise<Budget> {
-        return this.model.one('WHERE id = ?', [id]) as Promise<Budget>;
+        return this.model.one({id}) as Promise<Budget>;
     }
 
     createBudget() {
@@ -60,7 +60,7 @@ export class BudgetsService {
     }
 
     async getActiveBudget(): Promise<Budget> {
-        const matches = await this.getBudgets('WHERE active = ?', [true]);
+        const matches = await this.getBudgets({active: true});
         return matches.length ? matches[0] : null;
     }
 
@@ -85,15 +85,11 @@ export class BudgetsService {
         if (!budget)
             return true;
 
-        const where = 'WHERE parentID = ? AND snapshot = ?';
-        const args = [budget.id, moment().subtract(1, 'day').format('MM-DD-YYYY')];
-        const budgets = await this.getBudgets(where, args);
+        const budgets = await this.getBudgets({parentID: budget.id, snapshot: moment().subtract(1, 'day').format('MM-DD-YYYY')});
         return !!budgets.length;
     }
 
     getSnapshots(budget: Budget): Promise<Budget[]> {
-        const where = 'WHERE parentID = ?';
-        const args = [budget.id];
-        return this.getBudgets(where, args);
+        return this.getBudgets({parentID: budget.id});
     }
 }

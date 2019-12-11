@@ -15,7 +15,7 @@ export class BudgetsComponent {
 
     ngOnInit() {
         this.budgetsService
-            .getBudgets('WHERE snapshot = ?', [false])
+            .getBudgets({snapshot: false})
             .then(budgets => this.budgets = budgets);
     }
 

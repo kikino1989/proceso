@@ -29,11 +29,21 @@ export class BaseModel implements IModel {
         return model;
     }
 
-    all(where = '', args = []): Promise<BaseModel[]> {
+    all(where: object = {}): Promise<BaseModel[]> {
         const all = [];
         return new Promise((resolve, reject) => {
-            let sql = `SELECT * FROM ${this.tableName} ${where}`;
-            this.db.executeSql(sql, args)
+            let sql = `SELECT * FROM ${this.tableName}`;
+            const args = [];
+            if (Object.keys(where).length) {
+                sql += ' where'
+                for (let key in where) {
+                    if (where.hasOwnProperty(key)) {
+                        sql += ` ${key} = ? AND`;
+                        args.push(where[key]);
+                    }
+                }
+            }
+            this.db.executeSql(sql.replace(/AND$/, ''), args)
                 .then((result) => {
                     for(var i = 0; i < result.rows.length; i++) {
                         all.push(this.loadModel(result.rows.item(i)));
@@ -43,9 +53,8 @@ export class BaseModel implements IModel {
         });
     }
 
-    one(where = '', args = []): Promise<BaseModel> {
-        where += 'LIMIT 1';
-        return this.all(where, args)[0] || null;
+    one(where: object = {}): Promise<BaseModel> {
+        return this.all(where)[0] || null;
     }
 
     update(): Promise<void> {

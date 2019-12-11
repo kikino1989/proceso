@@ -18,7 +18,7 @@ export class DatabaseService {
                     // tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
                 }).then(() => {
                     resolve(db);
-                }).catch(e => console.log(e));
+                }).catch(e => reject(e));
             });
         });
     }
