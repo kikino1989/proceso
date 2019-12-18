@@ -11,7 +11,7 @@ export class Habit extends BaseModel {
         public timeGoal?: number,
         public description?: string, 
         public frequency = OCCURS.DAILY,
-        public dueDate = moment().format("MM/DD/YYYY")
+        public dueDate = moment().format("MM-DD-YYYY")
     ) { super('Habit'); }
 
     static getDefaultHabits(): Habit[] {

@@ -12,7 +12,8 @@ export class BaseModel implements IModel {
     protected loadModel(item): BaseModel {
         const model = new BaseModel(this.tableName);
         for(let prop in model) {
-            if (model.hasOwnProperty(prop))  {
+            if (model.hasOwnProperty(prop) && 
+                prop !== 'tableName' && prop !== 'db')  {
                 model[prop] = item[prop];
             }
         }
@@ -33,7 +34,7 @@ export class BaseModel implements IModel {
                     }
                 }
             }
-            console.log('this is the sql for ', this.tableName, sql.replace(/ AND$/, ''), args)
+            
             this.db.executeSql(sql.replace(/ AND$/, ''), args)
                 .then((result) => {
                     for(var i = 0; i < result.rows.length; i++) {
@@ -50,16 +51,16 @@ export class BaseModel implements IModel {
 
     update(): Promise<void> {
         return new Promise((resolve, reject) => {
-            let sql = `UPDATE ${this.tableName}`;
+            let sql = `UPDATE ${this.tableName} SET `;
             const args = [];
             for(let prop in this) {
-                if (this.hasOwnProperty(prop)) {
-                    sql += ` SET ${prop} = ?, `;
+                if (this.hasOwnProperty(prop) &&
+                    prop !== 'tableName' && prop !== 'db')  {
+                    sql += `${prop} = ?, `;
                     args.push(this[prop]);
                 }
             }
             sql = `${sql.replace(/, \s*$/, "")} WHERE id = ?`;
-            args.push(this.id);
             this.db.executeSql(sql, args).then(() => {
                 resolve();
             }).catch((e) => reject(e));
@@ -77,16 +78,23 @@ export class BaseModel implements IModel {
 
     insert(): Promise<void> {
         return new Promise((resolve, reject) => {
+            const placeHolders = [];
+            const fields = [];
+
             let sql = `INSERT INTO ${this.tableName} VALUES(`;
             const args = [];
             for(let prop in this) {
-                if (this.hasOwnProperty(prop)) {
-                    sql += `?, `;
+                if (this.hasOwnProperty(prop) &&
+                    prop !== 'tableName' && prop !== 'id' &&
+                    prop !== 'tableName' && prop !== 'db')  {
+                    placeHolders.push('?');
+                    fields.push(prop);
                     args.push(this[prop]);
                 }
             }
-            sql = `${sql.replace(/, \s*$/, "")})`;
-            args.push(this.id);
+
+            sql += `${fields.join(',').replace(/, \s*$/, "")}) VALUES(`;
+            sql += `${placeHolders.join(',').replace(/, \s*$/, "")})`;
             this.db.executeSql(sql, args).then(() => {
                 this.db.executeSql('SELECT last_inserted_rowid()').then((result) => {
                     this.id = result.rows.item(0).id;
