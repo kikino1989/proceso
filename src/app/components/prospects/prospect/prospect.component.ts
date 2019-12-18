@@ -31,7 +31,7 @@ export class ProspectComponent implements OnInit {
         this.reminder = new Reminder(this.prospect.id, Prospect.name);
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.orgProspect;
         delete this.prospectingSteps;
         delete this.prospect;

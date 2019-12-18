@@ -45,11 +45,12 @@ export class DatabaseService {
                         (window as any).db = db;
                         resolve(db);
                         this.dbReady.emit(db);
-                    });
+                    })
+                    .catch(e => reject(e));
                 })
-                // .catch(e => reject(e));
+                .catch(e => reject(e));
             })
-            // .catch(e => reject(e));
+            .catch(e => reject(e));
         });
     }
 

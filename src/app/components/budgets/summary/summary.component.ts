@@ -26,7 +26,7 @@ export class SummaryComponent {
         this.spences = _.cloneDeep(this.orgSpences);
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.orgIncomeSources;
         delete this.orgSpences;
         delete this.incomeSources;

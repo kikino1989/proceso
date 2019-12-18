@@ -40,7 +40,7 @@ export class HabitsRecordComponent implements OnInit {
         this.records = this.orgRecords.filter(record =>  !date || record.date.indexOf(date) > -1);
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.orgRecords;
         delete this.records;
     }

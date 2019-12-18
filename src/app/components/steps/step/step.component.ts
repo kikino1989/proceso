@@ -23,7 +23,7 @@ export class StepComponent implements OnInit {
         }
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.prospectingStep;
         delete this.orgProspectingStep;
         delete this.lastPosition;

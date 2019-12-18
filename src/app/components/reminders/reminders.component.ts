@@ -21,7 +21,7 @@ export class RemindersComponent implements OnInit {
         });
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.reminders;
         delete this.orgReminders;
     }

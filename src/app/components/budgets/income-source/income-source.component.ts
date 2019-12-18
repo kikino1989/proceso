@@ -20,7 +20,7 @@ export class IncomeSourceComponent implements OnInit {
             this.incomeSource = _.cloneDeep(this.orgIncomeSource);
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.orgIncomeSource;
         delete this.incomeSource;
     }

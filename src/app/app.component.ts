@@ -70,11 +70,11 @@ export class AppComponent {
             this.dbService.openDatabase().then(() => {
                 this.budgetService.watchBudget();
             })
-            // .catch(e => console.log('ERROR::', e));
+            .catch(e => console.log('ERROR::', e));
         });
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.appPages;
     }
 }

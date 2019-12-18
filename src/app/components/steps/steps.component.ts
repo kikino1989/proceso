@@ -28,7 +28,7 @@ export class StepsComponent implements OnInit {
         });
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.orgProspectingSteps;
         delete this.prospectingSteps;
     }

@@ -20,7 +20,7 @@ export class SpenceComponent implements OnInit {
             this.spence = _.cloneDeep(this.orgSpence);
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.orgSpence;
         delete this.spence;
     }

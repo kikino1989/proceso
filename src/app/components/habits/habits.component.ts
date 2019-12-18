@@ -29,7 +29,7 @@ export class HabitsComponent implements OnInit {
         });
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.habits;
         delete this.orgHabits;
     }

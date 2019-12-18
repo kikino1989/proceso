@@ -24,7 +24,7 @@ export class HabitComponent implements OnInit {
         }
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.habit;
         delete this.orgHabit;
         delete this.frequencies;

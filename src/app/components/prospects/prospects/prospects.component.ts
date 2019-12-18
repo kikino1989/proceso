@@ -30,7 +30,7 @@ export class ProspectsComponent implements OnInit {
         this.prospectService.getProspectingSteps().then(steps => this.prospectingSteps = steps);
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.prospects;
         delete this.orgProspects;
         delete this.prospectingSteps;

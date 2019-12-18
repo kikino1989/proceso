@@ -26,7 +26,7 @@ export class ReadingListComponent implements OnInit {
         });
     }
 
-    ngOnDelete() {
+    ngOnDestroy() {
         delete this.orgBooks;
         delete this.books;
     }
