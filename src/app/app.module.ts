@@ -39,6 +39,8 @@ import { BooksService } from './services/books.service';
 import { HomePage } from './components/home/home.page';
 import { HeadbarComponent } from './components/headbar/headbar.component';
 import { ReminderComponent } from './components/reminders/reminder/reminder.component';
+import { DatabaseService } from './services/database.service';
+import { SQLite } from '@ionic-native/sqlite/ngx';
 
 @NgModule({
     declarations: [
@@ -84,6 +86,7 @@ import { ReminderComponent } from './components/reminders/reminder/reminder.comp
         ReactiveFormsModule
     ],
     providers: [
+        SQLite,
         RemindersService,
         BudgetsService,
         ProspectService,
@@ -91,7 +94,8 @@ import { ReminderComponent } from './components/reminders/reminder/reminder.comp
         BooksService,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        BackgroundMode
+        BackgroundMode,
+        DatabaseService
     ],
     bootstrap: [AppComponent]
 })

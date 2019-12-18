@@ -7,14 +7,14 @@ import { IValuable } from '../libs/IValuable';
 export class Budget extends BaseModel {
     constructor(
         public name?: string, 
-        public limit?: number,
+        public _limit?: number,
         public incomeSources: IncomeSource[] = [],
         public spences: Spence[] = [],
         public active: boolean = false,
         public startDate = DAYS.FIRST,
         public snapshot: string | false = false,
         public parentID?: number
-    ) { super(); }
+    ) { super('Budget'); }
 
     get totalIncome(): number {
         return this.getTotal(this.incomeSources);

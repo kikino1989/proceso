@@ -49,7 +49,7 @@ export class BudgetProgressComponent implements OnInit {
     }
 
     get spendingBarWidth(): number {
-        const porcentage = (this.totalSpending / this.budget.limit) * 100;
+        const porcentage = (this.totalSpending / this.budget._limit) * 100;
         if (porcentage > 100)
             return 100;
         return porcentage;

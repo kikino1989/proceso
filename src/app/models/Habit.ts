@@ -12,7 +12,7 @@ export class Habit extends BaseModel {
         public description?: string, 
         public frequency = OCCURS.DAILY,
         public dueDate = moment().format("MM/DD/YYYY")
-    ) { super(); }
+    ) { super('Habit'); }
 
     static getDefaultHabits(): Habit[] {
         return <Habit[]> [

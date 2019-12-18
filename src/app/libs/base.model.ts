@@ -1,26 +1,16 @@
-
-import { Observable, of } from 'rxjs';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { IModel } from './IModel';
-
-abstract class Cond {
-    operator: "=" | "!=" | ">" | "<" | "<=" | ">=" = "=";
-    joint: "OR" | "AND" | "NOR" = "AND";
-}
-
-export type Condition = Cond | any;
 
 export class BaseModel implements IModel {
     public tableName: string;
     public id: number;
-    protected db = (window as any).db;
+    public db = (window as any).db;
 
-    constructor() {
-        this.tableName = (this as any).name;
+    constructor(tableName) {
+        this.tableName = tableName;
     }
 
     protected loadModel(item): BaseModel {
-        const model = new BaseModel();
+        const model = new BaseModel(this.tableName);
         for(let prop in model) {
             if (model.hasOwnProperty(prop))  {
                 model[prop] = item[prop];
@@ -43,7 +33,8 @@ export class BaseModel implements IModel {
                     }
                 }
             }
-            this.db.executeSql(sql.replace(/AND$/, ''), args)
+            console.log('this is the sql for ', this.tableName, sql.replace(/ AND$/, ''), args)
+            this.db.executeSql(sql.replace(/ AND$/, ''), args)
                 .then((result) => {
                     for(var i = 0; i < result.rows.length; i++) {
                         all.push(this.loadModel(result.rows.item(i)));
@@ -63,11 +54,11 @@ export class BaseModel implements IModel {
             const args = [];
             for(let prop in this) {
                 if (this.hasOwnProperty(prop)) {
-                    sql += ` SET ${prop} = ?,`;
+                    sql += ` SET ${prop} = ?, `;
                     args.push(this[prop]);
                 }
             }
-            sql = `${sql.replace(/,\s*$/, "")} WHERE id = ?`;
+            sql = `${sql.replace(/, \s*$/, "")} WHERE id = ?`;
             args.push(this.id);
             this.db.executeSql(sql, args).then(() => {
                 resolve();
@@ -90,11 +81,11 @@ export class BaseModel implements IModel {
             const args = [];
             for(let prop in this) {
                 if (this.hasOwnProperty(prop)) {
-                    sql += `?,`;
+                    sql += `?, `;
                     args.push(this[prop]);
                 }
             }
-            sql = `${sql.replace(/,\s*$/, "")})`;
+            sql = `${sql.replace(/, \s*$/, "")})`;
             args.push(this.id);
             this.db.executeSql(sql, args).then(() => {
                 this.db.executeSql('SELECT last_inserted_rowid()').then((result) => {

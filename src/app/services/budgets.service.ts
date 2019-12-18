@@ -6,22 +6,28 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import moment from 'moment';
 import * as _ from 'lodash';
 import {IncomeSource} from '../models/IncomeSource';
+import { DBService } from './DBService';
+import { DatabaseService } from './database.service';
 
 const HOUR_PERIOD = 8 * 1000 * 60 * 60;
 
 @Injectable({
     providedIn: 'root',
 })
-export class BudgetsService {
+export class BudgetsService extends DBService {
     private model = new Budget();
-    constructor(private bm: BackgroundMode) { }
+    constructor(private bm: BackgroundMode, protected database: DatabaseService) { super(database)}
 
     getBudgets(where): Promise<Budget[]> {
-        return this.model.all(where) as Promise<Budget[]>;
+        return this.database.dbReady.toPromise().then(() => {
+            return this.model.all(where) as Promise<Budget[]>;
+        });
     }
 
     getBudget(id: number): Promise<Budget> {
-        return this.model.one({id}) as Promise<Budget>;
+        return this.database.dbReady.toPromise().then(() => {
+            return this.model.one({id}) as Promise<Budget>;
+        });
     }
 
     createBudget() {
@@ -60,8 +66,10 @@ export class BudgetsService {
     }
 
     async getActiveBudget(): Promise<Budget> {
-        const matches = await this.getBudgets({active: true});
-        return matches.length ? matches[0] : null;
+        return this.database.dbReady.toPromise().then(async () => {
+            const matches = await this.getBudgets({active: true});
+            return matches.length ? matches[0] : null;
+        });
     }
 
     async takeSnapshot() {
@@ -82,14 +90,18 @@ export class BudgetsService {
     }
 
     async snapshotForThisMonth(budget: Budget): Promise<boolean> {
-        if (!budget)
-            return true;
+        return this.database.dbReady.toPromise().then(async () => {
+            if (!budget)
+                return true;
 
-        const budgets = await this.getBudgets({parentID: budget.id, snapshot: moment().subtract(1, 'day').format('MM-DD-YYYY')});
-        return !!budgets.length;
+            const budgets = await this.getBudgets({parentID: budget.id, snapshot: moment().subtract(1, 'day').format('MM-DD-YYYY')});
+            return !!budgets.length;
+        });
     }
 
     getSnapshots(budget: Budget): Promise<Budget[]> {
-        return this.getBudgets({parentID: budget.id});
+        return this.database.dbReady.toPromise().then(() => {
+            return this.getBudgets({parentID: budget.id});
+        });
     }
 }

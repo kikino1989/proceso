@@ -11,6 +11,6 @@ export class Spence extends BaseModel implements IValuable {
         public value?: number,
         public type: TYPE = TYPE.RECURRENT,
         public dueDate?: string,
-        public limit?: number
-    ) { super(); }
+        public _limit?: number
+    ) { super('Spence'); }
 }

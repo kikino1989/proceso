@@ -69,7 +69,8 @@ export class AppComponent {
             this.splashScreen.hide();
             this.dbService.openDatabase().then(() => {
                 this.budgetService.watchBudget();
-            });
+            })
+            // .catch(e => console.log('ERROR::', e));
         });
     }
 

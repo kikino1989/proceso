@@ -8,7 +8,7 @@ export class ProspectingSteps extends BaseModel {
         public pointA?: string,
         public tools?: string,
         public pointB?: string
-    ) { super(); }
+    ) { super('ProspectingSteps'); }
 
     static getDefaultSteps(): ProspectingSteps[] {
         return <ProspectingSteps[]>[

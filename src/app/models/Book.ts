@@ -6,7 +6,7 @@ export class Book extends BaseModel {
         public name?: string,
         public progress = 0,
         public read = false
-    ) { super(); }
+    ) { super('Book'); }
 
     static getDefaultBooks(): Book[] {
         return <Book[]>[

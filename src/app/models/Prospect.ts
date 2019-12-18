@@ -7,5 +7,5 @@ export class Prospect extends BaseModel {
         public email?: string,
         public image?: string,
         public step = 0
-    ) { super(); }
+    ) { super('Prospect'); }
 }

@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Habit } from '../models/Habit';
 import { HabitsRecord } from '../models/HabitsRecord';
+import { DBService } from './DBService';
 
 @Injectable({
     providedIn: 'root'
 })
-export class habitsService {
+export class habitsService extends DBService {
     private model = new Habit();
     private submodel = new HabitsRecord();
 
@@ -15,10 +16,8 @@ export class habitsService {
     }
     
     getHabitsRecord(habit: Habit): Promise<HabitsRecord[]> {
-        return new Promise((resolve) => {
-            this.submodel.all({habitID: habit.id}).then(habitRecords => {
-                resolve(habitRecords);
-            });
+        return this.database.dbReady.toPromise().then(() => {
+            return this.submodel.all({habitID: habit.id});
         });
     }
 

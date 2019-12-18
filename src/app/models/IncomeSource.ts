@@ -11,5 +11,5 @@ export class IncomeSource extends BaseModel implements IValuable {
         public value?: number,
         public type: TYPE = TYPE.FIXED,
         public date?: string
-    ) { super(); }
+    ) { super('IncomeSource'); }
 }
