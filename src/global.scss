@@ -227,3 +227,25 @@ ion-datepicker {
 .item-lines-both {
     --border-width: 1px 0;
 }
+
+// alerts 
+.error-alert {
+    --background: var(--ion-color-danger);
+    .alert-title, .alert-message, .alert-button {
+        color: var(--ion-color-danger-contrast);
+    }
+}
+
+.error-info {
+    --background: var(--ion-color-warning);
+    .alert-title, .alert-message, .alert-button {
+        color: var(--ion-color-warning-contrast);
+    }
+}
+
+.error-success {
+    --background: var(--ion-color-success);
+    .alert-title, .alert-message, .alert-button {
+        color: var(--ion-color-success-contrast);
+    }
+}

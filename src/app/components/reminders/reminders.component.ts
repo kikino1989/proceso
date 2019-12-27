@@ -15,9 +15,11 @@ export class RemindersComponent implements OnInit {
     constructor(private remindersService: RemindersService) { }
 
     ngOnInit() { 
-        this.remindersService.getReminders().then(reminders => {
-            this.orgReminders = reminders;
-            this.reminders = _.cloneDeep(reminders);
+        this.remindersService.waitForDatabase(() => {
+            this.remindersService.getReminders().then(reminders => {
+                this.orgReminders = reminders;
+                this.reminders = _.cloneDeep(reminders);
+            });
         });
     }
 

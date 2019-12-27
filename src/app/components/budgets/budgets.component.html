@@ -5,8 +5,10 @@
     </div>
     <ion-list>
         <ion-radio-group>
-            <ng-container *ngFor="let budget of budgets.reverse()">
-                <budget-card [(budget)]="budget" [removeBudget]="removeBudget.bind(this)"></budget-card>
+            <ng-container *ngIf="budgets">
+                <ng-container *ngFor="let budget of budgets.reverse()">
+                    <budget-card [(budget)]="budget" [removeBudget]="removeBudget.bind(this)"></budget-card>
+                </ng-container>
             </ng-container>
         </ion-radio-group>
     </ion-list>

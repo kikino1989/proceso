@@ -23,9 +23,11 @@ export class HabitsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.habitsService.getHabits().then(habits => {
-            this.habits = habits;
-            this.orgHabits = _.cloneDeep(this.habits);
+        this.habitsService.waitForDatabase(() => {
+            this.habitsService.getHabits().then(habits => {
+                this.habits = habits;
+                this.orgHabits = _.cloneDeep(this.habits);
+            });
         });
     }
 
@@ -82,8 +84,10 @@ export class HabitsComponent implements OnInit {
         });
         this.habits.splice(index, 1);
         this.orgHabits.splice(index, 1);
-        this.habitsService.deleteHabit(habit);
-        this.deleteHabitRecords(habit);
+        this.habitsService.waitForDatabase(() => {
+            this.habitsService.deleteHabit(habit);
+            this.deleteHabitRecords(habit);
+        });
     }
 
     changeHabit(habit) {
@@ -94,36 +98,42 @@ export class HabitsComponent implements OnInit {
     }
 
     viewHabitRecords(habit: Habit) {
-        this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
-            this.modalCtrl.create({
-                component: HabitsRecordComponent,
-                componentProps: {
-                    habitName: habit.name,
-                    habitsRecords
-                }
-            }).then(modal => {
-                modal.present();
+        this.habitsService.waitForDatabase(() => {
+            this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
+                this.modalCtrl.create({
+                    component: HabitsRecordComponent,
+                    componentProps: {
+                        habitName: habit.name,
+                        habitsRecords
+                    }
+                }).then(modal => {
+                    modal.present();
+                });
             });
         });
     }
 
     addHabitRecord(habit: Habit) {
-        this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
-            const habitRecord = new HabitsRecord(habit.id, moment().format('YYYY-MM-DD'));
-            habitsRecords.push(habitRecord);
-            this.habitsService.insertHabitsRecord(habitRecord);
+        this.habitsService.waitForDatabase(() => {
+            this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
+                const habitRecord = new HabitsRecord(habit.id, moment().format('YYYY-MM-DD'));
+                habitsRecords.push(habitRecord);
+                this.habitsService.insertHabitsRecord(habitRecord);
+            });
         });
     }
 
     deleteHabitRecord(habit: Habit) {
-        this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
-            const index = habitsRecords.findIndex(habitsRecord => {
-                return habitsRecord.habitID === habit.id && habitsRecord.date === moment().format('YYYY-MM-DD');
+        this.habitsService.waitForDatabase(() => {
+            this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
+                const index = habitsRecords.findIndex(habitsRecord => {
+                    return habitsRecord.habitID === habit.id && habitsRecord.date === moment().format('YYYY-MM-DD');
+                });
+                if (index > -1) {
+                    const habitsRecord = habitsRecords.splice(index, 1)[0];
+                    this.habitsService.deleteHabitsRecord(habitsRecord.id);
+                }
             });
-            if (index > -1) {
-                const habitsRecord = habitsRecords.splice(index, 1)[0];
-                this.habitsService.deleteHabitsRecord(habitsRecord.id);
-            }
         });
     }
 

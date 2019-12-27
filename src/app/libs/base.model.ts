@@ -1,9 +1,10 @@
 import { IModel } from './IModel';
+import { SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 export class BaseModel implements IModel {
     public tableName: string;
     public id: number;
-    public db = (window as any).db;
+    public db: SQLiteObject;
 
     constructor(tableName) {
         this.tableName = tableName;
@@ -11,6 +12,7 @@ export class BaseModel implements IModel {
 
     protected loadModel(item): BaseModel {
         const model = new BaseModel(this.tableName);
+        model.db = this.db;
         for(let prop in model) {
             if (model.hasOwnProperty(prop) && 
                 prop !== 'tableName' && prop !== 'db')  {
@@ -102,5 +104,10 @@ export class BaseModel implements IModel {
                 }).catch((e) => reject(e));
             }).catch((e) => reject(e));
         });
+    }
+
+    async isEmpty() {
+        const result = await this.db.executeSql(`SELECT COUNT(*) AS count FROM ${this.tableName}`);
+        return !!(result.rows.length > 0 ? result.rows.item(0).count : 0);
     }
 }

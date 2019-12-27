@@ -22,9 +22,11 @@ export class StepsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.prospectService.getProspectingSteps().then(steps => {
-            this.prospectingSteps = steps;
-            this.orgProspectingSteps = _.cloneDeep(steps);
+        this.prospectService.waitForDatabase(() => {
+            this.prospectService.getProspectingSteps().then(steps => {
+                this.prospectingSteps = steps;
+                this.orgProspectingSteps = _.cloneDeep(steps);
+            });
         });
     }
 

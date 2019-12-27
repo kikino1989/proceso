@@ -23,11 +23,13 @@ export class ProspectsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.prospectService.getProspects().then(prospects => {
-            this.prospects = prospects;
-            this.orgProspects = _.cloneDeep(this.prospects);
+        this.prospectService.waitForDatabase(() => {
+            this.prospectService.getProspects().then(prospects => {
+                this.prospects = prospects;
+                this.orgProspects = _.cloneDeep(this.prospects);
+            });
+            this.prospectService.getProspectingSteps().then(steps => this.prospectingSteps = steps);
         });
-        this.prospectService.getProspectingSteps().then(steps => this.prospectingSteps = steps);
     }
 
     ngOnDestroy() {

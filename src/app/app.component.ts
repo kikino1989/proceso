@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { BudgetsService } from './services/budgets.service';
@@ -56,6 +56,7 @@ export class AppComponent {
     ];
 
     constructor(
+        private alert: AlertController,
         private platform: Platform,
         private dbService: DatabaseService,
         private splashScreen: SplashScreen,
@@ -67,10 +68,25 @@ export class AppComponent {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
-            this.dbService.openDatabase().then(() => {
+            this.dbService.openDatabase().then(async db => {
+                
+                await this.dbService.createTables(db);
+                await this.dbService.runSeeds(db);
+                await this.dbService.runUpdates(db);
                 this.budgetService.watchBudget();
+                
+                this.dbService.dbReady.emit(db);
             })
-            .catch(e => console.log('ERROR::', e));
+            .catch(e => {
+                this.alert.create({
+                    header: "ERROR",
+                    message: "Oops something went wrong!",
+                    buttons: [{text: "OK", role: 'ok'}],
+                    cssClass: 'error-alert'
+                    
+                }).then(alert => alert.present());
+                console.log(e);
+            });
         });
     }
 

@@ -1,12 +1,11 @@
 import {Budget} from '../models/Budget';
 import {Spence} from '../models/Spence';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 import moment from 'moment';
 import * as _ from 'lodash';
 import {IncomeSource} from '../models/IncomeSource';
-import { DBService } from './DBService';
+import { DBService } from '../libs/DBService';
 import { DatabaseService } from './database.service';
 
 const HOUR_PERIOD = 8 * 1000 * 60 * 60;
@@ -15,19 +14,21 @@ const HOUR_PERIOD = 8 * 1000 * 60 * 60;
     providedIn: 'root',
 })
 export class BudgetsService extends DBService {
-    private model = new Budget();
-    constructor(private bm: BackgroundMode, protected database: DatabaseService) { super(database)}
+    constructor(
+        private bm: BackgroundMode,
+        protected database: DatabaseService
+    ) { super(database); }
 
+    init() {
+        this.model = new Budget();
+    }
+    
     getBudgets(where): Promise<Budget[]> {
-        return this.database.dbReady.toPromise().then(() => {
-            return this.model.all(where) as Promise<Budget[]>;
-        });
+        return this.model.all(where) as Promise<Budget[]>;
     }
 
     getBudget(id: number): Promise<Budget> {
-        return this.database.dbReady.toPromise().then(() => {
-            return this.model.one({id}) as Promise<Budget>;
-        });
+        return this.model.one({id}) as Promise<Budget>;
     }
 
     createBudget() {
@@ -47,6 +48,7 @@ export class BudgetsService extends DBService {
             new Spence('entertainment', 100),
             new Spence('debts', 1200),
         ]);
+        budget.db = this.model.db;
         budget.insert();
         return budget;
     }
@@ -100,8 +102,6 @@ export class BudgetsService extends DBService {
     }
 
     getSnapshots(budget: Budget): Promise<Budget[]> {
-        return this.database.dbReady.toPromise().then(() => {
-            return this.getBudgets({parentID: budget.id});
-        });
+        return this.getBudgets({parentID: budget.id});
     }
 }

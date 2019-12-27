@@ -26,17 +26,25 @@ export class HomePage {
     ) { }
 
     ngOnInit() {
-        this.budgetsService.getActiveBudget().then(budget => {
-            this.budget = budget;
+        this.budgetsService.waitForDatabase(() => {
+            this.budgetsService.getActiveBudget().then(budget => {
+                this.budget = budget;
+            });
         });
-        this.remindersService.getReminders().then(reminders => {
-            this.remindersCount = reminders.length;
+        this.remindersService.waitForDatabase(() => {
+            this.remindersService.getReminders().then(reminders => {
+                this.remindersCount = reminders.length;
+            });
         });
-        this.prospectService.getProspects().then(prospects => {
-            this.prospectsCount = prospects.length;
+        this.prospectService.waitForDatabase(() => {
+            this.prospectService.getProspects().then(prospects => {
+                this.prospectsCount = prospects.length;
+            });
         });
-        this.booksService.getReadingList().then(books => {
-            this.booksCount = books.filter(book => book.read === true).length;
+        this.booksService.waitForDatabase(() => {
+            this.booksService.getReadingList().then(books => {
+                this.booksCount = books.filter(book => book.read === true).length;
+            });
         });
     }
 

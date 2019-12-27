@@ -20,9 +20,11 @@ export class ReadingListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.booksService.getReadingList().then(books => {
-            this.books = books;
-            this.orgBooks = _.cloneDeep(books);
+        this.booksService.waitForDatabase(() => {
+            this.booksService.getReadingList().then(books => {
+                this.books = books;
+                this.orgBooks = _.cloneDeep(books);
+            });
         });
     }
 

@@ -1,6 +1,5 @@
 -implement native functionality
-++database
-**** create database service.
+check that everything is being saved to the database.
 
 image upload in prospects.
 import from contacts.

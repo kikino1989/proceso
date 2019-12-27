@@ -14,9 +14,11 @@ export class BudgetsComponent {
     ) { }
 
     ngOnInit() {
-        this.budgetsService
-            .getBudgets({snapshot: false})
-            .then(budgets => this.budgets = budgets);
+        this.budgetsService.waitForDatabase(() => {
+            this.budgetsService
+                .getBudgets({snapshot: false})
+                .then(budgets => this.budgets = budgets);
+        });
     }
 
     removeBudget(budget) {
@@ -25,6 +27,8 @@ export class BudgetsComponent {
     }
 
     addBudget() {
-        this.budgets.push(this.budgetsService.createBudget());
+        this.budgetsService.waitForDatabase(() => {
+            this.budgets.push(this.budgetsService.createBudget());
+        });
     }
 }

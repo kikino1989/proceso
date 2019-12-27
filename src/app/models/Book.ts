@@ -10,30 +10,30 @@ export class Book extends BaseModel {
 
     static getDefaultBooks(): Book[] {
         return <Book[]>[
-            {
-                position: 0,
-                name: "Business of the 21st Century Book",
-                progress: 0,
-                read: false
-            },
-            {
-                position: 1,
-                name: "The Richest Man in Babylon",
-                progress: 0,
-                read: false
-            },
-            {
-                position: 2,
-                name: "Rish Dad Poor Dad",
-                progress: 0,
-                read: false
-            },
-            {
-                position: 3,
-                name: "Rich Dad's Cashflow Quadrant: Guide to Financial Freedom",
-                progress: 0,
-                read: false
-            }
+            new Book(
+                0,
+                "Business of the 21st Century Book",
+                0,
+                false
+            ),
+            new Book(
+                1,
+                "The Richest Man in Babylon",
+                0,
+                false
+            ),
+            new Book(
+                2,
+                "Rish Dad Poor Dad",
+                0,
+                false
+            ),
+            new Book(
+                3,
+                "Rich Dad's Cashflow Quadrant: Guide to Financial Freedom",
+                0,
+                false
+            )
         ]
     }
 }
