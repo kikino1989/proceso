@@ -26,9 +26,9 @@ export class ProspectComponent implements OnInit {
         if (this.orgProspect)
             this.prospect = _.cloneDeep(this.orgProspect);
         else
-            this.prospect = new Prospect("", "");
+            this.prospect = new Prospect();
 
-        this.reminder = new Reminder(this.prospect.id, Prospect.name);
+        this.reminder = new Reminder({entityID: this.prospect.id, entityClass: 'Prospect'});
     }
 
     ngOnDestroy() {

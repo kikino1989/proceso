@@ -15,7 +15,7 @@ export class SpenceComponent implements OnInit {
 
     ngOnInit() {
         if (!this.orgSpence)
-            this.spence = new Spence('my spence', 100);
+            this.spence = new Spence({name: 'my spence', value: 100});
         else
             this.spence = _.cloneDeep(this.orgSpence);
     }

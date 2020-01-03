@@ -18,7 +18,7 @@ export class ProspectService extends DBService {
     }
 
     getProspectingSteps(): Promise<ProspectingSteps[]> {
-        return this.submodel.all() as Promise<Prospect[]>;
+        return this.submodel.all() as Promise<ProspectingSteps[]>;
     }
     
 }

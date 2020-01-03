@@ -5,40 +5,42 @@ import { BaseModel } from '../libs/base.model';
 export enum HABITS_STATUS { STARTED = "STARTED", IN_PROGRESS = "IN PROGRESS", CREATE = "CREATE", BROKEN = "BROKEN", PERFECT = "PERFECT" }
 
 export class Habit extends BaseModel {
+    public name: string;
+    public timeGoal: number;
+    public description?: string;
+    public frequency = OCCURS.DAILY;
+    public dueDate = moment().format("MM-DD-YYYY");
     public done = false;
-    constructor(
-        public name?: string,
-        public timeGoal?: number,
-        public description?: string, 
-        public frequency = OCCURS.DAILY,
-        public dueDate = moment().format("MM-DD-YYYY")
-    ) { super('Habit'); }
+    constructor(properties?: Habit | any) {
+        super('Habit');
+        this.loadModel(properties);
+    }
 
     static getDefaultHabits(): Habit[] {
-        return <Habit[]> [
-            new Habit(
-                "Listen to Audio",
-                30
-            ),
-            new Habit(
-                "Reed",
-                15
-            ),
-            new Habit(
-                "Use Products",
-            ),
-            new Habit(
-                "Consultation Upline/Downline",
-                15
-            ),
-            new Habit(
-                "Create Relationships.",
-                60
-            ),
-            new Habit(
-                "Share Story/Recruit.",
-                60
-            )
+        return [
+            new Habit({
+                name: "Listen to Audio",
+                timeGoal: 30
+            }),
+            new Habit({
+                name: "Reed",
+                timeGoal: 15
+            }),
+            new Habit({
+                name: "Use Products",
+            }),
+            new Habit({
+                name: "Consultation Upline/Downline",
+                timeGoal: 15
+            }),
+            new Habit({
+                name: "Create Relationships.",
+                timeGoal: 60
+            }),
+            new Habit({
+                name: "Share Story/Recruit.",
+                timeGoal: 60
+            })
         ];
     }
 

@@ -50,7 +50,7 @@ export class ReadingListComponent implements OnInit {
                 {
                     text: 'Add',
                     handler: (data) => {
-                        this.books.push(new Book(this.books.length, data.name));
+                        this.books.push(new Book({position: this.books.length, name: data.name}));
                     }
                 }
             ]

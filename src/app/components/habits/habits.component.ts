@@ -116,7 +116,10 @@ export class HabitsComponent implements OnInit {
     addHabitRecord(habit: Habit) {
         this.habitsService.waitForDatabase(() => {
             this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
-                const habitRecord = new HabitsRecord(habit.id, moment().format('YYYY-MM-DD'));
+                const habitRecord = new HabitsRecord({
+                    habitID: habit.id,
+                    date: moment().format('YYYY-MM-DD')
+                });
                 habitsRecords.push(habitRecord);
                 this.habitsService.insertHabitsRecord(habitRecord);
             });

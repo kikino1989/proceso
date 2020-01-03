@@ -5,16 +5,18 @@ import { BaseModel } from '../libs/base.model';
 import { IValuable } from '../libs/IValuable';
 
 export class Budget extends BaseModel {
-    constructor(
-        public name?: string, 
-        public _limit?: number,
-        public incomeSources: IncomeSource[] = [],
-        public spences: Spence[] = [],
-        public active: boolean = false,
-        public startDate = DAYS.FIRST,
-        public snapshot: string | false = false,
-        public parentID?: number
-    ) { super('Budget'); }
+    public name: string;
+    public _limit: number;
+    public incomeSources: IncomeSource[] = [];
+    public spences: Spence[] = [];
+    public active: boolean = false;
+    public startDate = DAYS.FIRST;
+    public snapshot: string | false = false;
+    public parentID?: number;
+    constructor(properties?: Budget | any) {
+        super('Budget');
+        this.loadModel(properties);
+    }
 
     get totalIncome(): number {
         return this.getTotal(this.incomeSources);

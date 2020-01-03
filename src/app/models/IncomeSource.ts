@@ -6,10 +6,12 @@ export const enum TYPE {
 }
 
 export class IncomeSource extends BaseModel implements IValuable {
-    constructor(
-        public name?: string,
-        public value?: number,
-        public type: TYPE = TYPE.FIXED,
-        public date?: string
-    ) { super('IncomeSource'); }
+    public name: string;
+    public value: number;
+    public type: TYPE = TYPE.FIXED;
+    public date?: string;
+    constructor(properties?: IncomeSource | any) {
+        super('IncomeSource');
+        this.loadModel(properties);
+    }
 }

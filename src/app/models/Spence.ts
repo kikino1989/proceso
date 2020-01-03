@@ -6,11 +6,13 @@ export const enum TYPE {
 }
 
 export class Spence extends BaseModel implements IValuable {
-    constructor(
-        public name?: string,
-        public value?: number,
-        public type: TYPE = TYPE.RECURRENT,
-        public dueDate?: string,
-        public _limit?: number
-    ) { super('Spence'); }
+    public name: string;
+    public value: number;
+    public type: TYPE = TYPE.RECURRENT;
+    public dueDate?: string;
+    public _limit?: number;
+    constructor(properties?: Spence | any) {
+        super('Spence');
+        this.loadModel(properties);
+    }
 }

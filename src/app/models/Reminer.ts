@@ -5,8 +5,10 @@ export class Reminder extends BaseModel {
     public date: string;
     public note: string;
     public frequency = OCCURS.ONCE;
-    constructor(
-        public entityID?: number,
-        public entityClass?: string
-    ) { super('Reminder'); }
+    public entityID?: number;
+    public entityClass?: string;
+    constructor(properties?: Reminder | any) {
+        super('Reminder');
+        this.loadModel(properties);
+    }
 }

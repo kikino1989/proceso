@@ -13,9 +13,8 @@ export class BaseModel implements IModel {
     protected loadModel(item): BaseModel {
         const model = new BaseModel(this.tableName);
         model.db = this.db;
-        for(let prop in model) {
-            if (model.hasOwnProperty(prop) && 
-                prop !== 'tableName' && prop !== 'db')  {
+        for(let prop in item) {
+            if (prop !== 'tableName' && prop !== 'db')  {
                 model[prop] = item[prop];
             }
         }
@@ -37,7 +36,7 @@ export class BaseModel implements IModel {
                 }
             }
             
-            this.db.executeSql(sql.replace(/ AND$/, ''), args)
+            this.db.executeSql(sql.replace(/\sAND$/, ''), args)
                 .then((result) => {
                     for(var i = 0; i < result.rows.length; i++) {
                         all.push(this.loadModel(result.rows.item(i)));
@@ -62,7 +61,8 @@ export class BaseModel implements IModel {
                     args.push(this[prop]);
                 }
             }
-            sql = `${sql.replace(/, \s*$/, "")} WHERE id = ?`;
+            
+            sql = `${sql.replace(/,\s*$/, "")} WHERE id = ?`;
             this.db.executeSql(sql, args).then(() => {
                 resolve();
             }).catch((e) => reject(e));
@@ -95,8 +95,8 @@ export class BaseModel implements IModel {
                 }
             }
 
-            sql += `${fields.join(',').replace(/, \s*$/, "")}) VALUES(`;
-            sql += `${placeHolders.join(',').replace(/, \s*$/, "")})`;
+            sql += `${fields.join(',').replace(/,\s*$/, "")}) VALUES(`;
+            sql += `${placeHolders.join(',').replace(/,\s*$/, "")})`;
             this.db.executeSql(sql, args).then(() => {
                 this.db.executeSql('SELECT last_inserted_rowid()').then((result) => {
                     this.id = result.rows.item(0).id;

@@ -32,23 +32,27 @@ export class BudgetsService extends DBService {
     }
 
     createBudget() {
-        const budget = new Budget('example budget', 3000, [
-            new IncomeSource('Job', 1800)
-        ], [
-            new Spence('rent/mortgage', 1200),
-            new Spence('phone', 120),
-            new Spence('electricity', 180),
-            new Spence('gas', 120),
-            new Spence('water', 100),
-            new Spence('cable/internet', 80),
-            new Spence('garbage', 100),
-            new Spence('transportation', 120),
-            new Spence('food', 200),
-            new Spence('clothe', 40),
-            new Spence('entertainment', 100),
-            new Spence('debts', 1200),
-        ]);
-        budget.db = this.model.db;
+        const budget = new Budget({
+            name: 'example budget',
+            _limit: 3000, 
+            incomeSource: [
+                new IncomeSource({name: 'Job', value: 1800})
+            ],
+            spence: [
+                new Spence({name: 'rent/mortgage', value: 1200}),
+                new Spence({name: 'phone', value: 120}),
+                new Spence({name: 'electricity', value: 180}),
+                new Spence({name: 'gas', value: 120}),
+                new Spence({name: 'water', value: 100}),
+                new Spence({name: 'cable/internet', value: 80}),
+                new Spence({name: 'garbage', value: 100}),
+                new Spence({name: 'transportation', value: 120}),
+                new Spence({name: 'food', value: 200}),
+                new Spence({name: 'clothe', value: 40}),
+                new Spence({name: 'entertainment', value: 100}),
+                new Spence({name: 'debts', value: 1200}),
+            ]
+        });
         budget.insert();
         return budget;
     }

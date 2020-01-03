@@ -15,7 +15,7 @@ export class IncomeSourceComponent implements OnInit {
 
     ngOnInit() {
         if (!this.orgIncomeSource)
-            this.incomeSource = new IncomeSource('my income source', 100);
+            this.incomeSource = new IncomeSource({name: 'my income source', value: 100});
         else
             this.incomeSource = _.cloneDeep(this.orgIncomeSource);
     }

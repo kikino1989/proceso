@@ -20,7 +20,7 @@ export class HabitComponent implements OnInit {
         if (this.orgHabit) {
             this.habit = _.cloneDeep(this.orgHabit);
         } else {
-            this.habit = new Habit('My Habit');
+            this.habit = new Habit({name: 'My Habit'});
         }
     }
 

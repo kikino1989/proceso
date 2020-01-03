@@ -19,7 +19,11 @@ export class StepComponent implements OnInit {
         if (this.orgProspectingStep) {
             this.prospectingStep = _.cloneDeep(this.orgProspectingStep);
         } else {
-            this.prospectingStep = new ProspectingSteps(this.lastPosition, "My Step", "My Step", "", "", "");
+            this.prospectingStep = new ProspectingSteps({
+                position: this.lastPosition,
+                name: "My Step",
+                description: "My Step"
+            });
         }
     }
 
