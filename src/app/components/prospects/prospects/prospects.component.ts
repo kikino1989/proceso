@@ -27,8 +27,8 @@ export class ProspectsComponent implements OnInit {
             this.prospectService.getProspects().then(prospects => {
                 this.prospects = prospects;
                 this.orgProspects = _.cloneDeep(this.prospects);
+                this.prospectService.getProspectingSteps().then(steps => this.prospectingSteps = steps);
             });
-            this.prospectService.getProspectingSteps().then(steps => this.prospectingSteps = steps);
         });
     }
 

@@ -5,6 +5,6 @@ export class HabitsRecord extends BaseModel {
     public date: string;
     constructor(properties?: HabitsRecord | any) {
         super('HabitsRecord');
-        this.loadModel(properties);
+        this.loadModel(properties, this);
     }
 }

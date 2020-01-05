@@ -7,7 +7,7 @@ export class Book extends BaseModel {
     public read = false;
     constructor(properties?: Book | any) { 
         super('Book');
-        this.loadModel(properties);
+        this.loadModel(properties, this);
     }
 
     static getDefaultBooks(): Book[] {

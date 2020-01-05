@@ -13,7 +13,7 @@ export class Habit extends BaseModel {
     public done = false;
     constructor(properties?: Habit | any) {
         super('Habit');
-        this.loadModel(properties);
+        this.loadModel(properties, this);
     }
 
     static getDefaultHabits(): Habit[] {

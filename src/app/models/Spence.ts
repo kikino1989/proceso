@@ -13,6 +13,6 @@ export class Spence extends BaseModel implements IValuable {
     public _limit?: number;
     constructor(properties?: Spence | any) {
         super('Spence');
-        this.loadModel(properties);
+        this.loadModel(properties, this);
     }
 }

@@ -9,6 +9,6 @@ export class Reminder extends BaseModel {
     public entityClass?: string;
     constructor(properties?: Reminder | any) {
         super('Reminder');
-        this.loadModel(properties);
+        this.loadModel(properties, this);
     }
 }

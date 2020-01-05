@@ -10,13 +10,10 @@ export class BaseModel implements IModel {
         this.tableName = tableName;
     }
 
-    protected loadModel(item): BaseModel {
-        const model = new BaseModel(this.tableName);
+    protected loadModel(item, model:any = new BaseModel(this.tableName)): BaseModel {
         model.db = this.db;
         for(let prop in item) {
-            if (prop !== 'tableName' && prop !== 'db')  {
-                model[prop] = item[prop];
-            }
+            model[prop] = item[prop];
         }
         return model;
     }

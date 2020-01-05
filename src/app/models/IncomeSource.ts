@@ -12,6 +12,6 @@ export class IncomeSource extends BaseModel implements IValuable {
     public date?: string;
     constructor(properties?: IncomeSource | any) {
         super('IncomeSource');
-        this.loadModel(properties);
+        this.loadModel(properties, this);
     }
 }

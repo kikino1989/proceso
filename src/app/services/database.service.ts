@@ -109,8 +109,8 @@ export class DatabaseService {
                             args.push(_default[prop]);
                         }
                     }
-                    sql += `${fields.join(",").replace(/, \s*$/, '')}) VALUES(`;
-                    sql += `${placeHolders.join(",").replace(/, \s*$/, '')})`;
+                    sql += `${fields.join(",").replace(/,\s*$/, '')}) VALUES(`;
+                    sql += `${placeHolders.join(",").replace(/,\s*$/, '')})`;
                     tx.executeSql(sql, args);
                 });
             }

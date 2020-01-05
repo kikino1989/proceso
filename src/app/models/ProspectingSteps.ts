@@ -9,7 +9,7 @@ export class ProspectingSteps extends BaseModel {
     public pointB?: string;
     constructor(properties?: ProspectingSteps | any) {
         super('ProspectingSteps');
-        this.loadModel(properties);
+        this.loadModel(properties, this);
     }
 
     static getDefaultSteps(): ProspectingSteps[] {

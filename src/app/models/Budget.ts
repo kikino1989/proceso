@@ -15,7 +15,7 @@ export class Budget extends BaseModel {
     public parentID?: number;
     constructor(properties?: Budget | any) {
         super('Budget');
-        this.loadModel(properties);
+        this.loadModel(properties, this);
     }
 
     get totalIncome(): number {
