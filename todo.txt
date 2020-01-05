@@ -1,5 +1,4 @@
 -implement native functionality
-fix scrolling issue.
 create relationships loading and inserting methods.
 check that everything is being saved to the database.
 
