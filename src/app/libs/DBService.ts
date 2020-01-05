@@ -10,9 +10,9 @@ export abstract class DBService {
     ) { this.init(); }
 
     waitForDatabase(next: Function) {
-        this.database.openDatabase().then((db) => {
+        return this.database.openDatabase().then((db) => {
             this.model.db = db;
-            next(this.database.db);
+            return next(this.database.db);
         });
     }
 

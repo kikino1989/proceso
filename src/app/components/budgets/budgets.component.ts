@@ -27,8 +27,9 @@ export class BudgetsComponent {
     }
 
     addBudget() {
-        this.budgetsService.waitForDatabase(() => {
-            this.budgets.push(this.budgetsService.createBudget());
+        this.budgetsService.waitForDatabase(async () => {
+            const budget = await this.budgetsService.createBudget();
+            this.budgets.push(budget);
         });
     }
 }

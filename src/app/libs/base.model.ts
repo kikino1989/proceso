@@ -1,5 +1,6 @@
 import { IModel } from './IModel';
 import { SQLiteObject } from '@ionic-native/sqlite/ngx';
+import * as _ from 'lodash';
 
 export class BaseModel implements IModel {
     public tableName: string;
@@ -13,7 +14,11 @@ export class BaseModel implements IModel {
     protected loadModel(item, model:any = new BaseModel(this.tableName)): BaseModel {
         model.db = this.db;
         for(let prop in item) {
-            model[prop] = item[prop];
+            if (typeof item[prop] === "object") {
+                model[prop] = _.cloneDeep(item[prop]);
+            } else {
+                model[prop] = item[prop];
+            }
         }
         return model;
     }
@@ -39,7 +44,7 @@ export class BaseModel implements IModel {
                         all.push(this.loadModel(result.rows.item(i)));
                     }
                     resolve(all);
-                });
+                }).catch(e => reject(e));
         });
     }
 
@@ -52,7 +57,7 @@ export class BaseModel implements IModel {
             let sql = `UPDATE ${this.tableName} SET `;
             const args = [];
             for(let prop in this) {
-                if (this.hasOwnProperty(prop) &&
+                if (typeof this[prop] === "object" &&
                     prop !== 'tableName' && prop !== 'db')  {
                     sql += `${prop} = ?, `;
                     args.push(this[prop]);
@@ -80,12 +85,11 @@ export class BaseModel implements IModel {
             const placeHolders = [];
             const fields = [];
 
-            let sql = `INSERT INTO ${this.tableName} VALUES(`;
+            let sql = `INSERT INTO ${this.tableName}(`;
             const args = [];
             for(let prop in this) {
-                if (this.hasOwnProperty(prop) &&
-                    prop !== 'tableName' && prop !== 'id' &&
-                    prop !== 'tableName' && prop !== 'db')  {
+                if (typeof this[prop] !== "object" &&
+                    prop !== 'tableName' && prop !== 'id' && prop !== 'db')  {
                     placeHolders.push('?');
                     fields.push(prop);
                     args.push(this[prop]);

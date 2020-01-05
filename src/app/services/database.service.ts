@@ -33,7 +33,7 @@ export class DatabaseService {
             tx.executeSql("CREATE TABLE IF NOT EXISTS Book(id INTEGER PRIMARY KEY AUTOINCREMENT, position INTEGER NOT NULL, name TEXT NOT NULL, progress INTEGER NOT NULL, read BOOLEAN NOT NULL)");
             tx.executeSql("CREATE INDEX IF NOT EXISTS bk_name ON Book(name)");
 
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Budget(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, _limit NUMERIC NOT NULL, active BOOLEAN NOT NULL, startDate TEXT NOT NULL, snapshot TEXT NOT NULL, parentID INTEGER NOT NULL, FOREIGN KEY(parentID) REFERENCES Budget(id))");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS Budget(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, _limit NUMERIC NOT NULL, active BOOLEAN NOT NULL, startDate TEXT NOT NULL, snapshot TEXT NOT NULL, parentID INTEGER, FOREIGN KEY(parentID) REFERENCES Budget(id))");
             tx.executeSql("CREATE INDEX IF NOT EXISTS bgt_name ON Budget(name)");
 
             tx.executeSql("CREATE TABLE IF NOT EXISTS Habit(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, timeGoal INTEGER, done BOOLEAN NOT NULL DEFAULT 0, dueDate TEXT, description TEXT, frequency TEXT NOT NULL DEFAULT 'daily')");
@@ -55,9 +55,6 @@ export class DatabaseService {
 
             tx.executeSql("CREATE TABLE IF NOT EXISTS Reminder(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, note TEXT, frequency TEXT NOT NULL, entityID INTEGER NOT NULL, entityClass TEXT NOT NULL)");
             tx.executeSql("CREATE INDEX IF NOT EXISTS r_name ON Reminder(name)");
-
-            // tx.executeSql("CREATE TABLE IF NOT EXISTS db_version(version TEXT)");
-            // tx.executeSql("INSERT INTO db_version VALUES('0.0.0')");
             // finished creating tables
         });
     }

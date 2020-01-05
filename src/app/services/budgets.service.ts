@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import {IncomeSource} from '../models/IncomeSource';
 import { DBService } from '../libs/DBService';
 import { DatabaseService } from './database.service';
+import { SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 const HOUR_PERIOD = 8 * 1000 * 60 * 60;
 
@@ -32,29 +33,32 @@ export class BudgetsService extends DBService {
     }
 
     createBudget() {
-        const budget = new Budget({
-            name: 'example budget',
-            _limit: 3000, 
-            incomeSource: [
-                new IncomeSource({name: 'Job', value: 1800})
-            ],
-            spence: [
-                new Spence({name: 'rent/mortgage', value: 1200}),
-                new Spence({name: 'phone', value: 120}),
-                new Spence({name: 'electricity', value: 180}),
-                new Spence({name: 'gas', value: 120}),
-                new Spence({name: 'water', value: 100}),
-                new Spence({name: 'cable/internet', value: 80}),
-                new Spence({name: 'garbage', value: 100}),
-                new Spence({name: 'transportation', value: 120}),
-                new Spence({name: 'food', value: 200}),
-                new Spence({name: 'clothe', value: 40}),
-                new Spence({name: 'entertainment', value: 100}),
-                new Spence({name: 'debts', value: 1200}),
-            ]
+        return this.waitForDatabase(async (db: SQLiteObject) => {
+            const budget = new Budget({
+                db,
+                name: 'example budget',
+                _limit: 3000, 
+                incomeSources: [
+                    new IncomeSource({name: 'Job', value: 1800})
+                ],
+                spences: [
+                    new Spence({name: 'rent/mortgage', value: 1200}),
+                    new Spence({name: 'phone', value: 120}),
+                    new Spence({name: 'electricity', value: 180}),
+                    new Spence({name: 'gas', value: 120}),
+                    new Spence({name: 'water', value: 100}),
+                    new Spence({name: 'cable/internet', value: 80}),
+                    new Spence({name: 'garbage', value: 100}),
+                    new Spence({name: 'transportation', value: 120}),
+                    new Spence({name: 'food', value: 200}),
+                    new Spence({name: 'clothe', value: 40}),
+                    new Spence({name: 'entertainment', value: 100}),
+                    new Spence({name: 'debts', value: 1200}),
+                ]
+            });
+            budget.insert();
+            return budget;
         });
-        budget.insert();
-        return budget;
     }
 
     async watchBudget(today = moment().format('Do')) {
