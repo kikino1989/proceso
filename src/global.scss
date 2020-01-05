@@ -28,6 +28,13 @@
 * {
     white-space: normal;
 }
+
+ion-item {
+    touch-action: auto !important;
+    user-select: auto !important;
+    -webkit-user-drag: auto !important;
+}
+
 ion-icon {
     margin-right: 8px;
 }

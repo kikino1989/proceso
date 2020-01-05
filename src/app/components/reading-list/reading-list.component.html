@@ -11,7 +11,7 @@
                 (ionChange)="filterBooks($event.target.value)">
             </ion-input>
         </ion-list-header>
-        <ion-item (swipeLeft)="deleteBook(book)" class="ion-no-padding no-inner-padding" *ngFor="let book of books">
+        <ion-item class="ion-no-padding no-inner-padding" *ngFor="let book of books">
             <ion-grid class="ion-no-padding">
                 <ion-row>
                     <ion-col size="1.5"> 
