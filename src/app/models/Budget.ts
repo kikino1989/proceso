@@ -15,6 +15,10 @@ export class Budget extends BaseModel {
     public parentID?: number;
     constructor(properties?: Budget | any) {
         super('Budget');
+        this.dependencies = [
+            {propertyName: 'incomeSources', tableName: 'IncomeSource', classRef: new IncomeSource()},
+            {propertyName: 'incomeSources', tableName: 'IncomeSource', classRef: new Spence()}
+        ];
         this.loadModel(properties, this);
     }
 

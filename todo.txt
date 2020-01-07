@@ -1,5 +1,5 @@
 -implement native functionality
-create relationships loading and inserting methods.
+check that relationships work as intended.
 check that everything is being saved to the database.
 
 image upload in prospects.
