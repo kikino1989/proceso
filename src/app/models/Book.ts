@@ -5,9 +5,11 @@ export class Book extends BaseModel {
     public name: string;
     public progress = 0;
     public read = false;
-    constructor(properties?: Book | any) { 
+    constructor(properties?: Book | any) {
         super('Book');
-        this.loadModel(properties, this);
+        if (properties) {
+            this.loadModel(properties, this);
+        }
     }
 
     static getDefaultBooks(): Book[] {

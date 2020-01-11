@@ -1,5 +1,5 @@
 -implement native functionality
-check that relationships work as intended.
+dependencies not saving.
 check that everything is being saved to the database.
 
 image upload in prospects.

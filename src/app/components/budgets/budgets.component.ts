@@ -16,7 +16,7 @@ export class BudgetsComponent {
     ngOnInit() {
         this.budgetsService.waitForDatabase(() => {
             this.budgetsService
-                .getBudgets({snapshot: false})
+                .getBudgets({snapshot: null})
                 .then(budgets => this.budgets = budgets);
         });
     }
@@ -24,6 +24,7 @@ export class BudgetsComponent {
     removeBudget(budget) {
         const index = this.budgets.indexOf(budget);
         this.budgets.splice(index, 1);
+        budget.delete();
     }
 
     addBudget() {

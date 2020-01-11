@@ -8,6 +8,8 @@ export class Prospect extends BaseModel {
     public step = 0;
     constructor(properties?: Prospect | any) {
         super('Prospect');
-        this.loadModel(properties, this);
+        if (properties) {
+            this.loadModel(properties, this);
+        }
     }
 }

@@ -8,6 +8,12 @@ export class BaseModel implements IModel {
     public id: number;
     public db: SQLiteObject;
     public dependencies: Dependency[] = [];
+    public _loadDeps = true;
+    public primaryKey = 'id';
+    public dependencyForeignKey: string;
+    protected excludedFields = [
+        'excludedFields', 'db', 'tableName', 'dependencies', '_loadDeps', 'primaryKey', 'dependencyForeignKey'
+    ];
 
     constructor(tableName) {
         this.tableName = tableName;
@@ -22,23 +28,29 @@ export class BaseModel implements IModel {
                 model[prop] = item[prop];
             }
         }
-        return model.loadDependencies();
+        console.log('load deps::', this._loadDeps)
+        if (model._loadDeps)
+            return model.loadDependencies();
+        return model;
     }
 
     protected loadDependencies(): Promise<BaseModel> {
-        if (!this.dependencies.length)
-            return Promise.resolve(this);
-
+        console.log('load deps runs...')
         return new Promise((resolve, reject) => {
+            if (!this.dependencies.length)
+                return resolve(this);
+
             this.dependencies.forEach((dependency, index) => {
                 this.db.executeSql(`SELECT * FROM ${dependency.tableName} WHERE id = ?`, [this.id]).then(async results => {
                     const all = [];
                     for(var i = 0; i < results.rows.length; i++) {
-                        all.push(await this.loadModel(results.rows.item(i), dependency.classRef));
+                        const dep = await this.loadModel(results.rows.item(i), Object.create(dependency.classRef));
+                        dep.db = this.db;
+                        all.push(dep);
                     }
                     this[dependency.propertyName] = all;
                     if (this.dependencies.length - 1 === index) {
-                        resolve(this);
+                        return resolve(this);
                     }
                 }).catch(e => reject(e));
             });
@@ -54,7 +66,11 @@ export class BaseModel implements IModel {
                 sql += ' where'
                 for (let key in where) {
                     if (where.hasOwnProperty(key)) {
-                        sql += ` ${key} = ? AND`;
+                        if (where[key] === null) {
+                            sql += ` ${key} IS ? AND`;
+                        } else {
+                            sql += ` ${key} = ? AND`;
+                        }
                         args.push(where[key]);
                     }
                 }
@@ -79,8 +95,8 @@ export class BaseModel implements IModel {
             let sql = `UPDATE ${this.tableName} SET `;
             const args = [];
             for(let prop in this) {
-                if (typeof this[prop] === "object" &&
-                    prop !== 'tableName' && prop !== 'db')  {
+                if (typeof this[prop] !== "object" &&
+                    !this.excludedFields.includes(prop))  {
                     sql += `${prop} = ?, `;
                     args.push(this[prop]);
                 }
@@ -89,7 +105,7 @@ export class BaseModel implements IModel {
             sql = `${sql.replace(/,\s*$/, "")} WHERE id = ?`;
             this.db.executeSql(sql, args).then(() => {
                 this.updateDependencies().then(() => {
-                    resolve();
+                    return resolve();
                 }).catch((e) => reject(e));
             }).catch((e) => reject(e));
         });
@@ -97,7 +113,7 @@ export class BaseModel implements IModel {
 
     delete() {
         return new Promise((resolve, reject) => {
-            let sql = `DELETE ${this.tableName} WHERE id = ?`;
+            let sql = `DELETE FROM ${this.tableName} WHERE id = ?`;
             this.db.executeSql(sql, [this.id]).then(() => {
                 resolve();
             }).catch((e) => reject(e));
@@ -113,7 +129,10 @@ export class BaseModel implements IModel {
             const args = [];
             for(let prop in this) {
                 if (typeof this[prop] !== "object" &&
-                    prop !== 'tableName' && prop !== 'id' && prop !== 'db')  {
+                    !this.excludedFields.includes(prop))  {
+                    if (prop === 'id' && (this['id'] === undefined || this['id'] === null)) {
+                        continue;
+                    }
                     placeHolders.push('?');
                     fields.push(prop);
                     args.push(this[prop]);
@@ -122,12 +141,10 @@ export class BaseModel implements IModel {
 
             sql += `${fields.join(',').replace(/,\s*$/, "")}) VALUES(`;
             sql += `${placeHolders.join(',').replace(/,\s*$/, "")})`;
-            this.db.executeSql(sql, args).then(() => {
-                this.db.executeSql('SELECT last_inserted_rowid()').then((result) => {
-                    this.id = result.rows.item(0).id;
-                    this.updateDependencies().then(() => {
-                        resolve();
-                    }).catch((e) => reject(e));
+            this.db.executeSql(sql, args).then((result) => {
+                this.id = result.insertId;
+                this.updateDependencies().then(() => {
+                    return resolve();
                 }).catch((e) => reject(e));
             }).catch((e) => reject(e));
         });
@@ -144,18 +161,20 @@ export class BaseModel implements IModel {
     }
 
     updateDependencies() {
-        if (!this.dependencies.length)
-            return Promise.resolve();
-
         return new Promise((resolve, reject) => {
+            if (!this.dependencies.length || !this.dependencyForeignKey)
+                return resolve();
+
             this.dependencies.forEach((dependency, index) => {
                 const dependencyInstances: BaseModel[] = this[dependency.propertyName];
                 if (dependencyInstances && dependencyInstances.length) {
                     this.db.executeSql(`DELETE FROM ${dependency.tableName}`, []).then(() => {
                         dependencyInstances.forEach(inst => {
+                            inst.db = this.db;
+                            inst[this.dependencyForeignKey] = this[this.primaryKey];
                             inst.insert().then(() => {
                                 if (this.dependencies.length - 1 === index) {
-                                    resolve();
+                                    return resolve();
                                 }
                             }).catch(e => reject(e));
                         });

@@ -11,15 +11,18 @@ export class Budget extends BaseModel {
     public spences: Spence[] = [];
     public active: boolean = false;
     public startDate = DAYS.FIRST;
-    public snapshot: string | false = false;
+    public snapshot?: string;
     public parentID?: number;
-    constructor(properties?: Budget | any) {
+    constructor(properties?: Budget | any, public _loadDeps = false) {
         super('Budget');
         this.dependencies = [
             {propertyName: 'incomeSources', tableName: 'IncomeSource', classRef: new IncomeSource()},
-            {propertyName: 'incomeSources', tableName: 'IncomeSource', classRef: new Spence()}
+            {propertyName: 'spences', tableName: 'Spence', classRef: new Spence()}
         ];
-        this.loadModel(properties, this);
+        this.dependencyForeignKey = 'budgetID';
+        if (properties) {
+            this.loadModel(properties, this);
+        }
     }
 
     get totalIncome(): number {

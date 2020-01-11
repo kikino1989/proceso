@@ -33,7 +33,7 @@ export class DatabaseService {
             tx.executeSql("CREATE TABLE IF NOT EXISTS Book(id INTEGER PRIMARY KEY AUTOINCREMENT, position INTEGER NOT NULL, name TEXT NOT NULL, progress INTEGER NOT NULL, read BOOLEAN NOT NULL)");
             tx.executeSql("CREATE INDEX IF NOT EXISTS bk_name ON Book(name)");
 
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Budget(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, _limit NUMERIC NOT NULL, active BOOLEAN NOT NULL, startDate TEXT NOT NULL, snapshot TEXT NOT NULL, parentID INTEGER, FOREIGN KEY(parentID) REFERENCES Budget(id))");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS Budget(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, _limit NUMERIC NOT NULL, active BOOLEAN NOT NULL, startDate TEXT NOT NULL, snapshot TEXT DEFAULT NULL, parentID INTEGER, FOREIGN KEY(parentID) REFERENCES Budget(id))");
             tx.executeSql("CREATE INDEX IF NOT EXISTS bgt_name ON Budget(name)");
 
             tx.executeSql("CREATE TABLE IF NOT EXISTS Habit(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, timeGoal INTEGER, done BOOLEAN NOT NULL DEFAULT 0, dueDate TEXT, description TEXT, frequency TEXT NOT NULL DEFAULT 'daily')");
@@ -100,7 +100,8 @@ export class DatabaseService {
         
                     for(let prop in _default) {
                         if (_default.hasOwnProperty(prop) &&
-                            prop !== "tableName" && prop !== "db")  {
+                            prop !== "tableName" && prop !== "db" &&
+                            prop !== "dependencies")  {
                             placeHolders.push("?");
                             fields.push(prop);
                             args.push(_default[prop]);
