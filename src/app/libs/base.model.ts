@@ -11,7 +11,7 @@ export class BaseModel implements IModel {
     public _loadDeps = true;
     public primaryKey = 'id';
     public dependencyForeignKey: string;
-    protected excludedFields = [
+    public static excludedFields = [
         'excludedFields', 'db', 'tableName', 'dependencies', '_loadDeps', 'primaryKey', 'dependencyForeignKey'
     ];
 
@@ -19,7 +19,12 @@ export class BaseModel implements IModel {
         this.tableName = tableName;
     }
 
-    protected loadModel(item, model:any = new BaseModel(this.tableName)): Promise<BaseModel> {
+    protected loadModel(item, model?:any): Promise<BaseModel> {
+        if (!model) {
+            model = new BaseModel(this.tableName);
+            model.dependencies = _.cloneDeep(this.dependencies);
+            model.dependencyForeignKey = this.dependencyForeignKey;
+        }
         model.db = this.db;
         for(let prop in item) {
             if (typeof item[prop] === "object") {
@@ -29,9 +34,6 @@ export class BaseModel implements IModel {
             }
         }
 
-        if (this.dependencies.length)
-            model.dependencies = _.cloneDeep(this.dependencies);
-
         if (model._loadDeps)
             return model.loadDependencies();
             
@@ -39,7 +41,6 @@ export class BaseModel implements IModel {
     }
 
     protected loadDependencies(): Promise<BaseModel> {
-        console.log('load deps runs...', this.dependencies, this.dependencyForeignKey)
         return new Promise((resolve, reject) => {
             if (!this.dependencies.length)
                 return resolve(this);
@@ -100,7 +101,7 @@ export class BaseModel implements IModel {
             const args = [];
             for(let prop in this) {
                 if (typeof this[prop] !== "object" &&
-                    !this.excludedFields.includes(prop))  {
+                    !BaseModel.excludedFields.includes(prop))  {
                     sql += `${prop} = ?, `;
                     args.push(this[prop]);
                 }
@@ -133,7 +134,7 @@ export class BaseModel implements IModel {
             const args = [];
             for(let prop in this) {
                 if (typeof this[prop] !== "object" &&
-                    !this.excludedFields.includes(prop))  {
+                    !BaseModel.excludedFields.includes(prop))  {
                     if (prop === 'id' && (this['id'] === undefined || this['id'] === null)) {
                         continue;
                     }

@@ -100,8 +100,7 @@ export class DatabaseService {
         
                     for(let prop in _default) {
                         if (_default.hasOwnProperty(prop) &&
-                            prop !== "tableName" && prop !== "db" &&
-                            prop !== "dependencies")  {
+                            !BaseModel.excludedFields.includes(prop))  {
                             placeHolders.push("?");
                             fields.push(prop);
                             args.push(_default[prop]);
