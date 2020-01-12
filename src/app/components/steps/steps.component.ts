@@ -48,6 +48,7 @@ export class StepsComponent implements OnInit {
                     this.orgProspectingSteps.push(prospectingStep);
                     this.prospectingSteps.push(prospectingStep);
                 }
+                prospectingStep.insert();
             });
         });
     }
@@ -65,6 +66,7 @@ export class StepsComponent implements OnInit {
                     if (prospectingStep.hasOwnProperty(prop))
                         prospectingStep[prop] = data[prop];
                 }
+                prospectingStep.update();
             });
         });
     }
@@ -75,6 +77,7 @@ export class StepsComponent implements OnInit {
         });
         this.prospectingSteps.splice(index, 1);
         this.orgProspectingSteps.splice(index, 1);
+        prospectingStep.delete();
     }
 
     filterProspectingSteps(value) {
@@ -103,5 +106,10 @@ export class StepsComponent implements OnInit {
         this.prospectingSteps.splice(index, 1, temp);
         step.position = step.position + dir;
         this.orgProspectingSteps = _.cloneDeep(this.prospectingSteps);
+        this.updateSteps();
+    }
+
+    updateSteps() {
+        this.prospectingSteps.forEach(step => step.update());
     }
 }

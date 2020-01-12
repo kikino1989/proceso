@@ -36,6 +36,7 @@ export class HabitsRecordComponent implements OnInit {
         }
         this.records = _.cloneDeep(this.orgRecords);
     }
+    
     filterHabitsRecords(date: string) {
         this.records = this.orgRecords.filter(record =>  !date || record.date.indexOf(date) > -1);
     }

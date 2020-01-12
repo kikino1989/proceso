@@ -22,10 +22,6 @@ export class habitsService extends DBService {
         return this.submodel.all({habitID: habit.id}) as Promise<HabitsRecord[]>;
     }
 
-    deleteHabit(habit: Habit) {
-        habit.delete();
-    }
-
     insertHabitsRecord(habitsRecord: HabitsRecord) {
         // to be implemented...
     }

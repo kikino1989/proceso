@@ -50,7 +50,9 @@ export class ReadingListComponent implements OnInit {
                 {
                     text: 'Add',
                     handler: (data) => {
-                        this.books.push(new Book({position: this.books.length, name: data.name}));
+                        const book = new Book({position: this.books.length, name: data.name})
+                        this.books.push(book);
+                        book.insert();
                     }
                 }
             ]
@@ -63,6 +65,7 @@ export class ReadingListComponent implements OnInit {
         });
         this.books.splice(index, 1);
         this.orgBooks.splice(index, 1);
+        book.delete();
     }
 
     filterBooks(value) {
@@ -77,6 +80,7 @@ export class ReadingListComponent implements OnInit {
         } else {
             book.read = false;
         }
+        book.update();
     }
 
     updateProgress(book: Book) {
@@ -85,5 +89,6 @@ export class ReadingListComponent implements OnInit {
         } else {
             book.progress = 0;
         }
+        book.update();
     }
 }

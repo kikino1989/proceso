@@ -84,10 +84,7 @@ export class HabitsComponent implements OnInit {
         });
         this.habits.splice(index, 1);
         this.orgHabits.splice(index, 1);
-        this.habitsService.waitForDatabase(() => {
-            this.habitsService.deleteHabit(habit);
-            this.deleteHabitRecords(habit);
-        });
+        habit.delete();
     }
 
     changeHabit(habit) {
@@ -138,10 +135,5 @@ export class HabitsComponent implements OnInit {
                 }
             });
         });
-    }
-
-    
-    deleteHabitRecords(habit: Habit) {
-
     }
 }

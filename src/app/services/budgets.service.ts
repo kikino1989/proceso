@@ -56,7 +56,6 @@ export class BudgetsService extends DBService {
                     new Spence({name: 'debts', value: 1200}),
                 ]
             }, false);
-            budget.insert();
             return budget;
         });
     }

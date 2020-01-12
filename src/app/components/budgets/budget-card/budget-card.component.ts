@@ -28,6 +28,7 @@ export class BudgetCardComponent implements OnInit {
                     this.budget[prop] = data[prop];
             }
             this.mode = MODES.EDIT;
+            this.budget.update();
         };
     }
 

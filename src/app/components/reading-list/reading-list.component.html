@@ -35,7 +35,7 @@
                 <ion-row>
                     <ion-col>
                         <ion-range class="ion-no-padding ion-padding-horizontal" snaps pin ticks mode="ios"
-                            [(ngModel)]="book.progress" min="0" [max]="100" step="1" (ionChange)="updateRead(book)">
+                            [(ngModel)]="book.progress" min="0" [max]="100" step="10" (ionChange)="updateRead(book)">
                             <ion-icon size="small" slot="start" name="book"></ion-icon>
                             <ion-icon slot="end" name="book"></ion-icon>
                         </ion-range>
