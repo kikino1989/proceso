@@ -13,7 +13,7 @@ export class Budget extends BaseModel {
     public startDate = DAYS.FIRST;
     public snapshot?: string;
     public parentID?: number;
-    constructor(properties?: Budget | any, public _loadDeps = false) {
+    constructor(properties?: Budget | any, public _loadDeps = true) {
         super('Budget');
         this.dependencies = [
             {propertyName: 'incomeSources', tableName: 'IncomeSource', classRef: new IncomeSource()},

@@ -28,23 +28,27 @@ export class BaseModel implements IModel {
                 model[prop] = item[prop];
             }
         }
-        console.log('load deps::', this._loadDeps)
+
+        if (this.dependencies.length)
+            model.dependencies = _.cloneDeep(this.dependencies);
+
         if (model._loadDeps)
             return model.loadDependencies();
+            
         return model;
     }
 
     protected loadDependencies(): Promise<BaseModel> {
-        console.log('load deps runs...')
+        console.log('load deps runs...', this.dependencies, this.dependencyForeignKey)
         return new Promise((resolve, reject) => {
             if (!this.dependencies.length)
                 return resolve(this);
 
             this.dependencies.forEach((dependency, index) => {
-                this.db.executeSql(`SELECT * FROM ${dependency.tableName} WHERE id = ?`, [this.id]).then(async results => {
+                this.db.executeSql(`SELECT * FROM ${dependency.tableName} WHERE ${this.dependencyForeignKey} = ?`, [this.id]).then(async results => {
                     const all = [];
                     for(var i = 0; i < results.rows.length; i++) {
-                        const dep = await this.loadModel(results.rows.item(i), Object.create(dependency.classRef));
+                        const dep = await this.loadModel(results.rows.item(i), _.cloneDeep(dependency.classRef));
                         dep.db = this.db;
                         all.push(dep);
                     }
