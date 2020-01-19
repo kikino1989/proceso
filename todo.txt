@@ -1,6 +1,12 @@
 -implement native functionality
-dependencies not saving.
-check that everything is being saved to the database.
+budget editing doesn't work.
+steps not loading in the prospects dialog.
+prospects not saving.
+steps in prospecting steps dialog.
+add steps dialog not working.
+habits list not scrolling.
+book progress not updating in the reaing list page.
+
 
 image upload in prospects.
 import from contacts.

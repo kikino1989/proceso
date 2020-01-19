@@ -62,7 +62,7 @@ export class BaseModel implements IModel {
         });
     }
 
-    all(where: object = {}): Promise<BaseModel[]> {
+    all(where: any = {}): Promise<BaseModel[]> {
         const all = [];
         return new Promise((resolve, reject) => {
             let sql = `SELECT * FROM ${this.tableName}`;
@@ -108,6 +108,7 @@ export class BaseModel implements IModel {
             }
             
             sql = `${sql.replace(/,\s*$/, "")} WHERE id = ?`;
+            args.push(this.id);
             this.db.executeSql(sql, args).then(() => {
                 this.updateDependencies().then(() => {
                     return resolve();

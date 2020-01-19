@@ -4,8 +4,8 @@
             <ion-grid>
                 <ion-row>
                     <ion-col class="card-title-side">
-                        <ion-radio *ngIf="!budget.snapshot" mode="md" [(checked)]="budget.active"></ion-radio>
-                        {{ budget.snapshot || budget.name }}
+                        <ion-radio *ngIf="!budget.snapshot" mode="md" [checked]="budget.active" (ionSelect)="updateBudgets($event, budget)"></ion-radio>
+                        {{ budget.snapshot || budget.name }} {{ budget.active }}
                     </ion-col>
                     <ion-col class="card-title-side right" size="2">
                         <ion-icon *ngIf="!budget.snapshot; else closeButton" name="trash" color="danger" (click)="removeBudget(budget)"></ion-icon>

@@ -73,8 +73,10 @@ export class AppComponent {
                 await this.dbService.createTables(db);
                 await this.dbService.runSeeds(db);
                 await this.dbService.runUpdates(db);
-                this.budgetService.watchBudget();
                 
+                this.dbService.dbReady.subscribe(() => {
+                    this.budgetService.watchBudget();
+                });
                 this.dbService.dbReady.emit(db);
             })
             .catch(e => {

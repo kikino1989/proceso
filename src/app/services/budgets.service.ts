@@ -64,21 +64,21 @@ export class BudgetsService extends DBService {
         if (window.cordova && !this.bm.isEnabled()) {
             this.bm.enable();
         }
-        const activeBudget = await this.getActiveBudget();
-        setTimeout(async () => {
-            const hasSnapshot = await this.snapshotForThisMonth(activeBudget);
-            if (activeBudget && activeBudget.startDate.indexOf(today) && !hasSnapshot) {
-                this.takeSnapshot();
-            } 
-            this.watchBudget(today);
-        }, HOUR_PERIOD);
+        this.waitForDatabase(async () => {
+            const activeBudget = await this.getActiveBudget();
+            setTimeout(async () => {
+                const hasSnapshot = await this.snapshotForThisMonth(activeBudget);
+                if (activeBudget && activeBudget.startDate.indexOf(today) && !hasSnapshot) {
+                    this.takeSnapshot();
+                } 
+                this.watchBudget(today);
+            }, HOUR_PERIOD);
+        });
     }
 
     async getActiveBudget(): Promise<Budget> {
-        return this.database.dbReady.toPromise().then(async () => {
-            const matches = await this.getBudgets({active: true});
-            return matches.length ? matches[0] : null;
-        });
+        const matches = await this.getBudgets({active: true});
+        return matches.length ? matches[0] : null;
     }
 
     async takeSnapshot() {
@@ -99,13 +99,11 @@ export class BudgetsService extends DBService {
     }
 
     async snapshotForThisMonth(budget: Budget): Promise<boolean> {
-        return this.database.dbReady.toPromise().then(async () => {
-            if (!budget)
-                return true;
+        if (!budget)
+            return true;
 
-            const budgets = await this.getBudgets({parentID: budget.id, snapshot: moment().subtract(1, 'day').format('MM-DD-YYYY')});
-            return !!budgets.length;
-        });
+        const budgets = await this.getBudgets({parentID: budget.id, snapshot: moment().subtract(1, 'day').format('MM-DD-YYYY')});
+        return !!budgets.length;
     }
 
     getSnapshots(budget: Budget): Promise<Budget[]> {

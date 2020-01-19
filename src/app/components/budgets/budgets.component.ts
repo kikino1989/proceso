@@ -34,4 +34,9 @@ export class BudgetsComponent {
             budget.insert();
         });
     }
+
+    updateBudgets(event, budget?) {
+        budget.active = event.detail.checked;
+        this.budgets.forEach(budget => budget.update());
+    }
 }
