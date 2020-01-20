@@ -11,7 +11,8 @@ export abstract class DBService {
 
     waitForDatabase(next: Function) {
         return this.database.openDatabase().then((db) => {
-            this.model.db = db;
+            if (this.model) this.model.db = db;
+            if (this.submodel) this.submodel.db = db;
             return next(this.database.db);
         });
     }

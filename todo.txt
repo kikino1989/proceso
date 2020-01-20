@@ -1,6 +1,5 @@
 -implement native functionality
-budget editing doesn't work.
-steps not loading in the prospects dialog.
+projections not refreshing the data.
 prospects not saving.
 steps in prospecting steps dialog.
 add steps dialog not working.
