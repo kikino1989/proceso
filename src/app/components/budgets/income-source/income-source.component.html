@@ -1,5 +1,5 @@
 <ion-content>
-    <form name="income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+    <form *ngIf="incomeSource" name="income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
                 {{ !orgIncomeSource ? 'New Income Source' : 'Edit ' + incomeSource.name }}

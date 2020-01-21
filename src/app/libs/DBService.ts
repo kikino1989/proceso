@@ -6,7 +6,7 @@ export abstract class DBService {
     protected submodel: BaseModel;
     
     constructor(
-        protected database: DatabaseService
+        protected database?: DatabaseService
     ) { this.init(); }
 
     waitForDatabase(next: Function) {

@@ -3,7 +3,7 @@
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addProspect()">Add Prospect</ion-button>
     </div>
-    <ion-list lines="full">
+    <ion-list *ngIf="prospects && prospectingSteps" lines="full">
         <ion-list-header>
             <ion-label>Prospects: </ion-label>
             <ion-input type="text" clear-input="true" placeholder="Prospect name..."

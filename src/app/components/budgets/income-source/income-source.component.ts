@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IncomeSource } from '../../../models/IncomeSource';
 import { ModalController } from '@ionic/angular';
 import * as _ from 'lodash';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'income-source',
@@ -11,11 +12,17 @@ import * as _ from 'lodash';
 export class IncomeSourceComponent implements OnInit {
     @Input() orgIncomeSource?: IncomeSource;
     public incomeSource: IncomeSource;
-    constructor(public modalCtrl: ModalController) { }
+    constructor(
+        private modalCtrl: ModalController,
+        private database: DatabaseService
+    ) { }
 
     ngOnInit() {
         if (!this.orgIncomeSource)
-            this.incomeSource = new IncomeSource({name: 'my income source', value: 100});
+            this.database.openDatabase().then(db => {
+                this.incomeSource = new IncomeSource({name: 'my income source', value: 100});
+                this.incomeSource.db = db;
+            });
         else
             this.incomeSource = _.cloneDeep(this.orgIncomeSource);
     }

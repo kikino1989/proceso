@@ -1,5 +1,5 @@
 <ion-content>
-    <form name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+    <form *ngIf="prospectingStep" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
                 {{ !orgProspectingStep ? 'New Prospecting Step' : 'Edit ' + orgProspectingStep.name }}

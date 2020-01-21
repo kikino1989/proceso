@@ -1,4 +1,4 @@
-<ion-card [ngClass]="{'budget-card__modal-mode--height ion-no-padding ion-no-margin': budget.snapshot}">
+<ion-card *ngIf="budget" [ngClass]="{'budget-card__modal-mode--height ion-no-padding ion-no-margin': budget.snapshot}">
     <ion-card-header>
         <ion-card-title>
             <ion-grid>

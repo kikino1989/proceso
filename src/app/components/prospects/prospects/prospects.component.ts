@@ -66,11 +66,13 @@ export class ProspectsComponent implements OnInit {
         }).then(modal => {
             modal.present();
             modal.onWillDismiss().then(({data}) => {
-                for (let prop in data) {
-                    if (prospect.hasOwnProperty(prop))
-                        prospect[prop] = data[prop];
+                if (data) {
+                    for (let prop in data) {
+                        if (prospect.hasOwnProperty(prop))
+                            prospect[prop] = data[prop];
+                    }
+                    prospect.update();
                 }
-                prospect.update();
             });
         });
     }

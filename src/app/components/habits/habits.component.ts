@@ -92,6 +92,7 @@ export class HabitsComponent implements OnInit {
             this.addHabitRecord(habit);
         else
             this.deleteHabitRecord(habit);
+        habit.update();
     }
 
     viewHabitRecords(habit: Habit) {

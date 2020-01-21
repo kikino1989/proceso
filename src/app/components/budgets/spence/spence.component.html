@@ -1,5 +1,5 @@
 <ion-content>
-    <form name="spence-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+    <form *ngIf="spence" name="spence-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label> {{ !orgSpence ? 'New Spence' : 'Edit ' + spence.name }} </ion-label>
         </div>

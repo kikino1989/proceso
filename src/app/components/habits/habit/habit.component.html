@@ -1,5 +1,5 @@
 <ion-content>
-    <form name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+    <form *ngIf="habit" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
                 {{ !orgHabit ? 'New Habit' : 'Edit ' + habit.name }}

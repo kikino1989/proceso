@@ -3,7 +3,7 @@
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addHabit()">Add Habit</ion-button>
     </div>
-    <ion-list lines="full">
+    <ion-list *ngIf="habits" lines="full">
         <ion-list-header>
             <ion-label>Habits: </ion-label>
             <ion-input type="text" clear-input="true" placeholder="Habit name..."

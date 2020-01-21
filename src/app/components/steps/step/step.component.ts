@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProspectingSteps } from '../../../models/ProspectingSteps';
 import { ModalController } from '@ionic/angular';
 import * as _ from 'lodash';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'step',
@@ -13,16 +14,22 @@ export class StepComponent implements OnInit {
     @Input() lastPosition?: number;
     @Input() orgProspectingStep?: ProspectingSteps;
     public prospectingStep: ProspectingSteps;
-    constructor(private modalCtrl: ModalController) { }
+    constructor(
+        private modalCtrl: ModalController,
+        private database: DatabaseService
+    ) { }
 
     ngOnInit() { 
         if (this.orgProspectingStep) {
             this.prospectingStep = _.cloneDeep(this.orgProspectingStep);
         } else {
-            this.prospectingStep = new ProspectingSteps({
-                position: this.lastPosition,
-                name: "My Step",
-                description: "My Step"
+            this.database.openDatabase().then(db => {
+                this.prospectingStep = new ProspectingSteps({
+                    position: this.lastPosition,
+                    name: "My Step",
+                    description: "My Step"
+                });
+                this.prospectingStep.db = db;
             });
         }
     }

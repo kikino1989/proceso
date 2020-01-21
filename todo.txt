@@ -1,10 +1,7 @@
 -implement native functionality
-projections not refreshing the data.
-prospects not saving.
-steps in prospecting steps dialog.
-add steps dialog not working.
-habits list not scrolling.
-book progress not updating in the reaing list page.
+budget analytics not refreshing after updating.
+home page not loading data after navigating away.
+
 
 
 image upload in prospects.

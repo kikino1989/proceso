@@ -4,15 +4,14 @@ import { Book } from "../models/Book";
 import { Habit } from "../models/Habit";
 import { ProspectingSteps } from "../models/ProspectingSteps";
 import { BaseModel } from '../libs/base.model';
+import { DBService } from '../libs/DBService';
 
 export class DatabaseService {
 
     public db: SQLiteObject;
     public dbReady = new EventEmitter<SQLiteObject>();
     public dbVersion: string;
-    constructor(
-        private sqlite: SQLite
-    ) { }
+    constructor(private sqlite: SQLite) { }
 
     openDatabase(): Promise<SQLiteObject> {
         return new Promise((resolve, reject) => {

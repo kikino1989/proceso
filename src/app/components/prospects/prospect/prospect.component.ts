@@ -6,6 +6,7 @@ import * as _  from 'lodash';
 import { Reminder } from '../../../models/Reminer';
 import { OCCURS } from '../../../models/OCCURS';
 import { RemindersService } from '../../../services/reminders.service';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
     selector: 'prospect',
@@ -19,16 +20,23 @@ export class ProspectComponent implements OnInit {
     public prospect: Prospect;
     public reminder?: Reminder;
     constructor(
-        private modalCtrl: ModalController
+        private modalCtrl: ModalController,
+        private database: DatabaseService
     ) { }
 
     ngOnInit() {
         if (this.orgProspect)
             this.prospect = _.cloneDeep(this.orgProspect);
         else
-            this.prospect = new Prospect();
+            this.database.openDatabase().then(db => {
+                this.prospect = new Prospect();
+                this.prospect.db = db;
+            });
 
-        this.reminder = new Reminder({entityID: this.prospect.id, entityClass: 'Prospect'});
+        this.database.openDatabase().then(db => {
+            this.reminder = new Reminder({entityID: this.prospect.id, entityClass: 'Prospect'});
+            this.reminder.db = db;
+        });
     }
 
     ngOnDestroy() {
