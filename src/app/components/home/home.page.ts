@@ -27,7 +27,7 @@ export class HomePage {
         private navCtrl: NavController
     ) { }
 
-    ngOnInit() {
+    ionViewWillEnter() {
         this.databaseService.dbReady.subscribe(() => {
             this.budgetsService.waitForDatabase(() => {
                 this.budgetsService.getActiveBudget().then(budget => {

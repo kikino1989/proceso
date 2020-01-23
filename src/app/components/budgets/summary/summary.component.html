@@ -36,10 +36,10 @@
     </ion-list-header>
     <ion-item *ngFor="let spence of spences">
         <ion-icon *ngIf="spence.type === 'Occasional'"
-            color="warning" name="add" (click)="addToSpence(spence)">
+            color="warning" name="add-circle-outline" (click)="addToSpence(spence)">
         </ion-icon>
         <ion-icon name="card"></ion-icon>
-        <ion-label>
+        <ion-label (click)="addToSpence(spence)">
             {{ spence.name }}, 
             ${{ spence.value }},
             {{ spence.type }}
