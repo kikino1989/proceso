@@ -36,7 +36,7 @@ export class EditComponent {
     ngOnInit() {
         this.budgetForm = this.fb.group({
             name: [this.budget.name, Validators.required],
-            limit: [this.budget._limit, Validators.required],
+            _limit: [this.budget._limit, Validators.required],
             startDate: [this.budget.startDate, Validators.required]
         });;
         this.budgetSubscription = this.budgetForm.valueChanges.subscribe(() => {

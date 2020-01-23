@@ -1,7 +1,6 @@
 -implement native functionality
-budget analytics not refreshing after updating.
+need to work on the done property of the habits so that it shows its proper state.
 home page not loading data after navigating away.
-
 
 
 image upload in prospects.
