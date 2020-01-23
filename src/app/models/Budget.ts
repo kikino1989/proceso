@@ -39,7 +39,7 @@ export class Budget extends BaseModel {
         return this.totalIncome - this.totalSpending;
     }
 
-    get yearProfic() {
+    get yearlyProfit() {
         return this.profit * 12;
     }
 
