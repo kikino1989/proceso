@@ -15,7 +15,7 @@
             <ion-grid class="ion-no-padding">
                 <ion-row>
                     <ion-col size="1.5">
-                        <ion-checkbox mode="md" color="primary" [(ngModel)]="habit.done" (ionChange)="changeHabit(habit)"></ion-checkbox>
+                        <ion-checkbox mode="md" color="primary" [checked]="habit.done" (click)="changeHabit(habit, $event)"></ion-checkbox>
                     </ion-col>
                     <ion-col> 
                         <ion-label class="ion-margin-end" sizeXs="8.5" size="9.5">

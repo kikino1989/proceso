@@ -13,7 +13,7 @@ export class BudgetsComponent {
         public budgetsService: BudgetsService
     ) { }
 
-    ngOnInit() {
+    ionViewWillEnter() {
         this.budgetsService.waitForDatabase(() => {
             this.budgetsService
                 .getBudgets({snapshot: null})

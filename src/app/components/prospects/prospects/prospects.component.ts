@@ -11,7 +11,7 @@ import { ProspectComponent } from '../prospect/prospect.component';
     templateUrl: './prospects.component.html',
     styleUrls: ['./prospects.component.scss'],
 })
-export class ProspectsComponent implements OnInit {
+export class ProspectsComponent {
 
     prospects: Prospect[];
     orgProspects: Prospect[];
@@ -22,7 +22,7 @@ export class ProspectsComponent implements OnInit {
         private modalCtrl: ModalController
     ) { }
 
-    ngOnInit() {
+    ionViewWillEnter() {
         this.prospectService.waitForDatabase(() => {
             this.prospectService.getProspects().then(prospects => {
                 this.prospects = prospects;

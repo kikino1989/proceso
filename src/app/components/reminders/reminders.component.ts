@@ -8,13 +8,13 @@ import * as _ from 'lodash';
     templateUrl: './reminders.component.html',
     styleUrls: ['./reminders.component.scss'],
 })
-export class RemindersComponent implements OnInit {
+export class RemindersComponent {
 
     public reminders: Reminder[];
     private orgReminders: Reminder[];
     constructor(private remindersService: RemindersService) { }
 
-    ngOnInit() { 
+    ionViewWillEnter() { 
         this.remindersService.waitForDatabase(() => {
             this.remindersService.getReminders().then(reminders => {
                 this.orgReminders = reminders;

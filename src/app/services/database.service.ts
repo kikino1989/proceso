@@ -35,7 +35,7 @@ export class DatabaseService {
             tx.executeSql("CREATE TABLE IF NOT EXISTS Budget(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, _limit NUMERIC NOT NULL, active BOOLEAN NOT NULL, startDate TEXT NOT NULL, snapshot TEXT DEFAULT NULL, parentID INTEGER, FOREIGN KEY(parentID) REFERENCES Budget(id))");
             tx.executeSql("CREATE INDEX IF NOT EXISTS bgt_name ON Budget(name)");
 
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Habit(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, timeGoal INTEGER, done BOOLEAN NOT NULL DEFAULT 0, dueDate TEXT, description TEXT, frequency TEXT NOT NULL DEFAULT 'daily')");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS Habit(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, timeGoal INTEGER, dueDate TEXT, description TEXT, frequency TEXT NOT NULL DEFAULT 'daily')");
             tx.executeSql("CREATE INDEX IF NOT EXISTS hbt_name ON Habit(name)");
 
             tx.executeSql("CREATE TABLE IF NOT EXISTS HabitsRecord(id INTEGER PRIMARY KEY AUTOINCREMENT, habitID INTEGER NOT NULL, date TEXT NOT NULL, FOREIGN KEY(habitID) REFERENCES Habit(id))");

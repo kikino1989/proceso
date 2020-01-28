@@ -1,6 +1,7 @@
 import { OCCURS } from './OCCURS';
 import moment from 'moment';
 import { BaseModel } from '../libs/base.model';
+import { HabitsRecord } from './HabitsRecord';
 
 export enum HABITS_STATUS { STARTED = "STARTED", IN_PROGRESS = "IN PROGRESS", CREATE = "CREATE", BROKEN = "BROKEN", PERFECT = "PERFECT" }
 
@@ -11,11 +12,18 @@ export class Habit extends BaseModel {
     public frequency = OCCURS.DAILY;
     public dueDate = moment().format("MM-DD-YYYY");
     public done = false;
+    private static habitRecordModel = new HabitsRecord();
+    
     constructor(properties?: Habit | any) {
         super('Habit');
         if (properties) {
             this.loadModel(properties, this);
         }
+    }
+
+    async loadDone() {
+        this.done = await this.getDone();
+        return this;
     }
 
     static getDefaultHabits(): Habit[] {
@@ -44,6 +52,11 @@ export class Habit extends BaseModel {
                 timeGoal: 60
             })
         ];
+    }
+
+    async getDone() {
+        Habit.habitRecordModel.db = this.db;
+        return !!(await Habit.habitRecordModel.all({habitID: this.id, date: moment().format("MM-DD-YYYY")})).length;
     }
 
     get weekProgress() {

@@ -10,7 +10,7 @@ import { StepComponent } from './step/step.component';
     templateUrl: './steps.component.html',
     styleUrls: ['./steps.component.scss'],
 })
-export class StepsComponent implements OnInit {
+export class StepsComponent {
 
     
     orgProspectingSteps: ProspectingSteps[];
@@ -21,7 +21,7 @@ export class StepsComponent implements OnInit {
         private modalCtrl: ModalController
     ) { }
 
-    ngOnInit() {
+    ionViewWillEnter() {
         this.prospectService.waitForDatabase(() => {
             this.prospectService.getProspectingSteps().then(steps => {
                 this.prospectingSteps = steps;

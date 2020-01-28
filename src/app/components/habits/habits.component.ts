@@ -13,7 +13,7 @@ import moment from 'moment';
     templateUrl: './habits.component.html',
     styleUrls: ['./habits.component.scss'],
 })
-export class HabitsComponent implements OnInit {
+export class HabitsComponent {
 
     public habits: Habit[];
     public orgHabits: Habit[];
@@ -22,7 +22,7 @@ export class HabitsComponent implements OnInit {
         private modalCtrl: ModalController
     ) { }
 
-    ngOnInit() {
+    ionViewWillEnter() {
         this.habitsService.waitForDatabase(() => {
             this.habitsService.getHabits().then(habits => {
                 this.habits = habits;
@@ -87,12 +87,11 @@ export class HabitsComponent implements OnInit {
         habit.delete();
     }
 
-    changeHabit(habit) {
-        if (habit.done)
+    changeHabit(habit: Habit, {target:{checked}}) {
+        if (checked)
             this.addHabitRecord(habit);
         else
             this.deleteHabitRecord(habit);
-        habit.update();
     }
 
     viewHabitRecords(habit: Habit) {
@@ -112,29 +111,13 @@ export class HabitsComponent implements OnInit {
     }
 
     addHabitRecord(habit: Habit) {
-        this.habitsService.waitForDatabase(() => {
-            this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
-                const habitRecord = new HabitsRecord({
-                    habitID: habit.id,
-                    date: moment().format('YYYY-MM-DD')
-                });
-                habitsRecords.push(habitRecord);
-                this.habitsService.insertHabitsRecord(habitRecord);
-            });
-        });
+        this.habitsService.insertHabitsRecord(new HabitsRecord({
+            habitID: habit.id,
+            date: moment().format('MM-DD-YYYY')
+        }));
     }
 
     deleteHabitRecord(habit: Habit) {
-        this.habitsService.waitForDatabase(() => {
-            this.habitsService.getHabitsRecord(habit).then(habitsRecords => {
-                const index = habitsRecords.findIndex(habitsRecord => {
-                    return habitsRecord.habitID === habit.id && habitsRecord.date === moment().format('YYYY-MM-DD');
-                });
-                if (index > -1) {
-                    const habitsRecord = habitsRecords.splice(index, 1)[0];
-                    this.habitsService.deleteHabitsRecord(habitsRecord.id);
-                }
-            });
-        });
+        this.habitsService.deleteHabitsRecord(habit.id);
     }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { Habit } from '../models/Habit';
 import { HabitsRecord } from '../models/HabitsRecord';
 import { DBService } from '../libs/DBService';
+import moment from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +15,12 @@ export class habitsService extends DBService {
     }
 
     getHabits(): Promise<Habit[]> {
-        return this.model.all() as Promise<Habit[]>;
+        return this.model.all().then(habits => {
+            habits.forEach(habit => {
+                (habit as Habit).loadDone();
+            });
+            return habits;
+        }) as Promise<Habit[]>;
     }
     
     getHabitsRecord(habit: Habit): Promise<HabitsRecord[]> {
@@ -23,10 +28,15 @@ export class habitsService extends DBService {
     }
 
     insertHabitsRecord(habitsRecord: HabitsRecord) {
-        // to be implemented...
+        this.waitForDatabase(db => {
+            habitsRecord.db = db;
+            habitsRecord.insert();
+        });
     }
 
-    deleteHabitsRecord(habitRecordID) {
-        // to be implemented...
+    deleteHabitsRecord(habitID) {
+        this.waitForDatabase(db => {
+            db.executeSql("DELETE FROM HabitsRecord WHERE habitID = ? AND date = ?", [habitID, moment().format('MM-DD-YYYY')])
+        });
     }
 }

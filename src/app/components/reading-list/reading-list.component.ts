@@ -10,7 +10,7 @@ import { Book } from '../../models/Book';
     templateUrl: './reading-list.component.html',
     styleUrls: ['./reading-list.component.scss'],
 })
-export class ReadingListComponent implements OnInit {
+export class ReadingListComponent {
     
     orgBooks: Book[];
     books: Book[];
@@ -19,7 +19,7 @@ export class ReadingListComponent implements OnInit {
         private alertCtrl: AlertController
     ) { }
 
-    ngOnInit() {
+    ionViewWillEnter() {
         this.booksService.waitForDatabase(() => {
             this.booksService.getReadingList().then(books => {
                 this.books = books;

@@ -84,7 +84,7 @@ export class BaseModel implements IModel {
             this.db.executeSql(sql.replace(/\sAND$/, ''), args)
                 .then(async result => {
                     for(var i = 0; i < result.rows.length; i++) {
-                        all.push(await this.loadModel(result.rows.item(i), this));
+                        all.push(await this.loadModel(result.rows.item(i), _.cloneDeep(this)));
                     }
                     resolve(all);
                 }).catch(e => reject(e));

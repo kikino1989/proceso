@@ -38,15 +38,10 @@ export class EditComponent {
             name: [this.budget.name, Validators.required],
             _limit: [this.budget._limit, Validators.required],
             startDate: [this.budget.startDate, Validators.required]
-        });;
+        });
         this.budgetSubscription = this.budgetForm.valueChanges.subscribe(() => {
                 this.budgetChanged.emit(this.budgetForm.valid);
         });
-        this.incomeSources = _.cloneDeep(this.budget.incomeSources);
-        this.spences = _.cloneDeep(this.budget.spences);
-        this.orgIncomeSources = _.cloneDeep(this.budget.incomeSources);
-        this.orgSpences = _.cloneDeep(this.budget.spences);
-
         this.saveSubscription = this.saveEvent.subscribe((saved) => {
             if (saved) {
                 this.saveBudget({...this.budgetForm.value, ...{
@@ -55,6 +50,13 @@ export class EditComponent {
                 });
             }
         });
+    }
+
+    ionViewWillEnter() {
+        this.incomeSources = _.cloneDeep(this.budget.incomeSources);
+        this.spences = _.cloneDeep(this.budget.spences);
+        this.orgIncomeSources = _.cloneDeep(this.budget.incomeSources);
+        this.orgSpences = _.cloneDeep(this.budget.spences);
     }
 
     ngOnDestroy() {
