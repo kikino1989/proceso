@@ -16,6 +16,7 @@ export class Habit extends BaseModel {
     
     constructor(properties?: Habit | any) {
         super('Habit');
+        this.excludedFields = [...this.excludedFields, ...['done']];
         if (properties) {
             this.loadModel(properties, this);
         }

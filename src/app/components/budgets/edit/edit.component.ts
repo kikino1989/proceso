@@ -50,9 +50,7 @@ export class EditComponent {
                 });
             }
         });
-    }
-
-    ionViewWillEnter() {
+        
         this.incomeSources = _.cloneDeep(this.budget.incomeSources);
         this.spences = _.cloneDeep(this.budget.spences);
         this.orgIncomeSources = _.cloneDeep(this.budget.incomeSources);

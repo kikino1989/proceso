@@ -46,11 +46,17 @@ export class ProspectsComponent {
             }
         }).then(modal => {
             modal.present();
-            modal.onWillDismiss().then(({data: prospect}) => {
+            modal.onWillDismiss().then(({data: {prospect, reminder}}) => {
                 if (prospect) {
                     this.orgProspects.push(prospect);
                     this.prospects.push(prospect);
-                    prospect.insert();
+                    prospect.insert().then(() => {
+                        if (reminder.note && reminder.date) {
+                            reminder.entityID = prospect.id;
+                            reminder.entityClass = 'Prospect';
+                            reminder.insert();
+                        }
+                    });
                 }
             });
         });
@@ -65,13 +71,15 @@ export class ProspectsComponent {
             }
         }).then(modal => {
             modal.present();
-            modal.onWillDismiss().then(({data}) => {
-                if (data) {
-                    for (let prop in data) {
+            modal.onWillDismiss().then(({data: {prospect, reminder}}) => {
+                if (prospect) {
+                    for (let prop in prospect) {
                         if (prospect.hasOwnProperty(prop))
-                            prospect[prop] = data[prop];
+                            prospect[prop] = prospect[prop];
                     }
-                    prospect.update();
+                    prospect.update().then(() => {
+                        reminder.update();
+                    });
                 }
             });
         });

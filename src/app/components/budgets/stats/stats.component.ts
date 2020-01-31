@@ -21,7 +21,7 @@ export class StatsComponent {
         private modalCtrl: ModalController
     ) { }
 
-    ionViewWillEnter() {
+    ngOnInit() {
         this.budgetService
             .getSnapshots(this.budget)
             .then(snapshots => {

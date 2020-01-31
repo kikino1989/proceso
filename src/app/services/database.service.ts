@@ -52,8 +52,8 @@ export class DatabaseService {
             tx.executeSql("CREATE TABLE IF NOT EXISTS ProspectingSteps(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, position INTEGER NOT NULL, description TEXT, pointA TEXT, tools TEXT, pointB TEXT)");
             tx.executeSql("CREATE INDEX IF NOT EXISTS pt_name ON ProspectingSteps(name)");
 
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Reminder(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, note TEXT, frequency TEXT NOT NULL, entityID INTEGER NOT NULL, entityClass TEXT NOT NULL)");
-            tx.executeSql("CREATE INDEX IF NOT EXISTS r_name ON Reminder(name)");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS Reminder(id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, note TEXT, frequency TEXT NOT NULL, entityID INTEGER NOT NULL, entityClass TEXT NOT NULL)");
+            tx.executeSql("CREATE INDEX IF NOT EXISTS r_date ON Reminder(date)");
             // finished creating tables
         });
     }
@@ -99,7 +99,7 @@ export class DatabaseService {
         
                     for(let prop in _default) {
                         if (_default.hasOwnProperty(prop) &&
-                            !BaseModel.excludedFields.includes(prop))  {
+                            !_default.excludedFields.includes(prop))  {
                             placeHolders.push("?");
                             fields.push(prop);
                             args.push(_default[prop]);

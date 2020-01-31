@@ -5,8 +5,8 @@ export class Reminder extends BaseModel {
     public date: string;
     public note: string;
     public frequency = OCCURS.ONCE;
-    public entityID?: number;
-    public entityClass?: string;
+    public entityID: number;
+    public entityClass: string;
     constructor(properties?: Reminder | any) {
         super('Reminder');
         if (properties) {

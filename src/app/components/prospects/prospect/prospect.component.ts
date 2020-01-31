@@ -47,9 +47,7 @@ export class ProspectComponent implements OnInit {
     }
 
     onSubmit() {
-        if (this.reminder.note && this.reminder.date)
-            this.reminder.insert();
-        this.modalCtrl.dismiss(this.prospect);
+        this.modalCtrl.dismiss({prospect: this.prospect, reminder: this.reminder});
     }
 
     dismiss() {

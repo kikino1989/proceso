@@ -15,12 +15,7 @@ export class habitsService extends DBService {
     }
 
     getHabits(): Promise<Habit[]> {
-        return this.model.all().then(habits => {
-            habits.forEach(habit => {
-                (habit as Habit).loadDone();
-            });
-            return habits;
-        }) as Promise<Habit[]>;
+        return this.model.all() as Promise<Habit[]>;
     }
     
     getHabitsRecord(habit: Habit): Promise<HabitsRecord[]> {
@@ -29,6 +24,7 @@ export class habitsService extends DBService {
 
     insertHabitsRecord(habitsRecord: HabitsRecord) {
         this.waitForDatabase(db => {
+            console.log('this runs...', habitsRecord)
             habitsRecord.db = db;
             habitsRecord.insert();
         });

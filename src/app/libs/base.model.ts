@@ -11,7 +11,7 @@ export class BaseModel implements IModel {
     public _loadDeps = true;
     public primaryKey = 'id';
     public dependencyForeignKey: string;
-    public static excludedFields = [
+    public excludedFields = [
         'excludedFields', 'db', 'tableName', 'dependencies', '_loadDeps', 'primaryKey', 'dependencyForeignKey'
     ];
 
@@ -101,7 +101,7 @@ export class BaseModel implements IModel {
             const args = [];
             for(let prop in this) {
                 if (typeof this[prop] !== "object" &&
-                    !BaseModel.excludedFields.includes(prop))  {
+                    !this.excludedFields.includes(prop))  {
                     sql += `${prop} = ?, `;
                     args.push(this[prop]);
                 }
@@ -135,7 +135,7 @@ export class BaseModel implements IModel {
             const args = [];
             for(let prop in this) {
                 if (typeof this[prop] !== "object" &&
-                    !BaseModel.excludedFields.includes(prop))  {
+                    !this.excludedFields.includes(prop))  {
                     if (prop === 'id' && (this['id'] === undefined || this['id'] === null)) {
                         continue;
                     }

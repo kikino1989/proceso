@@ -16,9 +16,6 @@ export class BudgetProgressComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-    }
-
-    ngAfterViewInit() {
         if (this.budget.spences.length)
             this.growTo(this.spendingBarWidth);
     }

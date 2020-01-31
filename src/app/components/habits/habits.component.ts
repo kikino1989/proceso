@@ -24,8 +24,11 @@ export class HabitsComponent {
 
     ionViewWillEnter() {
         this.habitsService.waitForDatabase(() => {
-            this.habitsService.getHabits().then(habits => {
+            this.habitsService.getHabits().then(async habits => {
                 this.habits = habits;
+                for (let i = 0; i < this.habits.length; i++) {
+                    await habits[i].loadDone();
+                }
                 this.orgHabits = _.cloneDeep(this.habits);
             });
         });
@@ -87,8 +90,10 @@ export class HabitsComponent {
         habit.delete();
     }
 
-    changeHabit(habit: Habit, {target:{checked}}) {
-        if (checked)
+    changeHabit(habit: Habit) {
+        // habit.done = !habit.done;
+        console.log('is it done::', habit.done)
+        if (habit.done)
             this.addHabitRecord(habit);
         else
             this.deleteHabitRecord(habit);

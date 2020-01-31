@@ -19,7 +19,7 @@ export class SummaryComponent {
 
     constructor(public alertController: AlertController) { }
 
-    ionViewWillEnter() {
+    ngOnInit() {
         this.orgIncomeSources = this.budget.incomeSources;
         this.orgSpences = this.budget.spences;
         this.incomeSources = _.cloneDeep(this.orgIncomeSources);
