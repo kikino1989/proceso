@@ -68,7 +68,7 @@ export class BudgetsService extends DBService {
             const activeBudget = await this.getActiveBudget();
             setTimeout(async () => {
                 const hasSnapshot = await this.snapshotForThisMonth(activeBudget);
-                if (/*activeBudget && activeBudget.startDate.indexOf(today) &&*/ !hasSnapshot) {
+                if (activeBudget && activeBudget.startDate.indexOf(today) && !hasSnapshot) {
                     this.takeSnapshot(activeBudget);
                 } 
                 this.watchBudget(today);
@@ -82,7 +82,6 @@ export class BudgetsService extends DBService {
     }
 
     async takeSnapshot(activeBudget: Budget) {
-        console.log('take snap runs...')
         if (activeBudget) {
             const snapshot = _.cloneDeep(activeBudget);
             snapshot.snapshot = moment().subtract(1, 'day').format('MM-DD-YYYY');

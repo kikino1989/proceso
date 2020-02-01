@@ -1,4 +1,5 @@
--implement native functionality
+
+-change the status of prospects to desmissed when instead of deleted.
 
 image upload in prospects.
 import from contacts.

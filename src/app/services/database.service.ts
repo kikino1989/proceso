@@ -32,18 +32,18 @@ export class DatabaseService {
             tx.executeSql("CREATE TABLE IF NOT EXISTS Book(id INTEGER PRIMARY KEY AUTOINCREMENT, position INTEGER NOT NULL, name TEXT NOT NULL, progress INTEGER NOT NULL, read BOOLEAN NOT NULL)");
             tx.executeSql("CREATE INDEX IF NOT EXISTS bk_name ON Book(name)");
 
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Budget(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, _limit NUMERIC NOT NULL, active BOOLEAN NOT NULL, startDate TEXT NOT NULL, snapshot TEXT DEFAULT NULL, parentID INTEGER, FOREIGN KEY(parentID) REFERENCES Budget(id))");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS Budget(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, _limit NUMERIC NOT NULL, active BOOLEAN NOT NULL, startDate TEXT NOT NULL, snapshot TEXT DEFAULT NULL, parentID INTEGER, FOREIGN KEY(parentID) REFERENCES Budget(id) ON DELETE CASCADE)");
             tx.executeSql("CREATE INDEX IF NOT EXISTS bgt_name ON Budget(name)");
 
             tx.executeSql("CREATE TABLE IF NOT EXISTS Habit(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, timeGoal INTEGER, dueDate TEXT, description TEXT, frequency TEXT NOT NULL DEFAULT 'daily')");
             tx.executeSql("CREATE INDEX IF NOT EXISTS hbt_name ON Habit(name)");
 
-            tx.executeSql("CREATE TABLE IF NOT EXISTS HabitsRecord(id INTEGER PRIMARY KEY AUTOINCREMENT, habitID INTEGER NOT NULL, date TEXT NOT NULL, FOREIGN KEY(habitID) REFERENCES Habit(id))");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS HabitsRecord(id INTEGER PRIMARY KEY AUTOINCREMENT, habitID INTEGER NOT NULL, date TEXT NOT NULL, FOREIGN KEY(habitID) REFERENCES Habit(id) ON DELETE CASCADE)");
 
-            tx.executeSql("CREATE TABLE IF NOT EXISTS IncomeSource(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, budgetID INTEGER NOT NULL, value NUMERIC NOT NULL, type TEXT NOT NULL, date TEXT NOT NULL, FOREIGN KEY(budgetID) REFERENCES Budget(id))");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS IncomeSource(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, budgetID INTEGER NOT NULL, value NUMERIC NOT NULL, type TEXT NOT NULL, date TEXT NOT NULL, FOREIGN KEY(budgetID) REFERENCES Budget(id) ON DELETE CASCADE)");
             tx.executeSql("CREATE INDEX IF NOT EXISTS is_name ON IncomeSource(name)");
 
-            tx.executeSql("CREATE TABLE IF NOT EXISTS Spence(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, budgetID INTEGER NOT NULL, value NUMERIC NOT NULL, type TEXT NOT NULL, dueDate TEXT NOT NULL, _limit NUMERIC, FOREIGN KEY(budgetID) REFERENCES Budget(id))");
+            tx.executeSql("CREATE TABLE IF NOT EXISTS Spence(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, budgetID INTEGER NOT NULL, value NUMERIC NOT NULL, type TEXT NOT NULL, dueDate TEXT NOT NULL, _limit NUMERIC, FOREIGN KEY(budgetID) REFERENCES Budget(id) ON DELETE CASCADE)");
             tx.executeSql("CREATE INDEX IF NOT EXISTS s_name ON Spence(name)");
 
             tx.executeSql("CREATE TABLE IF NOT EXISTS Prospect(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, phone TEXT NOT NULL, email TEXT, image TEXT, step INTEGER NOT NULL DEFAULT 0)");
