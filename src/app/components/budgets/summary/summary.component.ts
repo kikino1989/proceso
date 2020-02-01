@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import {Budget} from '../../../models/Budget';
-import {IncomeSource} from '../../../models/IncomeSource';
-import {Spence} from '../../../models/Spence';
+import {IncomeSource, TYPE} from '../../../models/IncomeSource';
+import {Spence, TYPE as SPENCE_TYPE} from '../../../models/Spence';
 import { AlertController } from '@ionic/angular';
 import * as _ from 'lodash';
 
@@ -46,6 +46,9 @@ export class SummaryComponent {
     }
 
     addToIncomeSource(incomeSource: IncomeSource) {
+        if (incomeSource.type !== TYPE.VARIABLE)
+            return;
+
         this.alertController.create({
             header: "Add to income?",
             message: "this will affect your budget.",
@@ -54,6 +57,7 @@ export class SummaryComponent {
                     text: 'Add',
                     handler: ({value}) => {
                         incomeSource.value += value ? parseInt(value) : 0;
+                        incomeSource.update();
                     }
                 }, 
                 {
@@ -74,6 +78,10 @@ export class SummaryComponent {
     }
 
     addToSpence(spence: Spence) {
+        console.log('spence::.', spence)
+        if (spence.type !== SPENCE_TYPE.OCCASIONAL)
+            return;
+        
         this.alertController.create({
             header: "Add to spence?",
             message: "This will affect your budget.",
@@ -82,6 +90,7 @@ export class SummaryComponent {
                     text: 'Add',
                     handler: ({value}) => {
                         spence.value += value ? parseInt(value) : 0;
+                        spence.update();
                     }
                 }, 
                 {

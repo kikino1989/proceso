@@ -68,8 +68,8 @@ export class BudgetsService extends DBService {
             const activeBudget = await this.getActiveBudget();
             setTimeout(async () => {
                 const hasSnapshot = await this.snapshotForThisMonth(activeBudget);
-                if (activeBudget && activeBudget.startDate.indexOf(today) && !hasSnapshot) {
-                    this.takeSnapshot();
+                if (/*activeBudget && activeBudget.startDate.indexOf(today) &&*/ !hasSnapshot) {
+                    this.takeSnapshot(activeBudget);
                 } 
                 this.watchBudget(today);
             }, HOUR_PERIOD);
@@ -81,13 +81,16 @@ export class BudgetsService extends DBService {
         return matches.length ? matches[0] : null;
     }
 
-    async takeSnapshot() {
-        const activeBudget = await this.getActiveBudget();
+    async takeSnapshot(activeBudget: Budget) {
+        console.log('take snap runs...')
         if (activeBudget) {
             const snapshot = _.cloneDeep(activeBudget);
             snapshot.snapshot = moment().subtract(1, 'day').format('MM-DD-YYYY');
             snapshot.parentID = activeBudget.id;
+            snapshot.active = false;
+            snapshot.name = `Snapshot of ${snapshot.name}`;
             snapshot.id++;
+            snapshot.reassignDependencies();
             snapshot.insert();
             this.resetBudget(activeBudget);
         }

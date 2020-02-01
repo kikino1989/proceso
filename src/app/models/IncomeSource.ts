@@ -7,6 +7,7 @@ export const enum TYPE {
 }
 
 export class IncomeSource extends BaseModel implements IValuable {
+    budgetID: number;
     public name: string;
     public value: number;
     public type: TYPE = TYPE.FIXED;

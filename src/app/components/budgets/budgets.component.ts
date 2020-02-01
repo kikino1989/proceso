@@ -35,8 +35,12 @@ export class BudgetsComponent {
         });
     }
 
-    updateBudgets(event, budget?) {
-        budget.active = event.detail.checked;
-        this.budgets.forEach(budget => budget.update());
+    async updateBudgets(budget) {
+        for (let i = 0; i < this.budgets.length; i++) {
+            this.budgets[i].active = false;
+            await this.budgets[i].update();
+        }
+        budget.active = true;
+        budget.update();
     }
 }

@@ -7,6 +7,7 @@ export const enum TYPE {
 }
 
 export class Spence extends BaseModel implements IValuable {
+    public budgetID: number;
     public name: string;
     public value: number;
     public type: TYPE = TYPE.RECURRENT;

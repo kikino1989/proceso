@@ -58,8 +58,8 @@ export class Budget extends BaseModel {
     getTotal(entities: IValuable[]): number {
         if (entities.length)
             return entities
-                    .map(entity => entity.value)
-                    .reduce((value, cur) => (value + cur));
+                .map(entity => entity.value)
+                .reduce((value, cur) => (value + cur));
         return 0;
     }
 
@@ -77,12 +77,25 @@ export class Budget extends BaseModel {
         this.incomeSources.forEach(incomeSource => {
             if (incomeSource.type === INTYPES.VARIABLE) {
                 incomeSource.value = 0;
+                incomeSource.update();
             }
         });
         this.spences.forEach(spence => {
             if (spence.type === SPTYPES.OCCASIONAL) {
                 spence.value = 0;
+                spence.update();
             }
-        })
+        });
+    }
+
+    reassignDependencies() {
+        this.spences.forEach(spence => {
+            spence.budgetID = this.id;
+            spence.id = null;
+        });
+        this.incomeSources.forEach(source => {
+            source.budgetID = this.id;
+            source.id = null;
+        });
     }
 }

@@ -12,7 +12,7 @@ export const enum MODES { SUMMARY = 'summary', EDIT = 'edit', STATS = 'stats', S
 export class BudgetCardComponent implements OnInit {
     public mode: MODES = MODES.SUMMARY;
     @Input() budget: Budget;
-    @Input() updateBudgets: () => void;
+    @Input() updateBudgets: (budget: Budget) => void;
     @Input() removeBudget?: (budget: Budget) => void;
     @Output() budgetChange = new EventEmitter<Budget>();
     public saveEvent = new EventEmitter<boolean>();

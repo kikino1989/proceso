@@ -10,10 +10,9 @@
             (ionChange)="filterIncomeSources($event.target.value)">
         </ion-input>
     </ion-list-header>
-    <ion-item *ngFor="let incomeSource of incomeSources">
+    <ion-item *ngFor="let incomeSource of incomeSources" (click)="addToIncomeSource(incomeSource)">
         <ion-icon *ngIf="incomeSource.type === 'Variable'" 
-            color="warning" name="add" 
-            (click)="addToIncomeSource(incomeSource)">
+            color="warning" name="add">
         </ion-icon>
         <ion-icon name="cash"></ion-icon>
         <ion-label>
@@ -34,12 +33,12 @@
             (ionChange)="filterSpences($event.target.value)">
         </ion-input>
     </ion-list-header>
-    <ion-item *ngFor="let spence of spences">
+    <ion-item *ngFor="let spence of spences" (click)="addToSpence(spence)">
         <ion-icon *ngIf="spence.type === 'Occasional'"
-            color="warning" name="add-circle-outline" (click)="addToSpence(spence)">
+            color="warning" name="add-circle-outline">
         </ion-icon>
         <ion-icon name="card"></ion-icon>
-        <ion-label (click)="addToSpence(spence)">
+        <ion-label>
             {{ spence.name }}, 
             ${{ spence.value }},
             {{ spence.type }}
