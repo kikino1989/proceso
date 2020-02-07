@@ -98,4 +98,10 @@ export class Budget extends BaseModel {
             source.id = null;
         });
     }
+
+    delete() {
+        return super.delete().then(() => {
+            return this.db.executeSql(`DELETE FROM Budget WHERE parent_id = ? `, [this.id])
+        });
+    }
 }

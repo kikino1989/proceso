@@ -121,7 +121,9 @@ export class BaseModel implements IModel {
         return new Promise((resolve, reject) => {
             let sql = `DELETE FROM ${this.tableName} WHERE id = ?`;
             this.db.executeSql(sql, [this.id]).then(() => {
-                resolve();
+                this.deleteDependencies().then(() => {
+                    return resolve();
+                }).catch((e) => reject(e));
             }).catch((e) => reject(e));
         });
     }
@@ -184,6 +186,24 @@ export class BaseModel implements IModel {
                                 }
                             }).catch(e => reject(e));
                         });
+                    });
+                }
+            });
+        });
+    }
+
+    deleteDependencies() {
+        return new Promise((resolve, reject) => {
+            if (!this.dependencies.length || !this.dependencyForeignKey)
+                return resolve();
+
+            this.dependencies.forEach((dependency, index) => {
+                const dependencyInstances: BaseModel[] = this[dependency.propertyName];
+                if (dependencyInstances && dependencyInstances.length) {
+                    this.db.executeSql(`DELETE FROM ${dependency.tableName} WHERE ${this.dependencyForeignKey} = ?`, [this[this.primaryKey]]).then(() => {
+                        if (this.dependencies.length - 1 === index) {
+                            return resolve();
+                        }
                     });
                 }
             });

@@ -17,12 +17,12 @@
         <ion-badge color="warning" slot="end">{{ booksCount }}</ion-badge>
     </ion-item>
 
-    <ion-card (click)="gotoBudgets()">
+    <ion-card *ngIf="budget" (click)="gotoBudgets()">
         <ion-card-content>
             <ion-item lines="none" class="ion-no-padding">
                 <ion-icon size="large" name="calculator"></ion-icon> {{ budget?.name }}
             </ion-item>
-            <stats *ngIf="budget" [budget]="budget"></stats>
+            <stats [budget]="budget"></stats>
         </ion-card-content>
-    </ion-card>
+    </ion-card *ngIf="budget">
 </ion-content>

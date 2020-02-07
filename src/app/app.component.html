@@ -1,15 +1,15 @@
 <ion-app>
   <ion-split-pane>
     <ion-menu type="push" side="end">
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
+      <ion-header class="transparent">
+        <ion-toolbar color="tertiary" class="top-curvy">
+            <img class="ion-padding-horizontal" slot="start" width="138" src="/assets/connectPro logo.svg" />
         </ion-toolbar>
       </ion-header>
-      <ion-content>
-        <ion-list>
+      <ion-content color="medium">
+        <ion-list lines="full" class="ion-no-padding">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-item color="medium" [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{p.title}}

@@ -1,4 +1,4 @@
-
+-foreing keys don't work.
 -change the status of prospects to desmissed when instead of deleted.
 
 image upload in prospects.
