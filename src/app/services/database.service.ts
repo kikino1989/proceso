@@ -1,11 +1,13 @@
 import { SQLiteObject, SQLite } from "@ionic-native/sqlite/ngx";
-import { EventEmitter } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Book } from "../models/Book";
 import { Habit } from "../models/Habit";
 import { ProspectingSteps } from "../models/ProspectingSteps";
 import { BaseModel } from '../libs/base.model';
-import { DBService } from '../libs/DBService';
 
+@Injectable({
+    providedIn: 'root'
+})
 export class DatabaseService {
 
     public db: SQLiteObject;

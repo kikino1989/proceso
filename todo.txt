@@ -1,8 +1,8 @@
--foreing keys don't work.
+
+-image upload in prospects.
+
 -change the status of prospects to desmissed when instead of deleted.
 
-image upload in prospects.
-import from contacts.
 
 -settings page
 ++restore defaults for prospecting steps, reading list and habits

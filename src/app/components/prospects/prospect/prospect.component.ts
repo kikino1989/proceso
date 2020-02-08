@@ -5,8 +5,8 @@ import { ProspectingSteps } from '../../../models/ProspectingSteps';
 import * as _  from 'lodash';
 import { Reminder } from '../../../models/Reminer';
 import { OCCURS } from '../../../models/OCCURS';
-import { RemindersService } from '../../../services/reminders.service';
-import { DatabaseService } from 'src/app/services/database.service';
+import { DatabaseService } from '../../../services/database.service';
+import { PhoteService } from 'src/app/services/phote.service';
 
 @Component({
     selector: 'prospect',
@@ -21,7 +21,8 @@ export class ProspectComponent implements OnInit {
     public reminder?: Reminder;
     constructor(
         private modalCtrl: ModalController,
-        private database: DatabaseService
+        private database: DatabaseService,
+        private photoService: PhoteService
     ) { }
 
     ngOnInit() {
@@ -56,5 +57,11 @@ export class ProspectComponent implements OnInit {
 
     get occurs() {
         return Object.keys(OCCURS as object);
+    }
+
+    getImage() {
+        this.photoService.takePicture().then(image => {
+            console.log('this is image', image);
+        });
     }
 }

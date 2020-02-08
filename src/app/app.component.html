@@ -1,6 +1,6 @@
 <ion-app>
-  <ion-split-pane>
-    <ion-menu type="push" side="end">
+  <ion-split-pane content-id="main">
+    <ion-menu contentId="main" type="push" side="end">
       <ion-header class="transparent">
         <ion-toolbar color="tertiary" class="top-curvy">
             <img class="ion-padding-horizontal" slot="start" width="138" src="/assets/connectPro logo.svg" />
@@ -19,6 +19,6 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    <ion-router-outlet main></ion-router-outlet>
+    <ion-router-outlet id="main"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

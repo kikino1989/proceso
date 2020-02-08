@@ -14,9 +14,9 @@
                         </ion-avatar>
                     </ion-col>
                     <ion-col class="ion-text-center">
-                        <ion-input name="image" type="file" placeholder="image"
-                            [(ngModel)]="prospect.image">
-                        </ion-input>
+                        <ion-button class="transparent ion-no-padding" (click)="getImage()">
+                            <ion-icon slot="icon-only" name="camera" size="large" color="tertiary"></ion-icon>
+                        </ion-button>
                     </ion-col>
                 </ion-row>
                 <ion-row>

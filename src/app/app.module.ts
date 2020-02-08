@@ -41,6 +41,10 @@ import { HeadbarComponent } from './components/headbar/headbar.component';
 import { ReminderComponent } from './components/reminders/reminder/reminder.component';
 import { DatabaseService } from './services/database.service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
+import { PhoteService } from './services/phote.service';
+import { FileService } from './services/file.service';
 
 @NgModule({
     declarations: [
@@ -87,6 +91,7 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
     ],
     providers: [
         SQLite,
+        DatabaseService,
         RemindersService,
         BudgetsService,
         ProspectService,
@@ -95,7 +100,10 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         BackgroundMode,
-        DatabaseService
+        File,
+        Camera,
+        PhoteService,
+        FileService
     ],
     bootstrap: [AppComponent]
 })

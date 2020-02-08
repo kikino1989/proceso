@@ -24,7 +24,6 @@ export class habitsService extends DBService {
 
     insertHabitsRecord(habitsRecord: HabitsRecord) {
         this.waitForDatabase(db => {
-            console.log('this runs...', habitsRecord)
             habitsRecord.db = db;
             habitsRecord.insert();
         });

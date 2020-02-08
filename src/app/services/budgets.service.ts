@@ -61,7 +61,7 @@ export class BudgetsService extends DBService {
     }
 
     async watchBudget(today = moment().format('Do')) {
-        if (window.cordova && !this.bm.isEnabled()) {
+        if ((window as any).cordova && !this.bm.isEnabled()) {
             this.bm.enable();
         }
         this.waitForDatabase(async () => {
