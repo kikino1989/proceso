@@ -6,7 +6,8 @@ import * as _  from 'lodash';
 import { Reminder } from '../../../models/Reminer';
 import { OCCURS } from '../../../models/OCCURS';
 import { DatabaseService } from '../../../services/database.service';
-import { PhoteService } from 'src/app/services/phote.service';
+import { PhoteService } from '../../../services/phote.service';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @Component({
     selector: 'prospect',
@@ -22,7 +23,8 @@ export class ProspectComponent implements OnInit {
     constructor(
         private modalCtrl: ModalController,
         private database: DatabaseService,
-        private photoService: PhoteService
+        private photoService: PhoteService,
+        private webview: WebView
     ) { }
 
     ngOnInit() {
@@ -60,8 +62,10 @@ export class ProspectComponent implements OnInit {
     }
 
     getImage() {
-        this.photoService.takePicture().then(image => {
-            console.log('this is image', image);
+        this.photoService.takePicture().then((image) => {
+            if (image) {
+                this.prospect.image = this.webview.convertFileSrc(image as string);
+            }
         });
     }
 }
