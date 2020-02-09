@@ -62,7 +62,7 @@ export class ProspectComponent implements OnInit {
     }
 
     getImage() {
-        this.photoService.takePicture().then((image) => {
+        this.photoService.selectImage().then((image) => {
             if (image) {
                 this.prospect.image = this.webview.convertFileSrc(image as string);
             }
