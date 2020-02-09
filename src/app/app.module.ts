@@ -45,6 +45,9 @@ import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { PhoteService } from './services/phote.service';
 import { FileService } from './services/file.service';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @NgModule({
     declarations: [
@@ -101,9 +104,12 @@ import { FileService } from './services/file.service';
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         BackgroundMode,
         File,
+        FileService,
+        FilePath,
+        FileTransfer,
         Camera,
         PhoteService,
-        FileService
+        WebView
     ],
     bootstrap: [AppComponent]
 })
