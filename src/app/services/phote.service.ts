@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
+import { Platform, ActionSheetController } from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,9 @@ export class PhoteService {
     constructor(
         private camera: Camera,
         private file: File,
-        private filePath: FilePath
+        private platform: Platform,
+        private filePath: FilePath,
+        private actionSheetCtrl: ActionSheetController
     ) {
         this.options = {
             quality: 100,
@@ -21,12 +24,50 @@ export class PhoteService {
         };
     }
 
-    public takePicture() {
-        return this.camera.getPicture(this.options).then((imagePath) => {
-            const currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-            const correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-            return this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-        }, e => console.log(e));
+    async selectImage() {
+        return new Promise(resolve => {
+            this.actionSheetCtrl.create({
+                header: "Select Image",
+                buttons: [{
+                        text: 'From Library',
+                        handler: () => {
+                            this.options.sourceType =this.camera.PictureSourceType.PHOTOLIBRARY;
+                            resolve(this.takePicture());
+                        }
+                    },
+                    {
+                        text: 'Use Camera',
+                        handler: () => {
+                            this.options.sourceType = this.camera.PictureSourceType.CAMERA;
+                            resolve(this.takePicture());
+                        }
+                    },
+                    {
+                        text: 'Cancel',
+                        role: 'cancel'
+                    }
+                ]
+            }).then(actionSheet => {
+                actionSheet.present();
+            })
+        });
+    }
+     
+    takePicture() {
+        return this.camera.getPicture(this.options).then(imagePath => {
+            if (this.platform.is('android') && this.options.sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+                this.filePath.resolveNativePath(imagePath)
+                    .then(filePath => {
+                        const correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+                        const currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+                        return this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+                    });
+            } else {
+                const currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+                const correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+                return this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+            }
+        });
     }
 
     // Create a new name for the image
