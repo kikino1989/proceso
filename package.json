@@ -37,7 +37,7 @@
     "animate.css": "^3.7.2",
     "chart.js": "^2.8.0",
     "cordova-android": "^8.1.0",
-    "cordova-ios": "^5.0.1",
+    "cordova-ios": "^5.1.1",
     "cordova-plugin-background-mode": "^0.7.3",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-contacts": "^3.0.1",
@@ -111,9 +111,9 @@
       "cordova-plugin-filepath": {}
     },
     "platforms": [
+      "windows",
       "android",
-      "ios",
-      "windows"
+      "ios"
     ]
   }
 }

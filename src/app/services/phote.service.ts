@@ -49,19 +49,19 @@ export class PhoteService {
                 ]
             }).then(actionSheet => {
                 actionSheet.present();
-            })
+            });
         });
     }
      
     takePicture() {
         return this.camera.getPicture(this.options).then(imagePath => {
             if (this.platform.is('android') && this.options.sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-                this.filePath.resolveNativePath(imagePath)
+                return this.filePath.resolveNativePath(imagePath)
                     .then(filePath => {
                         const correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                        const currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+                        const currentName = filePath.substr(filePath.lastIndexOf('/') + 1);
                         return this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-                    });
+                    }).catch(e => console.log(e));
             } else {
                 const currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
                 const correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);

@@ -1,6 +1,4 @@
 
--image upload in prospects.
-
 -change the status of prospects to desmissed when instead of deleted.
 
 
@@ -13,5 +11,5 @@
 ++user should be able to add goals and break them down into smaller goals by year, quaters, month, week and day.
 ++should be displayed in a tree like or hirerchy structure.
 
--home page
-++display/set progress/faze of the process.
+-tax savings estimator.
+++view potential tax savings
