@@ -1,7 +1,4 @@
 
--change the status of prospects to desmissed when instead of deleted.
-
-
 -settings page
 ++restore defaults for prospecting steps, reading list and habits
 ++change language

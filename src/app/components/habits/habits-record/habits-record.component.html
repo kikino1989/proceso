@@ -1,4 +1,4 @@
-<ion-content [ngClass]="{'no-content': !records}">
+<ion-content [ngClass]="{'no-content': !records || !records.length}">
     <ion-item *ngIf="records" lines="full" class="ion-text-center">
         <ion-label>
             Record for {{ habitName }} 

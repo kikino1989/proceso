@@ -1,5 +1,5 @@
 <headbar>Recruiting Steps</headbar>
-<ion-content [ngClass]="{'no-content': !prospectingSteps}">
+<ion-content [ngClass]="{'no-content': !prospectingSteps || !prospectingSteps.length}">
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addProspectingStep()">Add Step</ion-button>
     </div>

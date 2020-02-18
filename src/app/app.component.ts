@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-
+import { Base } from './libs/Base';
 import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { BudgetsService } from './services/budgets.service';
 import { DatabaseService } from './services/database.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Globalization } from '@ionic-native/globalization/ngx';
 
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent extends Base {
     public appPages = [
         {
             title: 'Home',
@@ -56,18 +58,30 @@ export class AppComponent {
     ];
 
     constructor(
-        private alert: AlertController,
+        alert: AlertController,
         private platform: Platform,
         private dbService: DatabaseService,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
-        private budgetService: BudgetsService
-    ) { this.initializeApp(); }
+        private budgetService: BudgetsService,
+        private translator: TranslateService,
+        private globalization: Globalization
+    ) { 
+        super(alert);
+        this.initializeApp();
+    }
 
     initializeApp() {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+
+            this.translator.setDefaultLang('en');
+            this.globalization.getPreferredLanguage().then(({value: lang}) => {
+                console.log('thsi is lang::', lang)
+                // this.translator.use(lang);
+            }).catch(e  => this.doError());
+
             this.dbService.openDatabase().then(async db => {
                 
                 await this.dbService.createTables(db);
@@ -79,16 +93,7 @@ export class AppComponent {
                 });
                 this.dbService.dbReady.emit(db);
             })
-            .catch(e => {
-                this.alert.create({
-                    header: "ERROR",
-                    message: "Oops something went wrong!",
-                    buttons: [{text: "OK", role: 'ok'}],
-                    cssClass: 'error-alert'
-                    
-                }).then(alert => alert.present());
-                console.log(e);
-            });
+            .catch(e => this.doError());
         });
     }
 

@@ -1,5 +1,5 @@
 <headbar>Budgets</headbar>
-<ion-content [ngClass]="{'no-content': !budgets}">
+<ion-content [ngClass]="{'no-content': !budgets || !budgets.length}">
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addBudget()">Add Budget</ion-button>
     </div>

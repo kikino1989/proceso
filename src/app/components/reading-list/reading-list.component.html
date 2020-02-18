@@ -1,5 +1,5 @@
 <headbar>Reading List</headbar>
-<ion-content [ngClass]="{'no-content': !books}">
+<ion-content [ngClass]="{'no-content': !books || !books.length}">
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addBook()">Add Book</ion-button>
     </div>

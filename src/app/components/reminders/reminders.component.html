@@ -1,5 +1,5 @@
 <headbar>Reminders</headbar>
-<ion-content [ngClass]="{'no-content': !reminders}">
+<ion-content [ngClass]="{'no-content': !reminders || !reminders.length}">
     <ion-list *ngIf="reminders">
         <ion-list-header>
             <ion-label>Reminders: </ion-label>

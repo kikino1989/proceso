@@ -48,6 +48,14 @@ import { FileService } from './services/file.service';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateService, TranslateLoader } from '@ngx-translate/core';
+import { Globalization } from '@ionic-native/globalization/ngx';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
+}
 
 @NgModule({
     declarations: [
@@ -90,7 +98,16 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
         IonicModule.forRoot(),
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        HttpClientModule,
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+            defaultLanguage: 'en',
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ],
     providers: [
         SQLite,
@@ -109,6 +126,8 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
         FileTransfer,
         Camera,
         PhoteService,
+        TranslateService,
+        Globalization,
         WebView
     ],
     bootstrap: [AppComponent]

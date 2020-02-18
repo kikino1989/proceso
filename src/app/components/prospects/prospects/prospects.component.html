@@ -1,5 +1,5 @@
 <headbar>Prospects</headbar>
-<ion-content [ngClass]="{'no-content': !prospect}">
+<ion-content [ngClass]="{'no-content': !prospects || !prospects.length}">
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addProspect()">Add Prospect</ion-button>
     </div>

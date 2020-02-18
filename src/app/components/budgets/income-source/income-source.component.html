@@ -1,4 +1,4 @@
-<ion-content [ngClass]="{'no-content': incomeSource}">
+<ion-content [ngClass]="{'no-content': !incomeSource}">
     <form *ngIf="incomeSource" name="income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>

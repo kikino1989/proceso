@@ -298,14 +298,21 @@ ion-datepicker {
     }
 }
 
-.error-info {
+.warning-alert {
     --background: var(--ion-color-warning);
     .alert-title, .alert-message, .alert-button {
         color: var(--ion-color-warning-contrast);
     }
 }
 
-.error-success {
+.info-alert {
+    --background: var(--ion-color-primary);
+    .alert-title, .alert-message, .alert-button {
+        color: var(--ion-color-primary-contrast);
+    }
+}
+
+.success-alert {
     --background: var(--ion-color-success);
     .alert-title, .alert-message, .alert-button {
         color: var(--ion-color-success-contrast);
