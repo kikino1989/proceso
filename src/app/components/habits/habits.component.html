@@ -1,5 +1,5 @@
 <headbar>Habits Tracker</headbar>
-<ion-content>
+<ion-content [ngClass]="{'no-content': !habits}">
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addHabit()">Add Habit</ion-button>
     </div>

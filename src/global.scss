@@ -36,15 +36,15 @@
 
 ion-header {
     &, &::after {
-        background-color: transparent;
-        background-image: none;
-        --background-color: transparent;
-        --background-image: none;
+        background-color: transparent !important;
+        background-image: none !important;
+        --background-color: transparent !important;
+        --background-image: none !important;
     }
 }
 
-ion-content {
-    --background: url(/assets/home-background.jpg) 0 0/100% 100% no-repeat;
+.no-content {
+    --background: url(/assets/plug-head.svg) center/100px no-repeat;
 }
 
 .transparent-0 {

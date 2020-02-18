@@ -1,14 +1,12 @@
 <headbar>Budgets</headbar>
-<ion-content>
+<ion-content [ngClass]="{'no-content': !budgets}">
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addBudget()">Add Budget</ion-button>
     </div>
-    <ion-list>
+    <ion-list *ngIf="budgets">
         <ion-radio-group>
-            <ng-container *ngIf="budgets">
-                <ng-container *ngFor="let budget of budgets.reverse()">
-                    <budget-card [(budget)]="budget" [removeBudget]="removeBudget.bind(this)" [updateBudgets]="updateBudgets.bind(this)"></budget-card>
-                </ng-container>
+            <ng-container *ngFor="let budget of budgets.reverse()">
+                <budget-card [(budget)]="budget" [removeBudget]="removeBudget.bind(this)" [updateBudgets]="updateBudgets.bind(this)"></budget-card>
             </ng-container>
         </ion-radio-group>
     </ion-list>

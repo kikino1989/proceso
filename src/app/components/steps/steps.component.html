@@ -1,9 +1,9 @@
 <headbar>Recruiting Steps</headbar>
-<ion-content>
+<ion-content [ngClass]="{'no-content': !prospectingSteps}">
     <div class="padding-8 full right">
         <ion-button type="button" shape="round" size="small" (click)="addProspectingStep()">Add Step</ion-button>
     </div>
-    <ion-list lines="full">
+    <ion-list *ngIf="prospectingSteps" lines="full">
         <ion-list-header>
             <ion-label>name: </ion-label>
             <ion-input type="text" clear-input="true" placeholder="Step name..."

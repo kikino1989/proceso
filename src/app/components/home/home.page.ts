@@ -59,7 +59,7 @@ export class HomePage {
             });
         });
         this.prospectService.waitForDatabase(() => {
-            this.prospectService.getProspects().then(prospects => {
+            this.prospectService.getActiveProspects().then(prospects => {
                 this.prospectsCount = prospects.length;
             });
         });

@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [ngClass]="{'no-content': !habit}">
     <form *ngIf="habit" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>

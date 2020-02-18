@@ -1,5 +1,5 @@
-<ion-content>
-    <form  *ngIf="prospect && reminder" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
+<ion-content [ngClass]="{'no-content': !prospect}">
+    <form *ngIf="prospect && reminder" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
                 {{ !orgProspect ? 'New Prospect' : 'Edit ' + prospect.name }}

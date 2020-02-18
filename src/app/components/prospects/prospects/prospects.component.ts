@@ -24,7 +24,7 @@ export class ProspectsComponent {
 
     ionViewWillEnter() {
         this.prospectService.waitForDatabase(() => {
-            this.prospectService.getProspects().then(prospects => {
+            this.prospectService.getActiveProspects().then(prospects => {
                 this.prospects = prospects;
                 this.orgProspects = _.cloneDeep(this.prospects);
                 this.prospectService.getProspectingSteps().then(steps => this.prospectingSteps = steps);
@@ -91,7 +91,8 @@ export class ProspectsComponent {
         });
         this.prospects.splice(index, 1);
         this.orgProspects.splice(index, 1);
-        prospect.delete();
+        prospect.id = -1;
+        prospect.update();
     }
 
     filterProspects(value) {

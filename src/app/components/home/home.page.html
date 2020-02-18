@@ -1,6 +1,6 @@
 <headbar>Home</headbar>
 
-<ion-content>
+<ion-content [ngClass]="{'no-content': !budget && !remindersCount && !prospectsCount && !booksCount}">
     <ion-item class="transparent-75" lines="full" (click)="gotoReminders()">
         <ion-icon color="primary" size="large" name="clock"></ion-icon>
         <ion-text color="primary">Reminders</ion-text> 

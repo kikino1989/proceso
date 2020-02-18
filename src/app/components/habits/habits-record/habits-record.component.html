@@ -1,12 +1,12 @@
-<ion-content>
-    <ion-item  *ngIf="records" lines="full" class="ion-text-center">
+<ion-content [ngClass]="{'no-content': !records}">
+    <ion-item *ngIf="records" lines="full" class="ion-text-center">
         <ion-label>
             Record for {{ habitName }} 
         </ion-label>
         <ion-icon slot="end" color="blue" name="close-circle" (click)="dismiss()"></ion-icon>
     </ion-item>
     <div class="content">
-        <ion-list  lines="full">
+        <ion-list lines="full" *ngIf="records">
             <ion-list-header>
                 <ion-label>Date: </ion-label>
                 <ion-input type="text" clear-input="true" placeholder="Search..."
