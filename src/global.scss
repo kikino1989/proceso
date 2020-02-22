@@ -76,7 +76,7 @@ ion-content {
         display: block;
         height: 100%;
         width: 100%;
-        opacity: 0.5;
+        opacity: 0.8;
         top: 0;
         left: 0;
         bottom: 0;
@@ -84,14 +84,12 @@ ion-content {
         position: absolute;
         z-index: -1;
     }
-    ion-grid,
-    ion-row,
-    ion-col,
+
+    ion-list,
     ion-card,
     ion-item {
         @extend .transparent-90;
     }
-
 }
 
 .top-curvy {
@@ -111,6 +109,10 @@ ion-content {
     --border-radius: 25px 25px;
 }
 
+ion-label {
+    color: var(--ion-color-medium-contrast);
+    --color: var(--ion-color-medium-contrast);
+}
 ion-item {
     touch-action: auto !important;
     user-select: auto !important;
