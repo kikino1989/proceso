@@ -1,14 +1,14 @@
 <ion-content [ngClass]="{'no-content': !spence}">
     <form *ngIf="spence" name="spence-form" class="modal-form" (ngSubmit)="onSubmit($event)">
-        <div class="header">
-            <ion-label> {{ !orgSpence ? 'New Spence' : 'Edit ' + spence.name }} </ion-label>
+        <div class="header" translate>
+            <ion-label> {{ !orgSpence ? 'newSpence' : 'edit ' | translate }} {{ spence.name }} </ion-label>
         </div>
         <div class="content">
             <ion-grid>
                 <ion-row>
                     <ion-col size="12" >
                         <ion-item>
-                            <ion-label>Name</ion-label>
+                            <ion-label translate>name</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
@@ -22,7 +22,7 @@
                 <ion-row>
                     <ion-col size="12" >
                         <ion-item>
-                            <ion-label>Value</ion-label>
+                            <ion-label translate>value</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
@@ -36,15 +36,15 @@
                 <ion-row>
                     <ion-col size="12" >
                         <ion-item>
-                            <ion-label>Type</ion-label>
+                            <ion-label translate>type</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
                         <ion-item>
                             <ion-select name="type" [(ngModel)]="spence.type"
                                 placeholder="Select Type..." required>
-                                <ion-select-option value="Recurrent" selected>Recurrent</ion-select-option>
-                                <ion-select-option value="Occasional">Occasional</ion-select-option>
+                                <ion-select-option value="Recurrent" selected translate>recurrent</ion-select-option>
+                                <ion-select-option value="Occasional" translate>occasional</ion-select-option>
                             </ion-select>
                         </ion-item>
                     </ion-col>
@@ -52,7 +52,7 @@
                 <ion-row>
                     <ion-col size="12" >
                         <ion-item>
-                            <ion-label>Due Date</ion-label>
+                            <ion-label translate>dueDate</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
@@ -68,10 +68,10 @@
         </div>
         <div class="footer">
             <ion-button type="button" size="small" role="cancel" 
-                (click)="dismiss()" color="primary"> Cancel 
+                (click)="dismiss()" color="primary" translate>cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !orgSpence ? 'Add' : 'Save' }} 
+                {{ !orgSpence ? 'add' : 'save' | translate }} 
             </ion-button>
         </div>
     </form>

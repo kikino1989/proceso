@@ -1,16 +1,16 @@
 <form [formGroup]="budgetForm">
     <ion-item>
-        <ion-label>Budget Name: </ion-label>
+        <ion-label translate>budgets.edit.budgetName</ion-label>
         <ion-input required type="text" formControlName="name">
         </ion-input>
     </ion-item>
     <ion-item>
-        <ion-label>Budget Limit:</ion-label>
+        <ion-label translate>budgets.edit.budgetLimit</ion-label>
         <ion-input required type="number" formControlName="_limit">
         </ion-input>
     </ion-item>
     <ion-item>
-        <ion-label>Start Date:</ion-label>
+        <ion-label translate>startDate</ion-label>
         <ion-select type="number" formControlName="startDate">
             <ion-select-option [selected]="day.indexOf('1ST') > -1" *ngFor="let day of budgetDays" [value]="day">
                 {{ day }}
@@ -21,8 +21,8 @@
         <ion-list-header>
             <ion-grid>
                 <ion-row>
-                    <ion-col>
-                        Income Sources
+                    <ion-col translate>
+                        incomeSources
                     </ion-col>
                     <ion-col class="card-title-side right">
                         <ion-icon size="large" color="primary" name="add"
@@ -50,7 +50,7 @@
                 ${{ incomeSource.value }}, 
                 {{ incomeSource.type }}
                 <span *ngIf="incomeSource.date">
-                    <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
+                    <ion-icon name="alarm" translate></ion-icon> date {{ incomeSource.date }}
                 </span>
             </ion-label>
         </ion-item>
@@ -87,8 +87,8 @@
                 {{ spence.name }}, 
                 ${{ spence.value }},
                 {{ spence.type }}
-                <span *ngIf="spence.date">
-                    <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
+                <span *ngIf="spence.date" translate>
+                    <ion-icon name="alarm"></ion-icon> dueDate {{ spence.dueDate }}
                 </span>
             </ion-label>
         </ion-item>

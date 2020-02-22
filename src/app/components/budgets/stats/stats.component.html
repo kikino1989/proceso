@@ -6,7 +6,7 @@
 
 <ion-list *ngIf="!budget.snapshot" lines="none" class="ion-margin-vertical">
     <ion-list-header>
-        <ion-label>Snapshots: </ion-label>
+        <ion-label translate>snapshots </ion-label>
         <ion-input type="text" clear-input="true" placeholder="Search..."
             (ionInput)="filterSnapshots($event.target.value)"
             (ionChange)="filterSnapshots($event.target.value)">

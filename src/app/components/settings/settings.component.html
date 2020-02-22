@@ -1,3 +1,11 @@
-<p>
-  settings works!
-</p>
+<headbar>settings.title</headbar>
+
+<ion-content>
+    <ion-item>
+        <ion-label translate> settings.language </ion-label>
+        <ion-select class="ignore-width" [(ngModel)]="language" (ionChange)="setLanguage()">
+          <ion-select-option value="en" translate>settings.english</ion-select-option>
+          <ion-select-option value="es" translate>settings.spanish</ion-select-option>
+        </ion-select>
+    </ion-item>
+</ion-content>

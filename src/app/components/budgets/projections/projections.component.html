@@ -1,7 +1,7 @@
 <div class="ion-margin-vertical">
-    <h3 class="ion-margin-bottom ion-text-center">PROJECTIONS</h3>
-    <p>Net {{ budget.profit > 0 ? 'Profit' : 'Lost' }}: $ {{ budget.profit }}</p>
-    <p>Yearly {{ budget.profit > 0 ? 'Profit' : 'Lost' }}: $ {{ budget.yearlyProfit * 12 }}</p>
+    <h3 class="ion-margin-bottom ion-text-center" translate>projections</h3>
+    <p><span translate>net</span> {{ budget.profit > 0 ? 'profit' : 'lost' | translate}}: $ {{ budget.profit }}</p>
+    <p><span translate>yearly</span> {{ budget.profit > 0 ? 'profit' : 'lost' | translate}}: $ {{ budget.yearlyProfit * 12 }}</p>
     <div *ngIf="projectionsData">
         <canvas [chartize]="projectionsData" type="line"></canvas>
     </div>

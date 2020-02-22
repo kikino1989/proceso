@@ -1,8 +1,8 @@
-<headbar>Reminders</headbar>
+<headbar>reminders.title</headbar>
 <ion-content [ngClass]="{'no-content': !reminders || !reminders.length}">
     <ion-list *ngIf="reminders">
         <ion-list-header>
-            <ion-label>Reminders: </ion-label>
+            <ion-label translate>reminders.reminders </ion-label>
             <ion-input type="text" clear-input="true" placeholder="Reminder name..."
                 (ionInput)="filterReminders($event.target.value)"
                 (ionChange)="filterReminders($event.target.value)">

@@ -85,4 +85,8 @@ export class HomePage {
     gotoBooks() {
         this.navCtrl.navigateForward('reading');
     }
+
+    goToStart() {
+        this.navCtrl.navigateForward('/budgets');
+    }
 }

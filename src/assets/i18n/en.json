@@ -1,0 +1,100 @@
+{
+    "spences": "Spence",
+    "spence": "Spences",
+    "startDate": "Start Date",
+    "dueDate": "Due Date",
+    "date": "Date",
+    "edit": "Edit",
+    "add": "Add",
+    "remove": "Remove",
+    "save": "Save",
+    "view": "View",
+    "name": "Name",
+    "value": "Value",
+    "type": "Type",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "daily": "Dayly",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "profit": "Profit",
+    "lost": "Lost",
+    "fixed": "Fixed",
+    "variable": "Variable",
+    "recurrent": "Recurrent",
+    "occasional": "Occasional",
+    "incomeSource": "Income Source",
+    "incomeSources": "Income Sources",
+    "snapshot": "Snapshot",
+    "snapshots": "Snapshots",
+    "limit": "Limit",
+    "description": "Description",
+    "frequency": "Frequency",
+    "timeGoals": "Time Goals",
+    "lastDays": "Last {{days}} Days",
+    "recordsFor": "Records For",
+    "recordFor": "Record For",
+    "takePicture": "Take Picture",
+    "phone": "Phone",
+    "email": "Email",
+    "step": "step",
+    "books": "Books",
+    "dismiss": "Dismiss",
+    "point": "Point {{point}}",
+    "tools": "Tools",
+    "newIncomeSource": "New Income Source",
+    "newSpence": "New Spence",
+    "newHabit": "New Habit",
+    "newProspect": "New Prospect",
+    "newStep": "New Step",
+    "net": "Net",
+    "projections": "Projections",
+    "getStarted": "Get Started",
+    "budgets": {
+        "title": "Budgets",
+        "addBudget": "Add Budget",
+        "budgetProgress": {
+            "budgetLimit": "Budget Limit"
+        },
+        "edit": {
+            "budgetName": "Budget Name",
+            "budgetLimit": "Budget Limit"
+        }
+    },
+    "habits": {
+        "title": "Habits",
+        "addHabit": "Add Habit",
+        "habits": "Habits"
+    },
+    "home": {
+        "title": "Home",
+        "reminders": "Reminders",
+        "prospects": "Prospects",
+        "booksRead": "Books Read"
+    },
+    "prospects": {
+        "title": "Prospects",
+        "prospects": "Prospects",
+        "addProspect": "Add Prospect",
+        "reminder": "Reminder"
+    },
+    "readingList": {
+        "title": "Reading List",
+        "addBook": "Add Book"
+    },
+    "reminders": {
+        "title": "Reminders",
+        "reminders": "Reminders"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "english": "English",
+        "spanish": "Spanish"
+    },
+    "steps": {
+        "title": "Steps",
+        "addStep": "Add Prospecting Step"
+    }
+}

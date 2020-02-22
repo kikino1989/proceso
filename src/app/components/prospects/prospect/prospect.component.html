@@ -2,7 +2,7 @@
     <form *ngIf="prospect && reminder" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
-                {{ !orgProspect ? 'New Prospect' : 'Edit ' + prospect.name }}
+                {{ !orgProspect ? 'newProspect' : 'edit ' | translate }} {{prospect.name }}
             </ion-label>
         </div>
         <div class="content">
@@ -14,15 +14,15 @@
                         </ion-avatar>
                     </ion-col>
                     <ion-col class="ion-text-center">
-                        <ion-button (click)="getImage()">
-                            Take picture
+                        <ion-button (click)="getImage()" translate>
+                            takePicture
                         </ion-button>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col size="12" >
                         <ion-item>
-                            <ion-label>Name</ion-label>
+                            <ion-label translate>name</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
@@ -36,7 +36,7 @@
                 <ion-row>
                     <ion-col size="12">
                         <ion-item>
-                            <ion-label>Phone</ion-label>
+                            <ion-label translate>phone</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12">
@@ -50,7 +50,7 @@
                 <ion-row>
                     <ion-col size="12">
                         <ion-item>
-                            <ion-label>Email</ion-label>
+                            <ion-label translate>email</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12">
@@ -64,7 +64,7 @@
                 <ion-row>
                     <ion-col size="12">
                         <ion-item>
-                            <ion-label>Step</ion-label>
+                            <ion-label translate>step</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
@@ -78,7 +78,7 @@
                 <ion-row>
                     <ion-col size="12" >
                         <ion-item>
-                            <ion-label>Reminder</ion-label>
+                            <ion-label translate>prospect.reminder</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
@@ -119,7 +119,7 @@
                 (click)="dismiss()" color="primary"> Cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !orgProspect ? 'Add' : 'Save' }} 
+                {{ !orgProspect ? 'add' : 'save' | translate }} 
             </ion-button>
         </div>
     </form>

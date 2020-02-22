@@ -1,23 +1,23 @@
-<headbar>Home</headbar>
+<headbar>home.title</headbar>
 
-<ion-content [ngClass]="{'no-content': !budget && !remindersCount && !prospectsCount && !booksCount}">
-    <ion-item class="transparent-75" lines="full" (click)="gotoReminders()">
+<ion-content [ngClass]="{'no-content ion-text-center': !budget && !remindersCount && !prospectsCount && !booksCount}">
+    <ion-item lines="full" (click)="gotoReminders()">
         <ion-icon color="primary" size="large" name="clock"></ion-icon>
-        <ion-text color="primary">Reminders</ion-text> 
+        <ion-text color="primary" translate>home.reminders</ion-text> 
         <ion-badge color="primary" slot="end">{{ remindersCount }}</ion-badge>
     </ion-item>
-    <ion-item class="transparent-75" lines="full" (click)="gotoProspects()">
+    <ion-item lines="full" (click)="gotoProspects()">
         <ion-icon color="danger" size="large" name="people"></ion-icon>
-        <ion-text color="danger">Prospects</ion-text>
+        <ion-text color="danger" translate>home.prospects</ion-text>
         <ion-badge color="danger" slot="end">{{ prospectsCount }}</ion-badge>
     </ion-item>
-    <ion-item class="transparent-75" lines="full" (click)="gotoProspects()">
+    <ion-item lines="full" (click)="gotoProspects()">
         <ion-icon color="warning" size="large" name="book"></ion-icon>
-        <ion-text color="warning" >Books read</ion-text>
+        <ion-text color="warning" translate>home.booksRead</ion-text>
         <ion-badge color="warning" slot="end">{{ booksCount }}</ion-badge>
     </ion-item>
 
-    <ion-card class="transparent-75" color="white" *ngIf="budget" (click)="gotoBudgets()">
+    <ion-card color="white" *ngIf="budget; else getStarted" (click)="gotoBudgets()">
         <ion-card-content>
             <ion-item lines="none" class="ion-no-padding">
                 <ion-icon size="large" name="calculator"></ion-icon> {{ budget?.name }}
@@ -25,4 +25,7 @@
             <stats [budget]="budget"></stats>
         </ion-card-content>
     </ion-card>
+    <ng-template #getStarted>
+        <h3 class="get-started" (click)="goToStart()" translate >getStarted</h3>
+    </ng-template>
 </ion-content>

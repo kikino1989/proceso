@@ -2,7 +2,7 @@
     <form *ngIf="habit" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
-                {{ !orgHabit ? 'New Habit' : 'Edit ' + habit.name }}
+                {{ !orgHabit ? 'newHabit' : 'edit ' | translate }} {{ habit.name }}
             </ion-label>
         </div>
         <div class="content">
@@ -10,7 +10,7 @@
                 <ion-row>
                     <ion-col size="12" >
                         <ion-item>
-                            <ion-label>Name</ion-label>
+                            <ion-label translate>name</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
@@ -24,7 +24,7 @@
                 <ion-row>
                     <ion-col size="12">
                         <ion-item>
-                            <ion-label>Description</ion-label>
+                            <ion-label translate>description</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12">
@@ -38,7 +38,7 @@
                 <ion-row>
                     <ion-col size="12">
                         <ion-item>
-                            <ion-label>Time Goal</ion-label>
+                            <ion-label translate>timeGoals</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12">
@@ -52,7 +52,7 @@
                 <ion-row>
                     <ion-col size="12">
                         <ion-item>
-                            <ion-label>Frequency</ion-label>
+                            <ion-label translate>frequency</ion-label>
                         </ion-item>
                     </ion-col>
                     <ion-col size="12" >
@@ -67,10 +67,10 @@
         </div>
         <div class="footer">
             <ion-button type="button" size="small" role="cancel" 
-                (click)="dismiss()" color="primary"> Cancel 
+                (click)="dismiss()" color="primary" translate> cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !orgHabit ? 'Add' : 'Save' }} 
+                {{ !orgHabit ? 'add' : 'save' | translate }} 
             </ion-button>
         </div>
     </form>

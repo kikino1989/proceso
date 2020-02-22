@@ -1,11 +1,11 @@
-<headbar>Reading List</headbar>
+<headbar>readingList.title</headbar>
 <ion-content [ngClass]="{'no-content': !books || !books.length}">
     <div class="padding-8 full right">
-        <ion-button type="button" shape="round" size="small" (click)="addBook()">Add Book</ion-button>
+        <ion-button type="button" shape="round" size="small" (click)="addBook()" translate>readkingList.addBook</ion-button>
     </div>
     <ion-list *ngIf="books" lines="full">
         <ion-list-header>
-            <ion-label>Books: </ion-label>
+            <ion-label translate>books </ion-label>
             <ion-input type="text" clear-input="true" placeholder="Book name..."
                 (ionInput)="filterBooks($event.target.value)"
                 (ionChange)="filterBooks($event.target.value)">

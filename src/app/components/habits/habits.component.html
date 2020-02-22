@@ -1,11 +1,11 @@
-<headbar>Habits Tracker</headbar>
+<headbar>habits.title</headbar>
 <ion-content [ngClass]="{'no-content': !habits || !habits.length}">
     <div class="padding-8 full right">
-        <ion-button type="button" shape="round" size="small" (click)="addHabit()">Add Habit</ion-button>
+        <ion-button type="button" shape="round" size="small" (click)="addHabit()" translate>habits.addHabit</ion-button>
     </div>
     <ion-list *ngIf="habits" lines="full">
         <ion-list-header>
-            <ion-label>Habits: </ion-label>
+            <ion-label translate>habits.habits </ion-label>
             <ion-input type="text" clear-input="true" placeholder="Habit name..."
                 (ionInput)="filterHabits($event.target.value)"
                 (ionChange)="filterHabits($event.target.value)">

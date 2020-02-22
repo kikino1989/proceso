@@ -78,8 +78,7 @@ export class AppComponent extends Base {
 
             this.translator.setDefaultLang('en');
             this.globalization.getPreferredLanguage().then(({value: lang}) => {
-                console.log('thsi is lang::', lang)
-                // this.translator.use(lang);
+                this.translator.use(lang ? lang.split('-')[0]: 'en');
             }).catch(e  => this.doError());
 
             this.dbService.openDatabase().then(async db => {

@@ -1,24 +1,25 @@
 <ion-content [ngClass]="{'no-content': !records || !records.length}">
     <ion-item *ngIf="records" lines="full" class="ion-text-center">
         <ion-label>
-            Record for {{ habitName }} 
+            {{ 'recordFor' | translate }} {{ habitName }} 
         </ion-label>
         <ion-icon slot="end" color="blue" name="close-circle" (click)="dismiss()"></ion-icon>
     </ion-item>
     <div class="content">
         <ion-list lines="full" *ngIf="records">
             <ion-list-header>
-                <ion-label>Date: </ion-label>
+                <ion-label translate>date </ion-label>
                 <ion-input type="text" clear-input="true" placeholder="Search..."
                     (ionInput)="filterHabitsRecords($event.target.value)"
                     (ionChange)="filterHabitsRecords($event.target.value)">
                 </ion-input>
             </ion-list-header>
-            <ion-item>
-                Records for the <ion-select [(ngModel)]="from" (ionChange)="buildRecords()">
-                    <ion-select-option [value]="30">Last 30 Days</ion-select-option>
-                    <ion-select-option [value]="60">Last 60 Days</ion-select-option>
-                    <ion-select-option [value]="90">Last 90 Days</ion-select-option>
+            <ion-item translate>
+                recordsFor
+                <ion-select [(ngModel)]="from" (ionChange)="buildRecords()">
+                    <ion-select-option [value]="30" translate translateParams="{days: 30}">lastDays</ion-select-option>
+                    <ion-select-option [value]="60" translate translateParams="{days: 60}">lastDays</ion-select-option>
+                    <ion-select-option [value]="90" translate translateParams="{days: 90}">lastDays</ion-select-option>
                 </ion-select>
             </ion-item>
             <ion-item *ngFor="let record of records" [color]="record.done ? 'primary' : 'danger'">

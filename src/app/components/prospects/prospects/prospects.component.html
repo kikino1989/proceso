@@ -1,11 +1,11 @@
-<headbar>Prospects</headbar>
+<headbar>prospects.title</headbar>
 <ion-content [ngClass]="{'no-content': !prospects || !prospects.length}">
     <div class="padding-8 full right">
-        <ion-button type="button" shape="round" size="small" (click)="addProspect()">Add Prospect</ion-button>
+        <ion-button type="button" shape="round" size="small" (click)="addProspect()" translate>prospects.addProspect</ion-button>
     </div>
     <ion-list *ngIf="prospects && prospectingSteps" lines="full">
         <ion-list-header>
-            <ion-label>Prospects: </ion-label>
+            <ion-label translate>prospects.prospects </ion-label>
             <ion-input type="text" clear-input="true" placeholder="Prospect name..."
                 (ionInput)="filterProspects($event.target.value)"
                 (ionChange)="filterProspects($event.target.value)">

@@ -1,10 +1,10 @@
 <ion-card-subtitle>
-    <ion-label>Limit </ion-label> {{ budget._limit }} <br />
-    <ion-label>Start Date </ion-label> {{ budget.startDate }}
+    <ion-label translate>limit </ion-label> {{ budget._limit }} <br />
+    <ion-label translate>startDate </ion-label> {{ budget.startDate }}
 </ion-card-subtitle>
 <ion-list>
     <ion-list-header>
-        <ion-label>Incomes Sources:</ion-label>
+        <ion-label translate>incomeSources</ion-label>
         <ion-input type="text" clear-input="true" placeholder="Search..."
             (ionInput)="filterIncomeSources($event.target.value)"
             (ionChange)="filterIncomeSources($event.target.value)">
@@ -19,7 +19,7 @@
             {{ incomeSource.name }}, 
             ${{ incomeSource.value }}, 
             {{ incomeSource.type }}
-            <span *ngIf="incomeSource.date">
+            <span *ngIf="incomeSource.date" translate>
                 <ion-icon name="alarm"></ion-icon> date {{ incomeSource.date }}
             </span>
         </ion-label>
@@ -27,7 +27,7 @@
 </ion-list>
 <ion-list>
     <ion-list-header>
-        <ion-label>Spences: </ion-label>
+        <ion-label translate>spences </ion-label>
         <ion-input type="text" clear-input="true" placeholder="Search..."
             (ionInput)="filterSpences($event.target.value)"
             (ionChange)="filterSpences($event.target.value)">
@@ -42,8 +42,8 @@
             {{ spence.name }}, 
             ${{ spence.value }},
             {{ spence.type }}
-            <span *ngIf="spence.date">
-                <ion-icon name="alarm"></ion-icon> Due Date {{ spence.dueDate }}
+            <span *ngIf="spence.date" translate>
+                <ion-icon name="alarm"></ion-icon> dueDate {{ spence.dueDate }}
             </span>
         </ion-label>
     </ion-item>

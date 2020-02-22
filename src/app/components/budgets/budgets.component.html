@@ -1,7 +1,7 @@
-<headbar>Budgets</headbar>
+<headbar>budgets.title</headbar>
 <ion-content [ngClass]="{'no-content': !budgets || !budgets.length}">
     <div class="padding-8 full right">
-        <ion-button type="button" shape="round" size="small" (click)="addBudget()">Add Budget</ion-button>
+        <ion-button type="button" shape="round" size="small" (click)="addBudget()" translate>budgets.addBudget</ion-button>
     </div>
     <ion-list *ngIf="budgets">
         <ion-radio-group>

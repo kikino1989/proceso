@@ -1,0 +1,32 @@
+{
+    "budgets": {
+
+    },
+    "habits": {
+
+    },
+    "headbar": {
+
+    },
+    "home": {
+
+    },
+    "prospects": {
+
+    },
+    "readingList": {
+
+    },
+    "reminders": {
+
+    },
+    "settings": {
+        "title": "configuraciónes",
+        "language": "Idioma",
+        "english": "Ingles",
+        "spanish": "Español"
+    },
+    "steps": {
+
+    }
+}

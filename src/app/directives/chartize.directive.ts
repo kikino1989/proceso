@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core';
 import Chart from 'chart.js';
 
 @Directive({
