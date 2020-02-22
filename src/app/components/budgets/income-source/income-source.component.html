@@ -2,7 +2,7 @@
     <form *ngIf="incomeSource" name="income-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label translate>
-                {{ !orgIncomeSource ? 'newIncomeSource' : 'edit ' | translate }} {{ incomeSource.name }}
+                {{ (!orgIncomeSource ? 'newIncomeSource' : 'edit') | translate }} {{ incomeSource.name }}
             </ion-label>
         </div>
         <div class="content">
@@ -72,7 +72,7 @@
                 (click)="dismiss()" color="primary" translate>cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !orgIncomeSource ? 'add' : 'save' | translate }} 
+                {{ (!orgIncomeSource ? 'add' : 'save') | translate }} 
             </ion-button>
         </div>
     </form>

@@ -1,32 +1,97 @@
 {
+    "spence": "Gasto",
+    "spences": "Gastos",
+    "startDate": "Fecha",
+    "dueDate": "Vence en",
+    "date": "Fecha",
+    "edit": "Editar",
+    "add": "Añadir",
+    "remove": "Remover",
+    "save": "Guardar",
+    "view": "Ver",
+    "name": "Nombre",
+    "value": "Valor",
+    "type": "Tipo",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "daily": "Diario",
+    "weekly": "Semanal",
+    "monthly": "Mensual",
+    "lost": "Pérdica",
+    "yearly": "Anual",
+    "profit": "Ganancia",
+    "fixed": "Fijo",
+    "variable": "Variable",
+    "recurrent": "Recurrente",
+    "occasional": "Ocasional",
+    "incomeSource": "Fuente de Ingreso",
+    "incomeSources": "Fuentes de Ingreso",
+    "snapshot": "Copia Pasada",
+    "snapshots": "Copias Pasada",
+    "limit": "Límite",
+    "description": "Descripción",
+    "frequency": "Frequencia",
+    "timeGoals": "Metas de Tiempo",
+    "recordsFor": "Records de",
+    "recordFor": "Record de",
+    "lastDays": "Últimos {{days}} Dias",
+    "takePicture": "Tomar Foto",
+    "phone": "Teléfono",
+    "email": "Correo Electronico",
+    "step": "Paso",
+    "books": "Libros",
+    "dismiss": "Descartar",
+    "point": "Punto {{point}}",
+    "tools": "Erramientas",
+    "newIncomeSource": "Nueva Fuente de Ingreso",
+    "newSpence": "Nuevo Gasto",
+    "newHabit": "Nuevo Habito",
+    "newProspect": "Nuevo Prospecto",
+    "newStep": "Nuevo Paso",
+    "net": "Neto",
+    "projections": "Projecciones",
+    "getStarted": "Empieza",
+    "emergencyFund": "Fondo de Emergencias",
+    "completeFund": "Fondo Completo",
     "budgets": {
-
+        "title": "Presupuestos",
+        "addBudget": "Añadir Presupuesto",
+        "budgetName": "Nombre del Presupuesto",
+        "budgetLimit": "Límite del Presupuesto"
     },
     "habits": {
-
-    },
-    "headbar": {
-
+        "title": "Hábitos",
+        "addHabit": "Añadir Habito",
+        "habits": "Hábitos"
     },
     "home": {
-
+        "title": "Inicio",
+        "reminders": "Recordatorios",
+        "prospects": "Prospectos",
+        "booksRead": "Libros Leidos"
     },
     "prospects": {
-
+        "title": "Prospectos",
+        "prospects": "Prospectos",
+        "addProspect": "Añadir Prospecto",
+        "reminder": "Recordatorios"
     },
     "readingList": {
-
+        "title": "Lista de Lectura",
+        "addBook": "Añadir Libro"
     },
     "reminders": {
-
+        "title": "Recordatorios",
+        "reminders": "Recordatorios"
     },
     "settings": {
-        "title": "configuraciónes",
+        "title": "Configuraciónes",
         "language": "Idioma",
         "english": "Ingles",
         "spanish": "Español"
     },
     "steps": {
-
+        "title": "Pasos",
+        "addStep": "Añadir paso de Recrutamiento"
     }
 }

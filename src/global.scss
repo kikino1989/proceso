@@ -59,6 +59,11 @@
     --opacity: 0.90;
 }
 
+.transparent-90 {
+    opacity: 1;
+    --opacity: 1;
+}
+
 ion-header {
     &, &::after {
         background-color: transparent !important;
@@ -89,6 +94,13 @@ ion-content {
     ion-card,
     ion-item {
         @extend .transparent-90;
+    }
+}
+
+.ion-modal {
+    * {
+        opacity: 1 !important;
+        --opacity: 1 !important;
     }
 }
 

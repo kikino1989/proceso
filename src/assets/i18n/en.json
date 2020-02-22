@@ -51,16 +51,13 @@
     "net": "Net",
     "projections": "Projections",
     "getStarted": "Get Started",
+    "emergencyFund": "Emergency Fund",
+    "completeFund": "Fully Funded Emergency Fund",
     "budgets": {
         "title": "Budgets",
         "addBudget": "Add Budget",
-        "budgetProgress": {
-            "budgetLimit": "Budget Limit"
-        },
-        "edit": {
-            "budgetName": "Budget Name",
-            "budgetLimit": "Budget Limit"
-        }
+        "budgetName": "Budget Name",
+        "budgetLimit": "Budget Limit"
     },
     "habits": {
         "title": "Habits",

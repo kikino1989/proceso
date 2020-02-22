@@ -1,7 +1,7 @@
 <ion-content [ngClass]="{'no-content': !spence}">
     <form *ngIf="spence" name="spence-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header" translate>
-            <ion-label> {{ !orgSpence ? 'newSpence' : 'edit ' | translate }} {{ spence.name }} </ion-label>
+            <ion-label> {{ (!orgSpence ? 'newSpence' : 'edit') | translate }} {{ spence.name }} </ion-label>
         </div>
         <div class="content">
             <ion-grid>
@@ -71,7 +71,7 @@
                 (click)="dismiss()" color="primary" translate>cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !orgSpence ? 'add' : 'save' | translate }} 
+                {{ (!orgSpence ? 'add' : 'save') | translate }} 
             </ion-button>
         </div>
     </form>

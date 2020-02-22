@@ -16,42 +16,42 @@ import { Globalization } from '@ionic-native/globalization/ngx';
 export class AppComponent extends Base {
     public appPages = [
         {
-            title: 'Home',
+            title: 'home.title',
             url: '/home',
             icon: 'home'
         },
         {
-            title: 'Budgets',
+            title: 'budgets.title',
             url: '/budgets',
             icon: 'calculator'
         },
         {
-            title: 'Prospects',
+            title: 'prospects.title',
             url: '/prospects',
             icon: 'people'
         },
         {
-            title: 'Recruiting Steps',
+            title: 'steps.title',
             url: '/steps',
             icon: 'thermometer'
         },
         {
-            title: 'Reminders',
+            title: 'reminders.title',
             url: '/reminders',
             icon: 'clock'
         },
         {
-            title: 'Habits Tracker',
+            title: 'habits.title',
             url: '/habits',
             icon: 'clipboard'
         },
         {
-            title: 'Reading List',
+            title: 'readingList.title',
             url: '/reading',
             icon: 'book'
         },
         {
-            title: 'Settings',
+            title: 'settings.title',
             url: '/settings',
             icon: 'settings'
         }

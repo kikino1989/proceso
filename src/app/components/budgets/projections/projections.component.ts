@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Budget} from '../../../models/Budget';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'projections',
@@ -8,7 +9,9 @@ import {Budget} from '../../../models/Budget';
 })
 export class ProjectionsComponent implements OnInit {
     @Input() budget: Budget;
-    constructor() { }
+    constructor(
+        private translate: TranslateService
+    ) { }
 
     ngOnInit() { }
 
@@ -21,7 +24,7 @@ export class ProjectionsComponent implements OnInit {
                 labels.push(`month ${i}`);
                 funds.push(i * this.budget.profit);
                 if (i === Math.floor(this.budget.energencyFundTime)) {
-                    labels.push('Emergency Fund')
+                    labels.push(this.translate.get('emergencyFund'))
                     funds.push(1000);
                 }
                 if (i === Math.floor(this.budget.fullyFundedEmergencyFundTime)) {
@@ -30,7 +33,7 @@ export class ProjectionsComponent implements OnInit {
                 }
             }
             return {
-                label: 'Emergency Fund',
+                label: this.translate.get('emergencyFund'),
                 data: {
                     labels: labels,
                     values: funds

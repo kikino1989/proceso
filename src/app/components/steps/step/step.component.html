@@ -2,7 +2,7 @@
     <form *ngIf="prospectingStep" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
-                {{ !orgProspectingStep ? 'newStep' : 'edit ' | translate }} {{ orgProspectingStep.name }}
+                {{ (!orgProspectingStep ? 'newStep' : 'edit') | translate }} {{ orgProspectingStep.name }}
             </ion-label>
         </div>
         <div class="content">
@@ -84,7 +84,7 @@
                 (click)="dismiss()" color="primary" translate> cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !orgProspectingStep ? 'add' : 'save' | translate }} 
+                {{ (!orgProspectingStep ? 'add' : 'save') | translate }} 
             </ion-button>
         </div>
     </form>

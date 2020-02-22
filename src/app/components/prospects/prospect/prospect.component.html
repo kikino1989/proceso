@@ -2,7 +2,7 @@
     <form *ngIf="prospect && reminder" name="prospect-form" class="modal-form" (ngSubmit)="onSubmit($event)">
         <div class="header">
             <ion-label>
-                {{ !orgProspect ? 'newProspect' : 'edit ' | translate }} {{prospect.name }}
+                {{ (!orgProspect ? 'newProspect' : 'edit') | translate }} {{prospect.name }}
             </ion-label>
         </div>
         <div class="content">
@@ -119,7 +119,7 @@
                 (click)="dismiss()" color="primary"> Cancel 
             </ion-button>
             <ion-button type="submit" size="small" role="submit" color="success">
-                {{ !orgProspect ? 'add' : 'save' | translate }} 
+                {{ (!orgProspect ? 'add' : 'save') | translate }} 
             </ion-button>
         </div>
     </form>
