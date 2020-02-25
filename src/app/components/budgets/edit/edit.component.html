@@ -50,7 +50,7 @@
                 ${{ incomeSource.value }}, 
                 {{ incomeSource.type }}
                 <span *ngIf="incomeSource.date">
-                    <ion-icon name="alarm" translate></ion-icon> date {{ incomeSource.date }}
+                    <ion-icon name="alarm" translate></ion-icon> {{ incomeSource.date }}
                 </span>
             </ion-label>
         </ion-item>
@@ -87,8 +87,8 @@
                 {{ spence.name }}, 
                 ${{ spence.value }},
                 {{ spence.type }}
-                <span *ngIf="spence.date" translate>
-                    <ion-icon name="alarm"></ion-icon> dueDate {{ spence.dueDate }}
+                <span *ngIf="spence.date">
+                    <ion-icon name="alarm"></ion-icon> {{ 'dueDate' | translate }} {{ spence.dueDate }}
                 </span>
             </ion-label>
         </ion-item>

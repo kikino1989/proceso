@@ -59,11 +59,6 @@
     --opacity: 0.90;
 }
 
-.transparent-90 {
-    opacity: 1;
-    --opacity: 1;
-}
-
 ion-header {
     &, &::after {
         background-color: transparent !important;
@@ -97,10 +92,13 @@ ion-content {
     }
 }
 
-.ion-modal {
-    * {
-        opacity: 1 !important;
-        --opacity: 1 !important;
+ion-modal {
+    ion-content {
+        background: white;
+        * {
+            opacity: 1 !important;
+            --opacity: 1 !important;
+        }
     }
 }
 

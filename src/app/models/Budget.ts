@@ -101,7 +101,7 @@ export class Budget extends BaseModel {
 
     delete() {
         return super.delete().then(() => {
-            return this.db.executeSql(`DELETE FROM Budget WHERE parent_id = ? `, [this.id]);
+            return this.db.executeSql(`DELETE FROM Budget WHERE parentID = ? `, [this.id]);
         });
     }
 }

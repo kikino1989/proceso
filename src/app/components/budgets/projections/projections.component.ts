@@ -9,13 +9,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProjectionsComponent implements OnInit {
     @Input() budget: Budget;
+    projectionsData: any = {};
     constructor(
         private translate: TranslateService
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.setProjectionsData();
+    }
 
-    get projectionsData() {
+    async setProjectionsData() {
         if (this.budget.profit) {
             const labels = [];
             const funds = [];
@@ -24,22 +27,25 @@ export class ProjectionsComponent implements OnInit {
                 labels.push(`month ${i}`);
                 funds.push(i * this.budget.profit);
                 if (i === Math.floor(this.budget.energencyFundTime)) {
-                    labels.push(this.translate.get('emergencyFund'))
+                    const label = await this.translate.get('emergencyFund').toPromise();
+                    labels.push(label);
                     funds.push(1000);
                 }
                 if (i === Math.floor(this.budget.fullyFundedEmergencyFundTime)) {
-                    labels.push('Fully Funded Emergency Fund')
+                    const label = this.translate.get('Fully Funded Emergency Fund').toPromise();
+                    labels.push(label);
                     funds.push(this.budget.fullyFundedEmergencyFund);
                 }
             }
-            return {
-                label: this.translate.get('emergencyFund'),
+
+            const label = await this.translate.get('emergencyFund').toPromise();
+            this.projectionsData = {
+                label: label,
                 data: {
                     labels: labels,
                     values: funds
                 }
             };
         }
-        return false;
     }
 }
