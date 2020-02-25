@@ -3,10 +3,8 @@
     overflow: hidden;
 }
 
-.get-started {
-    color: #2d67b2;
-    display: inline-block;
-    vertical-align: middle;
-    line-height: 15;
-    text-decoration: underline;
+.get-started-container {
+    display: flex;
+    height: calc(100% - 144px);
+    background: rgb(255,255,255, .2);
 }

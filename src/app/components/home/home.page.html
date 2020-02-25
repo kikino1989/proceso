@@ -17,7 +17,7 @@
         <ion-badge color="warning" slot="end">{{ booksCount }}</ion-badge>
     </ion-item>
 
-    <ion-card color="white" *ngIf="budget; else getStarted" (click)="gotoBudgets()">
+    <ion-card color="white" *ngIf="budget; else getStartedContainer" (click)="gotoBudgets()">
         <ion-card-content>
             <ion-item lines="none" class="ion-no-padding">
                 <ion-icon size="large" name="calculator"></ion-icon> {{ budget?.name }}
@@ -25,7 +25,9 @@
             <stats [budget]="budget"></stats>
         </ion-card-content>
     </ion-card>
-    <ng-template #getStarted>
-        <h3 class="get-started" (click)="goToStart()" translate >getStarted</h3>
+    <ng-template #getStartedContainer>
+        <div class="get-started-container ion-justify-content-center ion-align-items-center">
+            <ion-button color="tertiary" (click)="goToStart()" translate >getStarted</ion-button>
+        </div>
     </ng-template>
 </ion-content>
