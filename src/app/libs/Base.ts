@@ -1,23 +1,26 @@
-import { Inject } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 export class Base {
 
-    constructor(private alert: AlertController ) { }
+    constructor(
+        private alert: AlertController,
+        private translate: TranslateService
+    ) { }
 
-    doError(error = "Oops something went wrong!") {
+    async doError(error: string) {
         this.alert.create({
-            header: "ERROR!",
-            message: error,
+            header: await this.translate.get('errorHeader').toPromise(),
+            message: error || await this.translate.get('errorMessage').toPromise(),
             buttons: [{text: "OK", role: 'ok'}],
             cssClass: 'error-alert'
         }).then(alert => alert.present());
         console.log(error);
     }
 
-    doWarning(warning: string) {
+    async doWarning(warning: string) {
         this.alert.create({
-            header: "WARNING!",
+            header: await this.translate.get('warningHeader').toPromise(),
             message: warning,
             buttons: [{text: "OK", role: 'ok'}],
             cssClass: 'warning-alert'
@@ -25,9 +28,9 @@ export class Base {
         console.log(warning);
     }
 
-    doInfo(info: string) {
+    async doInfo(info: string) {
         this.alert.create({
-            header: "HEY THERE!",
+            header: await this.translate.get('infoHeader').toPromise(),
             message: info,
             buttons: [{text: "OK", role: 'ok'}],
             cssClass: 'info-alert'
@@ -35,9 +38,9 @@ export class Base {
         console.log(info);
     }
 
-    doSuccess(success: string) {
+    async doSuccess(success: string) {
         this.alert.create({
-            header: "GREAT!",
+            header: await this.translate.get('successHeader').toPromise(),
             message: success,
             buttons: [{text: "OK", role: 'ok'}],
             cssClass: 'success-alert'
