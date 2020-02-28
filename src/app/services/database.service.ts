@@ -5,6 +5,8 @@ import { Habit } from "../models/Habit";
 import { ProspectingSteps } from "../models/ProspectingSteps";
 import { BaseModel } from '../libs/base.model';
 
+export const CURRENT_DB_VERSION = 1;
+
 @Injectable({
     providedIn: 'root'
 })
@@ -16,19 +18,17 @@ export class DatabaseService {
     constructor(private sqlite: SQLite) { }
 
     openDatabase(): Promise<SQLiteObject> {
-        return new Promise((resolve, reject) => {
-            this.sqlite.create({
-                name: "proceso.db",
-                location: "default"
-            }).then(db => {
-                this.db = db;
-                resolve(db);
-            }).catch(e => reject(e));
+        return this.sqlite.create({
+            name: "proceso.db",
+            location: "default"
+        }).then(db => {
+            this.db = db;
+            return db;
         });
     }
     
-    createTables(db) {
-        return db.transaction(tx => {
+    createTables() {
+        return this.db.transaction(tx => {
             // create tables
 
             tx.executeSql("CREATE TABLE IF NOT EXISTS Book(id INTEGER PRIMARY KEY AUTOINCREMENT, position INTEGER NOT NULL, name TEXT NOT NULL, progress INTEGER NOT NULL, read BOOLEAN NOT NULL)");
@@ -61,7 +61,7 @@ export class DatabaseService {
     }
 
     clearDatabase() {
-        this.db.transaction(tx => {
+        return this.db.transaction(tx => {
             tx.executeSql("DELETE FROM Book");
             tx.executeSql("DELETE FROM Budget");
             tx.executeSql("DELETE FROM Habit");
@@ -74,13 +74,29 @@ export class DatabaseService {
         });
     }
 
-    runUpdates(db) {
-        return db.transaction(async tx => {
-            // do update
+    async runUpdates() {
+        await this.setDatabaseVersion(1);
+        return new Promise(resolve => {
+            this.getDatabaseVersion().then(async version => {
+                for(let i = version; i <= CURRENT_DB_VERSION; i++) {
+                    await this.applyUpdates(version);
+                    this.setDatabaseVersion(i);
+                }
+                resolve();
+            });
         });
     }
 
-    runSeeds(db) {
+    applyUpdates(version: number) {
+        return new Promise(resolve => {
+            switch(version) {
+                default: resolve();
+                    break;
+            }
+        });
+    }
+
+    runSeeds() {
         return this.db.transaction(tx => {
             // do seeds
 
@@ -113,5 +129,15 @@ export class DatabaseService {
                 });
             }
         });
+    }
+
+    getDatabaseVersion() {
+        return this.db.executeSql('PRAGMA user_version', []).then(result => {
+            return result.rows.length ? result.rows.item(0).user_version: null;
+        });
+    }
+
+    setDatabaseVersion(version: number) {
+        return this.db.executeSql('PRAGMA user_version = ' + version, []).catch(e => console.error(e));
     }
 }

@@ -82,10 +82,9 @@ export class AppComponent extends Base {
             }).catch(e  => this.doError());
 
             this.dbService.openDatabase().then(async db => {
-                
-                await this.dbService.createTables(db);
-                await this.dbService.runSeeds(db);
-                await this.dbService.runUpdates(db);
+                await this.dbService.createTables();
+                await this.dbService.runSeeds();
+                await this.dbService.runUpdates();
                 
                 this.dbService.dbReady.subscribe(() => {
                     this.budgetService.watchBudget();
