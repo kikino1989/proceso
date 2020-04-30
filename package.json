@@ -54,7 +54,7 @@
     "cordova-windows": "^7.0.0",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-ui-dist": "^1.12.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
